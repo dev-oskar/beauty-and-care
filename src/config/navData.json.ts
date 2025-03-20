@@ -14,19 +14,19 @@ export type navItem = navLinkItem | navDropdownItem;
 // note: 1 level of dropdown is supported
 const navConfig: navItem[] = [
 	{
-		text: "Home",
+		text: "Strona główna",
 		link: "/",
 	},
 	{
-		text: "portfolios",
+		text: "Usługi",
 		link: "/portfolio",
 	},
 	{
-		text: "Pricing",
+		text: "Cennik",
 		link: "/#pricing",
 	},
 	{
-		text: "Pages",
+		text: "Galeria",
 		dropdown: [
 			{
 				text: "Portfolio",
