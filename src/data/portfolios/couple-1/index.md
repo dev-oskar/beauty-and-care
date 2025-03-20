@@ -1,10 +1,10 @@
 ---
-title: A mountain escape
-description: Transform your wedding moments into lasting memories amidst California's majestic mountains.
+title: Modelowanie sylwetki
+description: Skuteczne zabiegi modelujące sylwetkę, wykorzystujące technologię laserowej liposukcji i treningu EMS.
 heroImage: ./couple-9-square.jpg
-date: "Aug 5 2024"
-location: Malibu, California
-clients: [Hannah, Marco]
+date: "Mar 18 2025"
+location: Beauty and Care
+clients: [Liposukcja, Trening EMS]
 images:
   [
     [./couple-2-min-1.jpg, ./couple-2-min-1.jpg],
@@ -15,4 +15,4 @@ images:
 order: 1
 ---
 
-This Malibu wedding was a breathtaking affair. The stunning mountain views provided a picturesque backdrop. The photographs beautifully captured the intimate moments, the vibrant energy, and the overall romantic ambiance of the day.
+Nasze zabiegi modelowania sylwetki to połączenie zaawansowanych technologii i indywidualnego podejścia. Dzięki liposukcji laserowej Vivien 1064 nm oraz treningowi EMS, oferujemy nieinwazyjne metody redukcji tkanki tłuszczowej i ujędrniania ciała. Terapia bioelektryczna 448 kHZ dodatkowo wspomaga proces redukcji cellulitu i poprawia napięcie skóry, zapewniając widoczne efekty już po pierwszych zabiegach.

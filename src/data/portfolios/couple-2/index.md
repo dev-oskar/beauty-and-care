@@ -1,10 +1,10 @@
 ---
-title: A beachside celebration
-description: The sandy shores, kissed by gentle waves, provided a serene backdrop for your beach wedding.
+title: Kompleksowa pielęgnacja twarzy
+description: Innowacyjne zabiegi odmładzające i regenerujące skórę twarzy z wykorzystaniem najnowszych technologii kosmetycznych.
 heroImage: ./couple-3-square.jpg
-date: "Jun 12 2024"
-location: Miami, Florida
-clients: [Alex, Jeff]
+date: "Mar 15 2025"
+location: Beauty and Care
+clients: [Zabieg regenerujący, Anti-Aging]
 images:
   [
     [./couple-2-min-2.jpg, ./couple-2-min-2.jpg],
@@ -15,4 +15,4 @@ images:
 order: 2
 ---
 
-This Malibu wedding was a breathtaking affair. The stunning mountain views provided a picturesque backdrop. The photographs beautifully captured the intimate moments, the vibrant energy, and the overall romantic ambiance of the day.
+Nasze zabiegi pielęgnacji twarzy to połączenie innowacyjnych technologii i sprawdzonych metod kosmetycznych. Oferujemy kompleksowe podejście do każdego problemu skórnego, od liftingu bez skalpela, przez terapię bioelektryczną 448 kHZ, po zaawansowane peelingi kwasowe. Każdy zabieg jest indywidualnie dopasowywany do potrzeb klienta, zapewniając widoczne i długotrwałe efekty.
