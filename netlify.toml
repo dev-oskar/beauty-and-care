@@ -1,0 +1,8 @@
+[dev]
+  command = "bun run dev"
+  framework = "astro"
+
+[build]
+  command = "bun run build"
+  publish = "dist"
+  functions = "netlify/functions/"
