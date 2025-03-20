@@ -9,49 +9,49 @@ import AutoImport from "astro-auto-import";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://beauty-and-care.cosmicthemes.com",
-  integrations: [
-    // example auto import component into blog post mdx files
-    AutoImport({
-      imports: [
-        // https://github.com/delucis/astro-auto-import
-        "@components/Admonition/Admonition.astro",
-      ],
-    }),
-    mdx(),
-    icon({
-      // I include only the icons I use. This is because if you use SSR, ALL icons will be included (no bueno)
-      // https://www.astroicon.dev/reference/configuration#include
-      include: {
-        tabler: [
-          "bulb",
-          "alert-triangle",
-          "flame",
-          "info-circle",
-          "arrow-narrow-left",
-          "arrow-narrow-right",
-          "menu-2",
-          "x",
-          "chevron-down",
-          "category",
-          "calendar-event",
-        ],
-      },
-    }),
-    sitemap(),
-    compress({
-      HTML: true,
-      JavaScript: true,
-      CSS: true,
-      Image: false, // astro:assets handles this. Enabling this can dramatically increase build times
-      SVG: false, // astro-icon handles this
-    }),
-  ],
-  vite: {
-    plugins: [tailwindcss()],
-    // stop inlining short scripts to fix issues with ClientRouter: https://github.com/withastro/astro/issues/12804
-    build: {
-      assetsInlineLimit: 0,
-    },
-  },
+	site: "https://beautyandcare.netlify.app",
+	integrations: [
+		// example auto import component into blog post mdx files
+		AutoImport({
+			imports: [
+				// https://github.com/delucis/astro-auto-import
+				"@components/Admonition/Admonition.astro",
+			],
+		}),
+		mdx(),
+		icon({
+			// I include only the icons I use. This is because if you use SSR, ALL icons will be included (no bueno)
+			// https://www.astroicon.dev/reference/configuration#include
+			include: {
+				tabler: [
+					"bulb",
+					"alert-triangle",
+					"flame",
+					"info-circle",
+					"arrow-narrow-left",
+					"arrow-narrow-right",
+					"menu-2",
+					"x",
+					"chevron-down",
+					"category",
+					"calendar-event",
+				],
+			},
+		}),
+		sitemap(),
+		compress({
+			HTML: true,
+			JavaScript: true,
+			CSS: true,
+			Image: false, // astro:assets handles this. Enabling this can dramatically increase build times
+			SVG: false, // astro-icon handles this
+		}),
+	],
+	vite: {
+		plugins: [tailwindcss()],
+		// stop inlining short scripts to fix issues with ClientRouter: https://github.com/withastro/astro/issues/12804
+		build: {
+			assetsInlineLimit: 0,
+		},
+	},
 });
