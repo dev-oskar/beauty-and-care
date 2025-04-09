@@ -1,107 +1,132 @@
-# Welcome to Horizon!
+# Beauty and Care - Salon Kosmetyczny
 
-This is a free photography theme for Astro created by [Cosmic Themes](https://cosmicthemes.com/).
+![Beauty and Care](https://github.com/username/beauty-and-care/raw/master/src/assets/images/logo-min.png)
 
-[website demo](https://horizon.cosmicthemes.com/)
+Elegancka i nowoczesna strona dla salonu kosmetycznego, stworzona na bazie szablonu fotograficznego z wykorzystaniem frameworku Astro i systemu zarządzania treścią Tina CMS.
 
-## Quickstart
+## Funkcje
 
-1. Fork this project to your own repository, and clone it to your local machine
-2. Install all necessary packages with `npm install`
-3. Run `npm run dev` to start the dev server
-4. Now you can setup the site to your liking!
-   - [Style customization](https://cosmicthemes.com/docs/styles/)
-   - [Content editing](https://cosmicthemes.com/docs/content/)
-   - [Forms](https://cosmicthemes.com/docs/contact-form/)
-5. Update the site URL in `astro.config.mjs` and `/public/robots.txt` to match your domain
-6. After you're happy, update your changes to your repo and [deploy to Netlify, Vercel, Cloudflare](https://cosmicthemes.com/deployment/), or other provider of your choice
+- ✨ Nowoczesny, elegancki design z naciskiem na estetykę premium
+- 🔍 Pełna optymalizacja SEO z Schema.org i metadanymi Open Graph
+- 📱 W pełni responsywna dla urządzeń mobilnych, tabletów i komputerów
+- 📝 Zintegrowany blog z kategoryzacją postów
+- 💼 Prezentacja usług/zabiegów kosmetycznych
+- 💰 Sekcja cennika z przejrzystym formatowaniem
+- 📞 Strona kontaktowa z integracją mapy Google
+- 🔄 Integracja z Tina CMS do łatwego zarządzania treścią
+- 🌐 Wielojęzyczność (obsługa języka polskiego)
 
-## Code Intro
+## Technologie
 
-The source files have the following setup. Note that not all files are listed here.
+- [Astro](https://astro.build/) - Framework do tworzenia stron internetowych
+- [TailwindCSS](https://tailwindcss.com/) - Framework CSS do stylizacji
+- [Tina CMS](https://tina.io/) - Headless CMS do zarządzania treścią
+- [Schema.org](https://schema.org/) - Strukturyzowane dane dla SEO
+- [Google Maps API](https://developers.google.com/maps) - Integracja mapy
+
+## Szybki start
+
+1. Sklonuj repozytorium
+```bash
+git clone https://github.com/username/beauty-and-care.git
+cd beauty-and-care
+```
+
+2. Zainstaluj zależności
+```bash
+npm install
+```
+
+3. Uruchom serwer deweloperski
+```bash
+npm run dev
+```
+
+4. Strona będzie dostępna pod adresem [http://localhost:4321](http://localhost:4321)
+
+## Struktura projektu
 
 ```
-.
-├── .tours/
-│   └── code-intro.tour
-├── public/
-│   ├── favicons/
-│   │   └── favicon.ico
-│   ├── images/
-│   └── robots.txt
+beauty-and-care/
+├── content/            # Treści zarządzane przez Tina CMS
+│   └── posts/          # Posty na blogu
+├── public/             # Statyczne pliki
+│   ├── admin/          # Panel administracyjny Tina CMS
+│   ├── favicons/       # Ikony strony
+│   └── images/         # Obrazy statyczne
 ├── src/
-│   ├── assets/
-│   │   └── images/
-│   │       └── site-logo.png
-│   ├── components/
-│   │   └── Hero/
-│   │       └── Hero.astro
-│   ├── config/
-│   │   └── navData.json.ts
-│   ├── data/
-│   │   ├── portfolios/
-│   │   ├── testimonials/
-│   │   └──otherPages/
-│   │    config.ts
-│   ├── js/
-│   │   └── textUtils.ts
-│   ├── layouts/
-│   │   └── BaseLayout.astro
-│   ├── pages/
-│   │   ├── index.astro
-│   │   ├── portfolio/
-│   │   │   ├── [...slug].astro
-│   │   │   └── index.astro
-│   │   ├── [page].astro
-│   │   ├── 404.astro
-│   │   └── index.astro
-│   ├── styles/
-│   │   └── global.css
-│   └── content.config.ts
-├── .gitignore
-├── .prettierrc.mjs
-├── astro.config.mjs
-├── netlify.toml
-├── package.json
-├── package-lock.json
-├── README.md
-└── tsconfig.json
+│   ├── assets/         # Zasoby (obrazy, itp.)
+│   ├── components/     # Komponenty Astro
+│   ├── config/         # Konfiguracja (nawigacja, dane strony)
+│   ├── data/           # Dane strukturalne (portfolio, usługi)
+│   ├── layouts/        # Szablony stron
+│   ├── pages/          # Strony witryny
+│   │   ├── blog/       # Sekcja bloga
+│   │   ├── uslugi/     # Sekcja usług
+│   │   └── [...]
+│   └── styles/         # Style globalny i komponenty
+└── tina/               # Konfiguracja Tina CMS
 ```
 
-For robots like Google to see the correct sitemap, you will want to edit the `public/robots.txt` file to use your website domain.
+## Zarządzanie treścią
 
-## Other Resources
+### Panel administracyjny Tina CMS
 
-- See my blog post on [recommended Astro web development setup](https://cosmicthemes.com/blog/astro-web-development-setup/).
-- You can learn more information from the [theme docs](https://cosmicthemes.com/docs/) page on the [Cosmic Themes Website](https://cosmicthemes.com/).
+1. Uruchom panel administracyjny Tina CMS
+```bash
+npm run tina
+```
 
-## License
+2. Panel będzie dostępny pod adresem [http://localhost:3000/admin](http://localhost:3000/admin)
 
-This project is open source and available under the [GPL-3.0 License](https://www.gnu.org/licenses/gpl-3.0.en.html).
+### Główne sekcje treści
 
-However, If you have purchased [All Access](https://cosmicthemes.com/all-access/) from Cosmic Themes, there is a no attribution required license you can view at [License details](https://cosmicthemes.com/license/).
+- **Blog** - Artykuły na blogu z kategoryzacją i tagami
+- **Usługi** - Prezentacja zabiegów i usług kosmetycznych
+- **Cennik** - Kategorie usług z cenami
+- **Kontakt** - Dane kontaktowe, mapa, formularz kontaktowy
 
-## General Astro Info
+## SEO
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Strona posiada rozbudowaną warstwę SEO z:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- Strukturyzowanymi danymi Schema.org (LocalBusiness, Article, BreadcrumbList)
+- Metadanymi Open Graph dla mediów społecznościowych
+- Możliwością dostosowania tytułów i opisów SEO dla każdej podstrony
+- Pełnym wsparciem dla słów kluczowych i meta tagów
+- Generowaniem sitemap.xml i poprawnym robots.txt
 
-Any static assets, like images, can be placed in the `public/` directory. I also frequently use `src/assets` for images when using Astro asssets for image optimization.
+## Deployment
 
-### Commands
+### Netlify
 
-All commands are run from the root of the project, from a terminal:
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/username/beauty-and-care)
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:3000`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+### Vercel
 
-### Want to learn more?
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/username/beauty-and-care)
 
-Feel free to check out the [Astro documentation](https://docs.astro.build).
+## Rozwój i modyfikacje
+
+### Dostosowanie stylów
+
+Style można dostosować przez edycję plików:
+- `src/styles/global.css` - Style globalne
+- `src/styles/tailwind-theme.css` - Konfiguracja motywu Tailwind
+- `src/config/siteData.json.ts` - Dane witryny (tytuł, opis, kolory)
+
+### Dostosowanie zawartości
+
+- Edycja nawigacji: `src/config/navData.json.ts`
+- Dodawanie usług: Panel Tina CMS lub `/src/data/portfolios/`
+- Modyfikacja głównej strony: `src/pages/index.astro`
+
+## Licencja
+
+Projekt jest oparty na szablonie Horizon od [Cosmic Themes](https://cosmicthemes.com/) z licencją GPL-3.0. Dostosowanie do salonu kosmetycznego i integracja z Tina CMS została wykonana przez [Imię i Nazwisko].
+
+## Kontakt
+
+W przypadku pytań lub wsparcia, prosimy o kontakt:
+- Email: kontakt@beautyandcare.pl
+- Strona: https://beautyandcare.pl
