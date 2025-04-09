@@ -1,0 +1,199 @@
+---
+import { getImage } from "astro:assets";
+import { SEO } from "astro-seo";
+
+// component import
+import siteData from "@config/siteData.json";
+
+interface BlogPostProps {
+	title: string;
+	description: string;
+	date: string; // date in ISO format or human-readable format
+	image?: ImageMetadata;
+	authorName?: string;
+	categories?: string[];
+	tags?: string[];
+	noindex?: boolean;
+	lang?: string;
+}
+
+const { 
+	title, 
+	description, 
+	date,
+	image, 
+	authorName = siteData.author.name,
+	categories = [],
+	tags = [],
+	noindex = false,
+	lang = "pl",
+} = Astro.props as BlogPostProps;
+
+let optimizedImage;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+
+// Optimize image for blog post
+if (image) {
+	optimizedImage = await getImage({
+		src: image,
+		format: "webp",
+		quality: "high",
+		width: 1200,
+	});
+}
+
+function trimEndSlash(str: string) {
+	if (str[str.length - 1] === "/") {
+		return str.slice(0, -1);
+	} else {
+		return str;
+	}
+}
+
+// Format date if it's not already in ISO format
+function formatDateISO(dateString: string) {
+	try {
+		if (dateString.includes('T')) {
+			return dateString; // Already ISO format
+		}
+		
+		// Check for DD.MM.YYYY format
+		if (dateString.includes('.')) {
+			const parts = dateString.split('.');
+			if (parts.length === 3) {
+				return `${parts[2]}-${parts[1]}-${parts[0]}`;
+			}
+		}
+		
+		// Try parsing with Date
+		const dateObj = new Date(dateString);
+		if (!isNaN(dateObj.getTime())) {
+			return dateObj.toISOString().split('T')[0];
+		}
+		
+		return dateString;
+	} catch (e) {
+		return dateString;
+	}
+}
+
+const formattedDate = formatDateISO(date);
+
+// put together the image URL
+const imageUrl =
+	trimEndSlash(Astro.site?.toString() || "") + (optimizedImage?.src || siteData.defaultImage.src);
+	
+// Blog post schema
+const articleSchema = {
+	"@context": "https://schema.org",
+	"@type": "BlogPosting",
+	"headline": title,
+	"description": description,
+	"image": imageUrl,
+	"datePublished": formattedDate,
+	"dateModified": formattedDate,
+	"inLanguage": lang,
+	"mainEntityOfPage": {
+		"@type": "WebPage",
+		"@id": canonicalUrl.toString()
+	},
+	"author": {
+		"@type": "Person",
+		"name": authorName,
+	},
+	"publisher": {
+		"@type": "Organization",
+		"name": siteData.name,
+		"logo": {
+			"@type": "ImageObject",
+			"url": new URL(siteData.defaultImage.src, Astro.site).toString(),
+			"width": "192",
+			"height": "192"
+		}
+	},
+	"keywords": [...categories, ...tags].join(", ")
+};
+
+// Breadcrumbs schema
+const breadcrumbsSchema = {
+	"@context": "https://schema.org",
+	"@type": "BreadcrumbList",
+	"itemListElement": [
+		{
+			"@type": "ListItem",
+			"position": 1,
+			"name": "Strona główna",
+			"item": Astro.site?.toString()
+		},
+		{
+			"@type": "ListItem",
+			"position": 2,
+			"name": "Blog",
+			"item": new URL("/blog", Astro.site).toString()
+		},
+		{
+			"@type": "ListItem",
+			"position": 3,
+			"name": title,
+			"item": canonicalUrl.toString()
+		}
+	]
+};
+---
+
+<SEO
+	title={title}
+	description={description}
+	canonical={canonicalUrl.toString()}
+	openGraph={{
+		basic: {
+			title: title,
+			type: "article",
+			image: imageUrl,
+			url: canonicalUrl.toString(),
+		},
+		optional: {
+			description: description,
+			siteName: siteData.title,
+			locale: "pl_PL",
+		},
+		article: {
+			publishedTime: formattedDate,
+			modifiedTime: formattedDate,
+			authors: [authorName],
+			tags: [...categories, ...tags],
+		},
+		image: {
+			type: "image/webp",
+			width: optimizedImage?.attributes.width || "1200",
+			height: optimizedImage?.attributes.height || "800",
+			alt: title,
+		},
+	}}
+	twitter={{
+		site: "@" + siteData.author.twitter,
+		creator: "@" + siteData.author.twitter,
+		card: "summary_large_image",
+		title: title,
+		description: description,
+		image: imageUrl,
+	}}
+	extend={{
+		meta: [
+			{ name: "keywords", content: [...categories, ...tags].join(", ") },
+			{ name: "author", content: authorName },
+			{ name: "language", content: lang },
+			{ property: "article:published_time", content: formattedDate },
+			{ property: "article:modified_time", content: formattedDate },
+		],
+		link: [
+			{ rel: "alternate", hreflang: lang, href: canonicalUrl.toString() }
+		],
+	}}
+	noindex={noindex}
+	nofollow={noindex}
+/>
+
+<!-- Schema.org structured data for articles -->
+<script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbsSchema)} />

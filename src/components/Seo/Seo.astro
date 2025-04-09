@@ -10,6 +10,9 @@ interface BaseProps {
 	title: string;
 	description: string;
 	noindex?: boolean;
+	lang?: string;
+	keywords?: string[];
+	canonicalUrl?: string;
 }
 
 interface GenProps extends BaseProps {
@@ -17,7 +20,15 @@ interface GenProps extends BaseProps {
 	image?: ImageMetadata;
 }
 
-const { title = "general", description, image, noindex = false } = Astro.props as GenProps;
+const { 
+	title = "general", 
+	description, 
+	image, 
+	noindex = false,
+	lang = "pl",
+	keywords = [],
+	canonicalUrl: customCanonicalUrl,
+} = Astro.props as GenProps;
 
 let optimizedImage;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
@@ -43,12 +54,72 @@ function trimEndSlash(str: string) {
 // put together the image URL
 const imageUrl =
 	trimEndSlash(Astro.site?.toString() || "") + (optimizedImage?.src || siteData.defaultImage.src);
+	
+// Build the schema.org structured data
+const websiteSchema = {
+	"@context": "https://schema.org",
+	"@type": "WebSite",
+	"name": siteData.title,
+	"url": Astro.site?.toString(),
+	"description": siteData.description,
+	"inLanguage": lang,
+	"publisher": {
+		"@type": "Organization",
+		"name": siteData.name,
+		"logo": {
+			"@type": "ImageObject",
+			"url": new URL(siteData.defaultImage.src, Astro.site).toString(),
+			"width": "192",
+			"height": "192"
+		}
+	}
+};
+
+// Local business schema
+const localBusinessSchema = {
+	"@context": "https://schema.org",
+	"@type": "BeautySalon",
+	"name": siteData.name,
+	"image": imageUrl,
+	"url": Astro.site?.toString(),
+	"description": siteData.description,
+	"address": {
+		"@type": "PostalAddress",
+		"streetAddress": siteData.business?.address || "Fryderyka Szopena 33",
+		"addressLocality": siteData.business?.city || "Rzeszów",
+		"postalCode": siteData.business?.postalCode || "33-055",
+		"addressCountry": siteData.business?.country || "PL"
+	},
+	"telephone": siteData.business?.phone || "+48 123 456 789",
+	"email": siteData.business?.email || siteData.author.email,
+	"priceRange": siteData.business?.priceRange || "$$",
+	"openingHoursSpecification": [
+		{
+			"@type": "OpeningHoursSpecification",
+			"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+			"opens": "10:00",
+			"closes": "20:00"
+		},
+		{
+			"@type": "OpeningHoursSpecification",
+			"dayOfWeek": "Saturday",
+			"opens": "10:00",
+			"closes": "16:00"
+		}
+	],
+	"sameAs": [
+		siteData.social?.facebook,
+		siteData.social?.instagram,
+		siteData.social?.twitter,
+		siteData.social?.youtube
+	].filter(Boolean) // Remove undefined values
+};
 ---
 
 <SEO
 	title={title}
 	description={description}
-	canonical={canonicalUrl.toString()}
+	canonical={customCanonicalUrl || canonicalUrl.toString()}
 	openGraph={{
 		basic: {
 			title: title,
@@ -59,6 +130,7 @@ const imageUrl =
 		optional: {
 			description: description,
 			siteName: siteData.title,
+			locale: "pl_PL",
 		},
 		image: {
 			type: "image/webp",
@@ -75,6 +147,19 @@ const imageUrl =
 		description: description,
 		image: imageUrl,
 	}}
+	extend={{
+		meta: [
+			{ name: "keywords", content: keywords.join(", ") },
+			{ name: "language", content: lang },
+		],
+		link: [
+			{ rel: "alternate", hreflang: lang, href: customCanonicalUrl || canonicalUrl.toString() }
+		],
+	}}
 	noindex={noindex}
 	nofollow={noindex}
 />
+
+<!-- Schema.org structured data -->
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />

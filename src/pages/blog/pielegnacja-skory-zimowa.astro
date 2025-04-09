@@ -30,7 +30,14 @@ const postData = {
 };
 ---
 
-<BaseLayout title={postData.title} description={postData.excerpt}>
+<BaseLayout 
+  type="blog"
+  title={postData.title} 
+  description={postData.excerpt}
+  date="2025-02-15"
+  authorName="Beauty and Care Team"
+  categories={["Pielęgnacja skóry", "Porady"]}
+  tags={["zima", "nawilżanie", "pielęgnacja"]}>
   <div class="site-container pt-24 md:pt-36">
     <article class="mx-auto max-w-4xl pb-12">
       <h1 class="h2 text-center text-pretty">{postData.title}</h1>

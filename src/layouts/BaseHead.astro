@@ -4,19 +4,40 @@ import { ClientRouter } from "astro:transitions";
 
 // component imports
 import Seo from "@components/Seo/Seo.astro";
+import BlogSeo from "@components/Seo/BlogSeo.astro";
 
 // data
 import siteData from "@config/siteData.json";
 
 export interface Props {
-	type?: "general" | undefined;
+	type?: "general" | "blog";
 	title: string;
 	description: string;
 	image?: ImageMetadata;
 	noindex?: boolean;
+	lang?: string;
+	keywords?: string[];
+	date?: string;
+	authorName?: string;
+	categories?: string[];
+	tags?: string[];
+	canonicalUrl?: string;
 }
 
-const { type = "general", title, description, image, noindex = false } = Astro.props as Props;
+const { 
+	type = "general", 
+	title, 
+	description, 
+	image, 
+	noindex = false,
+	lang = "pl",
+	keywords = [],
+	date,
+	authorName,
+	categories = [],
+	tags = [],
+	canonicalUrl,
+} = Astro.props as Props;
 
 import WorkSansVariable from "@fontsource-variable/work-sans/files/work-sans-latin-wght-normal.woff2";
 import RalewayVariable from "@fontsource-variable/raleway/files/raleway-latin-wght-normal.woff2";
@@ -50,7 +71,30 @@ import CinzelDecorative from "@fontsource/cinzel-decorative/files/cinzel-decorat
 <meta name="generator" content={Astro.generator} />
 <link rel="sitemap" href="/sitemap-index.xml" />
 
-<Seo type={type} title={title} description={description} image={image} noindex={noindex} />
+{type === "blog" ? (
+	<BlogSeo 
+		title={title} 
+		description={description} 
+		date={date || new Date().toISOString()}
+		image={image} 
+		authorName={authorName}
+		categories={categories}
+		tags={tags}
+		noindex={noindex}
+		lang={lang}
+	/>
+) : (
+	<Seo 
+		type="general" 
+		title={title} 
+		description={description} 
+		image={image} 
+		noindex={noindex}
+		lang={lang}
+		keywords={keywords}
+		canonicalUrl={canonicalUrl}
+	/>
+)}
 
 <!-- no fallback as I saw issues with firefox fallback -->
 {siteData.useViewTransitions && <ClientRouter fallback="none" />}
