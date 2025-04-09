@@ -117,33 +117,7 @@ export default defineConfig({
           },
         ],
       },
-      {
-        name: "testimonial",
-        label: "Opinie",
-        path: "src/data/testimonials",
-        fields: [
-          {
-            type: "string",
-            name: "name",
-            label: "Imię klienta",
-            required: true,
-          },
-          {
-            type: "image",
-            name: "image",
-            label: "Zdjęcie",
-          },
-          {
-            type: "string",
-            name: "quote",
-            label: "Opinia",
-            ui: {
-              component: "textarea",
-            },
-            required: true,
-          },
-        ],
-      },
+      // Testimonials section removed
     ],
   },
 });

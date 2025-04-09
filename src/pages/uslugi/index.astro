@@ -7,7 +7,6 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 // components
 import Contact from "@components/Contact/Contact.astro";
 import PortfolioGrid from "@components/Portfolio/PortfolioGrid.astro";
-import TestimonialQuote from "@components/Testimonials/TestimonialQuote.astro";
 
 const portfolios = await getCollection("portfolios", ({ data }) => {
 	// filter out draft pages
@@ -24,8 +23,6 @@ const portfolios = await getCollection("portfolios", ({ data }) => {
 		</div>
 		<PortfolioGrid portfolios={portfolios} />
 	</div>
-
-	<TestimonialQuote />
 
 	<Contact class="mt-12" />
 </BaseLayout>

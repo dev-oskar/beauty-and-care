@@ -29,23 +29,7 @@ const portfolios = defineCollection({
 		}),
 });
 
-// testimonials
-const testimonials = defineCollection({
-	// type: "content",
-	loader: glob({
-		pattern: "**/[^_]*.{md,mdx}",
-		base: "./src/data/testimonials",
-	}),
-	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			testimonial: z.string(),
-			image: image(),
-			order: z.number(),
-			// will be excluded from build if draft is "true"
-			draft: z.boolean().optional(),
-		}),
-});
+// testimonials section removed
 
 // other pages
 const otherPages = defineCollection({
@@ -64,10 +48,6 @@ const otherPages = defineCollection({
 
 // Blog posts
 const posts = defineCollection({
-	loader: glob({
-		pattern: "**/[^_]*.{md,mdx}",
-		base: "./src/data/blog",
-	}),
 	schema: z.object({
 		title: z.string(),
 		date: z.coerce.date().optional(),
@@ -78,7 +58,6 @@ const posts = defineCollection({
 
 export const collections = {
 	portfolios,
-	testimonials,
 	otherPages,
 	posts,
 };

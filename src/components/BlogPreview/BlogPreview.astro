@@ -4,10 +4,10 @@
  */
 import Button from "@components/Button/Button.astro";
 
-// Define posts directly within the component
+// Define posts directly within the component - now linking to static pages
 const posts = [
   {
-    id: "pielegnacja-skory-zimowa",
+    slug: "pielegnacja-skory-zimowa",
     data: {
       title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
       date: "15.02.2025",
@@ -15,7 +15,7 @@ const posts = [
     }
   },
   {
-    id: "karboksyterapia-zabieg",
+    slug: "karboksyterapia-zabieg",
     data: {
       title: "Karboksyterapia - zabieg, który podbił świat kosmetologii",
       date: "10.03.2025",
@@ -23,7 +23,7 @@ const posts = [
     }
   },
   {
-    id: "kwasy-w-kosmetologii",
+    slug: "kwasy-w-kosmetologii",
     data: {
       title: "Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach",
       date: "25.03.2025",
@@ -59,7 +59,7 @@ const posts = [
               <Button
                 variant="ghost"
                 arrow="right"
-                href={`/blog/${post.id}`}
+                href={`/blog/${post.slug}`}
                 class="pl-0 text-sm"
               >
                 Czytaj więcej

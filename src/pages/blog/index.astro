@@ -2,10 +2,10 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Button from "@components/Button/Button.astro";
 
-// Define posts directly within the component
+// Define static blog posts for the listing
 const posts = [
   {
-    id: "pielegnacja-skory-zimowa",
+    slug: "pielegnacja-skory-zimowa",
     data: {
       title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
       date: "15.02.2025",
@@ -13,7 +13,7 @@ const posts = [
     }
   },
   {
-    id: "karboksyterapia-zabieg",
+    slug: "karboksyterapia-zabieg",
     data: {
       title: "Karboksyterapia - zabieg, który podbił świat kosmetologii",
       date: "10.03.2025",
@@ -21,7 +21,7 @@ const posts = [
     }
   },
   {
-    id: "kwasy-w-kosmetologii",
+    slug: "kwasy-w-kosmetologii",
     data: {
       title: "Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach",
       date: "25.03.2025",
@@ -29,6 +29,13 @@ const posts = [
     }
   }
 ];
+
+// Sort posts by date (newest first)
+const sortedPosts = [...posts].sort((a, b) => {
+  const dateA = new Date(a.data.date.split('.').reverse().join('-')).getTime();
+  const dateB = new Date(b.data.date.split('.').reverse().join('-')).getTime();
+  return dateB - dateA;
+});
 ---
 
 <BaseLayout title="Blog - Beauty and Care" description="Porady i artykuły na temat pielęgnacji skóry, modelowania sylwetki i zabiegów kosmetycznych">
@@ -40,7 +47,7 @@ const posts = [
     </div>
     
     <div class="mx-auto mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {posts.map((post) => (
+      {sortedPosts.map((post) => (
         <div class="border-base-200 group flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
           <div class="bg-primary-50 p-6">
             <h2 class="h3 mb-2 text-pretty group-hover:text-primary-600 transition-colors">{post.data.title}</h2>
@@ -53,7 +60,7 @@ const posts = [
               {post.data.excerpt}
             </p>
             <div>
-              <Button variant="ghost" arrow="right" href={`/blog/${post.id}`} class="pl-0">
+              <Button variant="ghost" arrow="right" href={`/blog/${post.slug}`} class="pl-0">
                 Czytaj więcej
               </Button>
             </div>

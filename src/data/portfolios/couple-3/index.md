@@ -1,10 +1,10 @@
 ---
-title: A high-class affair
-description: Relive the elegance of your venue and the grandeur of your wedding through artistic photography.
+title: Technologia i Piękno
+description: Odkryj elegancję i piękno swojej skóry dzięki zaawansowanym zabiegom kosmetycznym.
 heroImage: ./couple-4-square.jpg
 date: "Apr 15 2024"
-location: Houston, Texas
-clients: [Julia, David]
+location: Beauty and Care
+clients: [Technologia, Kosmetologia]
 images:
   [
     [./couple-2-min-3.jpg, ./couple-2-min-3.jpg],
@@ -15,4 +15,4 @@ images:
 order: 3
 ---
 
-This Malibu wedding was a breathtaking affair. The stunning mountain views provided a picturesque backdrop. The photographs beautifully captured the intimate moments, the vibrant energy, and the overall romantic ambiance of the day.
+Zaawansowana kosmetologia to połączenie najnowszych technologii z tradycyjnymi metodami pielęgnacji. Nasze zabiegi wykorzystują innowacyjne urządzenia, które docierają do głębokich warstw skóry, stymulując naturalne procesy regeneracyjne. Efektem jest młodsza, zdrowsza i bardziej promienna skóra bez inwazyjnych zabiegów.
