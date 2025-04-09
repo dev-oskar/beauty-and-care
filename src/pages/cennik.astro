@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import PricingTable from "@components/Pricing/PricingTable.astro";
+import Contact from "@components/Contact/Contact.astro";
+---
+
+<BaseLayout title="Cennik Usług - Beauty and Care" description="Pełna oferta zabiegów kosmetologicznych z cennikiem - Beauty and Care">
+  <div class="site-container pt-24 md:pt-36">
+    <div class="mx-auto max-w-6xl text-center mb-12">
+      <h1 class="h2 text-pretty uppercase">Cennik Usług</h1>
+      <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+        Pełna oferta zabiegów kosmetologicznych w naszym salonie. Zapoznaj się z listą usług i skontaktuj się z nami, aby umówić się na wizytę.
+      </p>
+    </div>
+    
+    <PricingTable />
+    
+    <Contact class="mt-12" />
+  </div>
+</BaseLayout>

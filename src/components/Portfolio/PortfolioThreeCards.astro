@@ -1,6 +1,6 @@
 ---
 /**
- * * This is a component that displays three portfolio cards
+ * * This is a component that displays three service cards
  * Larger on the left, smaller two on the right
  */
 
@@ -25,7 +25,7 @@ const sortedPortfolios = portfolios.sort((a, b) => {
 const firstThreePortfolios = sortedPortfolios.slice(0, 3);
 ---
 
-<section id="portfolio" class="site-container mt-12 scroll-mt-10 py-8 md:py-12">
+<section id="uslugi" class="site-container mt-12 scroll-mt-10 py-8 md:py-12">
 	<div class="mx-auto max-w-6xl text-center">
 		<h2 class="h2 text-pretty uppercase">Zabiegi, które odmienią Twój wygląd i samopoczucie</h2>
 	</div>
@@ -41,6 +41,6 @@ const firstThreePortfolios = sortedPortfolios.slice(0, 3);
 	</div>
 
 	<div class="mt-12 flex justify-center">
-		<Button href="/portfolio" variant="outline">View all portfolios</Button>
+		<Button href="/uslugi" variant="outline">Zobacz wszystkie zabiegi</Button>
 	</div>
 </section>

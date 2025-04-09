@@ -45,3 +45,29 @@ export function formatDate(date: string | number | Date): string {
 		day: "numeric",
 	});
 }
+
+/**
+ * * returns a short formatted string of the date (DD.MM.YYYY)
+ * @param date: string | number | Date - date to format
+ */
+export function formatDateShort(date: string | number | Date): string {
+	return new Date(date).toLocaleDateString("pl-PL", {
+		timeZone: "UTC",
+		year: "numeric",
+		month: "numeric",
+		day: "numeric",
+	});
+}
+
+/**
+ * * returns a long formatted string of the date (Month Day, Year)
+ * @param date: string | number | Date - date to format
+ */
+export function formatDateLong(date: string | number | Date): string {
+	return new Date(date).toLocaleDateString("pl-PL", {
+		timeZone: "UTC",
+		year: "numeric",
+		month: "long",
+		day: "numeric",
+	});
+}

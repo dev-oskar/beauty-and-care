@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Contact from "@components/Contact/Contact.astro";
+---
+
+<BaseLayout title="Kontakt - Beauty and Care" description="Skontaktuj się z nami, aby umówić wizytę lub uzyskać więcej informacji o naszych zabiegach">
+  <div class="site-container pt-24 md:pt-36">
+    <div class="mx-auto max-w-6xl text-center mb-12">
+      <h1 class="h2 text-pretty uppercase">Kontakt</h1>
+      <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
+        Znajdź nas w sercu Rzeszowa. Zapraszamy do kontaktu telefonicznego, mailowego lub osobistego.
+      </p>
+    </div>
+    
+    <Contact />
+  </div>
+</BaseLayout>

@@ -62,8 +62,23 @@ const otherPages = defineCollection({
 		}),
 });
 
+// Blog posts
+const posts = defineCollection({
+	loader: glob({
+		pattern: "**/[^_]*.{md,mdx}",
+		base: "./src/data/blog",
+	}),
+	schema: z.object({
+		title: z.string(),
+		date: z.coerce.date().optional(),
+		excerpt: z.string().optional(),
+		draft: z.boolean().optional(),
+	}),
+});
+
 export const collections = {
 	portfolios,
 	testimonials,
 	otherPages,
+	posts,
 };

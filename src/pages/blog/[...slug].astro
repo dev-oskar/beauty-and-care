@@ -1,0 +1,141 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Button from "@components/Button/Button.astro";
+
+// Define static content for blog posts
+const staticPostContent = {
+  "pielegnacja-skory-zimowa": {
+    title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
+    date: "15 lutego 2025",
+    excerpt: "Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.",
+    content: `
+      <h2>Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni</h2>
+      <p>Zima to wyjątkowo wymagający okres dla naszej skóry. Niskie temperatury, wiatr, suche powietrze w ogrzewanych pomieszczeniach - wszystko to sprawia, że nasza skóra staje się sucha, podrażniona i pozbawiona blasku. Jak skutecznie zadbać o cerę zimą? Przedstawiamy najważniejsze zasady zimowej pielęgnacji.</p>
+      
+      <h3>Nawilżanie to podstawa</h3>
+      <p>Zimą szczególnie ważne jest intensywne nawilżanie skóry. Warto sięgnąć po kosmetyki z kwasem hialuronowym, ceramidami i gliceryną, które skutecznie wiążą wodę w naskórku. Dobrym rozwiązaniem są także bogate, odżywcze kremy, które tworzą na skórze ochronną warstwę zapobiegającą utracie wody.</p>
+      
+      <h3>Delikatne oczyszczanie</h3>
+      <p>W okresie zimowym zrezygnuj z żeli i pianek, które mogą dodatkowo wysuszać skórę. Zastąp je delikatnymi mleczkami, olejkami lub balsamami do mycia twarzy. Pamiętaj, by używać letniej, a nie gorącej wody, która dodatkowo podrażnia i wysusza skórę.</p>
+      
+      <h3>Ochrona przed słońcem</h3>
+      <p>Nawet zimą promieniowanie UV negatywnie wpływa na skórę. Szczególnie w górach, gdzie śnieg odbija promienie słoneczne, należy stosować kosmetyki z filtrem SPF. Ochrona przed słońcem to nie tylko sposób na zapobieganie przebarwieniom, ale także profilaktyka przedwczesnego starzenia się skóry.</p>
+      
+      <h3>Profesjonalne zabiegi</h3>
+      <p>Zima to doskonały czas na profesjonalne zabiegi, takie jak peelingi kwasowe czy mezoterapia. Z racji mniejszej ekspozycji na słońce, ryzyko powikłań po zabiegach, takich jak przebarwienia, jest zdecydowanie niższe. Warto skonsultować się z kosmetologiem, który dobierze odpowiednie zabiegi do potrzeb twojej skóry.</p>
+      
+      <h3>Dieta i nawodnienie</h3>
+      <p>Pamiętaj, że pielęgnacja to nie tylko kosmetyki. Równie ważna jest odpowiednia dieta bogata w kwasy omega-3, antyoksydanty i witaminy. Nie zapominaj o piciu odpowiedniej ilości wody - nawet jeśli zimą nie odczuwasz tak silnego pragnienia jak latem.</p>
+      
+      <p>W Beauty and Care oferujemy specjalne zimowe rytuały pielęgnacyjne, które kompleksowo zadbają o twoją skórę w tym wymagającym okresie. Zapraszamy na konsultację z naszymi ekspertami!</p>
+    `
+  },
+  "karboksyterapia-zabieg": {
+    title: "Karboksyterapia - zabieg, który podbił świat kosmetologii",
+    date: "10 marca 2025",
+    excerpt: "Poznaj rewolucyjny zabieg, który rozwiązuje problemy z cellulitem, rozstępami i zmarszczkami. Karboksyterapia to bezpieczna i skuteczna metoda odmładzania skóry.",
+    content: `
+      <h2>Karboksyterapia - zabieg, który podbił świat kosmetologii</h2>
+      <p>Karboksyterapia to jeden z najpopularniejszych zabiegów w nowoczesnej kosmetologii. Polega na podskórnej iniekcji dwutlenku węgla, który stymuluje naturalne procesy regeneracyjne organizmu. Ten prosty mechanizm ma zaskakująco szerokie zastosowanie w walce z niedoskonałościami skóry.</p>
+      
+      <h3>Jak działa karboksyterapia?</h3>
+      <p>Wprowadzony pod skórę dwutlenek węgla powoduje rozszerzenie naczyń krwionośnych i zwiększenie przepływu krwi w tkankach. Organizm, interpretując to jako stan niedotlenienia, zwiększa dopływ tlenu i składników odżywczych do danego obszaru. W efekcie następuje:</p>
+      <ul>
+        <li>Poprawa mikrokrążenia</li>
+        <li>Zwiększona produkcja kolagenu i elastyny</li>
+        <li>Redukcja tkanki tłuszczowej</li>
+        <li>Intensywna regeneracja skóry</li>
+      </ul>
+      
+      <h3>W jakich problemach pomaga?</h3>
+      <p>Karboksyterapia sprawdza się doskonale w walce z:</p>
+      <ol>
+        <li><strong>Cellulitem</strong> - rozbija złogi tłuszczowe i poprawia strukturę skóry</li>
+        <li><strong>Rozstępami</strong> - stymuluje produkcję kolagenu w uszkodzonych tkankach</li>
+        <li><strong>Zmarszczkami</strong> - poprawia elastyczność i napięcie skóry</li>
+        <li><strong>Cieniami pod oczami</strong> - rozjaśnia skórę i poprawia jej napięcie</li>
+        <li><strong>Łysieniem</strong> - stymuluje mieszki włosowe do wzrostu</li>
+      </ol>
+      
+      <h3>Jak wygląda zabieg?</h3>
+      <p>Procedura jest stosunkowo prosta. Przy użyciu cienkiej igły dwutlenek węgla wprowadzany jest pod skórę na odpowiednią głębokość. Pacjent może odczuwać delikatne pieczenie lub mrowienie, które szybko ustępuje. Zabieg trwa zazwyczaj od 15 do 30 minut, w zależności od wielkości obszaru poddawanego terapii.</p>
+      
+      <h3>Efekty i zalecana seria</h3>
+      <p>Pierwsze efekty można zauważyć już po jednym zabiegu, jednak dla optymalnych rezultatów zaleca się serię 6-10 zabiegów wykonywanych w odstępach 1-2 tygodni. Efekty utrzymują się długo, zwłaszcza przy właściwej pielęgnacji domowej.</p>
+      
+      <p>W Beauty and Care oferujemy karboksyterapię z wykorzystaniem najnowocześniejszego sprzętu, który zapewnia maksymalny komfort i bezpieczeństwo. Zapraszamy na konsultację, podczas której nasi specjaliści pomogą dobrać odpowiednią terapię do indywidualnych potrzeb.</p>
+    `
+  },
+  "kwasy-w-kosmetologii": {
+    title: "Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach",
+    date: "25 marca 2025",
+    excerpt: "Poznaj różnice między kwasami AHA, BHA i PHA oraz ich zastosowanie w różnych zabiegach kosmetycznych. Dowiedz się, który kwas najlepiej sprawdzi się przy twoich problemach skórnych.",
+    content: `
+      <h2>Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach</h2>
+      <p>Kwasy to jedne z najpopularniejszych i najskuteczniejszych substancji aktywnych wykorzystywanych w kosmetologii. Ich działanie złuszczające, rozjaśniające i odmładzające sprawia, że są nieocenione w walce z wieloma problemami skórnymi. Poznaj najważniejsze rodzaje kwasów i ich zastosowanie.</p>
+      
+      <h3>Kwasy AHA (alfa-hydroksykwasy)</h3>
+      <p>To grupa kwasów pozyskiwanych głównie ze źródeł naturalnych, takich jak owoce czy mleko. Do najpopularniejszych należą:</p>
+      
+      <p><strong>Kwas glikolowy</strong> - ma najmniejszą cząsteczkę, dzięki czemu wnika najgłębiej w skórę. Skutecznie złuszcza martwy naskórek, rozjaśnia przebarwienia i stymuluje produkcję kolagenu. Idealny do skóry dojrzałej i z przebarwieniami.</p>
+      
+      <p><strong>Kwas mlekowy</strong> - działa łagodniej niż glikolowy, dodatkowo nawilża skórę. Polecany dla osób o wrażliwej cerze, borykających się z przesuszeniem i pierwszymi oznakami starzenia.</p>
+      
+      <p><strong>Kwas migdałowy</strong> - ma większą cząsteczkę, działa powierzchniowo i łagodnie. Sprawdza się przy trądziku, rozszerzonych porach i pierwszych zmarszczkach. Jest bezpieczny nawet latem, gdyż nie uwrażliwia znacząco na słońce.</p>
+      
+      <h3>Kwasy BHA (beta-hydroksykwasy)</h3>
+      <p><strong>Kwas salicylowy</strong> - to główny przedstawiciel tej grupy. Jest rozpuszczalny w tłuszczach, dzięki czemu przenika przez warstwę sebum i dociera do porów. Działa przeciwzapalnie, antybakteryjnie i złuszczająco. Niezastąpiony w walce z trądzikiem, zaskórnikami i rozszerzonymi porami.</p>
+      
+      <h3>Kwasy PHA (polihydroksykwasy)</h3>
+      <p>To "nowa generacja" kwasów, które działają znacznie łagodniej niż AHA czy BHA. Główni przedstawiciele to kwas glukonowy i laktobionowy. Ich działanie jest delikatniejsze, ale równie skuteczne. Dodatkowo nawilżają skórę i wzmacniają barierę hydrolipidową. Polecane dla osób z bardzo wrażliwą cerą, przy trądziku różowatym czy atopowym zapaleniu skóry.</p>
+      
+      <h3>Które kwasy wybrać?</h3>
+      <p>Wybór odpowiedniego kwasu zależy od problemu, z którym chcemy walczyć:</p>
+      <ul>
+        <li><strong>Zmarszczki i starzenie się skóry</strong>: kwas glikolowy, retinowy</li>
+        <li><strong>Przebarwienia</strong>: kwas migdałowy, kojowy, azelainowy</li>
+        <li><strong>Trądzik</strong>: kwas salicylowy, azelainowy</li>
+        <li><strong>Rozszerzone pory</strong>: kwas salicylowy, migdałowy</li>
+        <li><strong>Skóra wrażliwa, naczynkowa</strong>: kwasy PHA</li>
+      </ul>
+      
+      <h3>Profesjonalne zabiegi z kwasami</h3>
+      <p>W Beauty and Care oferujemy szereg zabiegów z wykorzystaniem różnych kwasów, dostosowanych do indywidualnych potrzeb skóry. Przed zabiegiem przeprowadzamy dokładną diagnozę, aby dobrać odpowiednie stężenie i rodzaj kwasu.</p>
+      
+      <p>Pamiętaj, że stosowanie kwasów wymaga odpowiedniej ochrony przeciwsłonecznej, ponieważ zwiększają one wrażliwość skóry na promieniowanie UV. Zapraszamy na konsultację, podczas której dopasujemy najlepszy zabieg dla Twojej skóry.</p>
+    `
+  }
+};
+
+// Generate paths from static content
+export function getStaticPaths() {
+  return Object.keys(staticPostContent).map(slug => ({
+    params: { slug },
+    props: { postData: staticPostContent[slug], slug }
+  }));
+}
+
+const { postData, slug } = Astro.props;
+---
+
+<BaseLayout title={postData.title} description={postData.excerpt}>
+  <div class="site-container pt-24 md:pt-36">
+    <article class="mx-auto max-w-4xl pb-12">
+      <h1 class="h2 text-center text-pretty">{postData.title}</h1>
+      
+      <p class="text-primary-500 mt-4 text-center">
+        {postData.date}
+      </p>
+      
+      <div class="prose prose-lg mx-auto mt-12 max-w-3xl">
+        <div set:html={postData.content} />
+      </div>
+      
+      <div class="mt-12 flex justify-center">
+        <Button variant="ghost" arrow="left" href="/blog" class="pl-0">
+          Wróć do bloga
+        </Button>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

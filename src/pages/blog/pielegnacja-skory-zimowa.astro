@@ -1,0 +1,53 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Button from "@components/Button/Button.astro";
+
+const postData = {
+  title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
+  date: "15 lutego 2025",
+  excerpt: "Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.",
+  content: `
+    <h2>Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni</h2>
+    <p>Zima to wyjątkowo wymagający okres dla naszej skóry. Niskie temperatury, wiatr, suche powietrze w ogrzewanych pomieszczeniach - wszystko to sprawia, że nasza skóra staje się sucha, podrażniona i pozbawiona blasku. Jak skutecznie zadbać o cerę zimą? Przedstawiamy najważniejsze zasady zimowej pielęgnacji.</p>
+    
+    <h3>Nawilżanie to podstawa</h3>
+    <p>Zimą szczególnie ważne jest intensywne nawilżanie skóry. Warto sięgnąć po kosmetyki z kwasem hialuronowym, ceramidami i gliceryną, które skutecznie wiążą wodę w naskórku. Dobrym rozwiązaniem są także bogate, odżywcze kremy, które tworzą na skórze ochronną warstwę zapobiegającą utracie wody.</p>
+    
+    <h3>Delikatne oczyszczanie</h3>
+    <p>W okresie zimowym zrezygnuj z żeli i pianek, które mogą dodatkowo wysuszać skórę. Zastąp je delikatnymi mleczkami, olejkami lub balsamami do mycia twarzy. Pamiętaj, by używać letniej, a nie gorącej wody, która dodatkowo podrażnia i wysusza skórę.</p>
+    
+    <h3>Ochrona przed słońcem</h3>
+    <p>Nawet zimą promieniowanie UV negatywnie wpływa na skórę. Szczególnie w górach, gdzie śnieg odbija promienie słoneczne, należy stosować kosmetyki z filtrem SPF. Ochrona przed słońcem to nie tylko sposób na zapobieganie przebarwieniom, ale także profilaktyka przedwczesnego starzenia się skóry.</p>
+    
+    <h3>Profesjonalne zabiegi</h3>
+    <p>Zima to doskonały czas na profesjonalne zabiegi, takie jak peelingi kwasowe czy mezoterapia. Z racji mniejszej ekspozycji na słońce, ryzyko powikłań po zabiegach, takich jak przebarwienia, jest zdecydowanie niższe. Warto skonsultować się z kosmetologiem, który dobierze odpowiednie zabiegi do potrzeb twojej skóry.</p>
+    
+    <h3>Dieta i nawodnienie</h3>
+    <p>Pamiętaj, że pielęgnacja to nie tylko kosmetyki. Równie ważna jest odpowiednia dieta bogata w kwasy omega-3, antyoksydanty i witaminy. Nie zapominaj o piciu odpowiedniej ilości wody - nawet jeśli zimą nie odczuwasz tak silnego pragnienia jak latem.</p>
+    
+    <p>W Beauty and Care oferujemy specjalne zimowe rytuały pielęgnacyjne, które kompleksowo zadbają o twoją skórę w tym wymagającym okresie. Zapraszamy na konsultację z naszymi ekspertami!</p>
+  `
+};
+---
+
+<BaseLayout title={postData.title} description={postData.excerpt}>
+  <div class="site-container pt-24 md:pt-36">
+    <article class="mx-auto max-w-4xl pb-12">
+      <h1 class="h2 text-center text-pretty">{postData.title}</h1>
+      
+      <p class="text-primary-500 mt-4 text-center">
+        {postData.date}
+      </p>
+      
+      <div class="prose prose-lg mx-auto mt-12 max-w-3xl">
+        <div set:html={postData.content} />
+      </div>
+      
+      <div class="mt-12 flex justify-center">
+        <Button variant="ghost" arrow="left" href="/blog" class="pl-0">
+          Wróć do bloga
+        </Button>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

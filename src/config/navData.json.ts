@@ -19,32 +19,32 @@ const navConfig: navItem[] = [
 	},
 	{
 		text: "Usługi",
-		link: "/portfolio",
+		link: "/uslugi",
 	},
 	{
 		text: "Cennik",
-		link: "/#pricing",
+		link: "/cennik",
+	},
+	{
+		text: "Blog",
+		link: "/blog",
 	},
 	{
 		text: "Galeria",
 		dropdown: [
 			{
-				text: "Portfolio",
-				link: "/portfolio/couple-1",
+				text: "Zabiegi",
+				link: "/uslugi/modelowanie-sylwetki",
 			},
 			{
-				text: "Legal",
+				text: "Regulamin",
 				link: "/privacy-policy/",
 			},
-			{
-				text: "Elements",
-				link: "/elements/",
-			},
-			{
-				text: "404",
-				link: "/not-a-link/",
-			},
 		],
+	},
+	{
+		text: "Kontakt",
+		link: "/kontakt",
 	},
 ];
 
