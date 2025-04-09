@@ -1,60 +1,140 @@
 ---
+import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Button from "@components/Button/Button.astro";
 
-// Define static blog posts for the listing
+// Get posts from content directory
 const posts = [
   {
     slug: "pielegnacja-skory-zimowa",
     data: {
       title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
-      date: "15.02.2025",
-      excerpt: "Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem."
+      date: new Date("2025-02-15"),
+      excerpt: "Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.",
+      categories: ["Pielęgnacja skóry", "Porady"],
+      tags: ["zima", "nawilżanie", "pielęgnacja"]
     }
   },
   {
     slug: "karboksyterapia-zabieg",
     data: {
       title: "Karboksyterapia - zabieg, który podbił świat kosmetologii",
-      date: "10.03.2025",
-      excerpt: "Poznaj rewolucyjny zabieg, który rozwiązuje problemy z cellulitem, rozstępami i zmarszczkami. Karboksyterapia to bezpieczna i skuteczna metoda odmładzania skóry."
+      date: new Date("2025-03-10"),
+      excerpt: "Poznaj rewolucyjny zabieg, który rozwiązuje problemy z cellulitem, rozstępami i zmarszczkami. Karboksyterapia to bezpieczna i skuteczna metoda odmładzania skóry.",
+      categories: ["Zabiegi", "Kosmetologia"],
+      tags: ["karboksyterapia", "cellulit", "odmładzanie"]
     }
   },
   {
     slug: "kwasy-w-kosmetologii",
     data: {
       title: "Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach",
-      date: "25.03.2025",
-      excerpt: "Poznaj różnice między kwasami AHA, BHA i PHA oraz ich zastosowanie w różnych zabiegach kosmetycznych. Dowiedz się, który kwas najlepiej sprawdzi się przy twoich problemach skórnych."
+      date: new Date("2025-03-25"),
+      excerpt: "Poznaj różnice między kwasami AHA, BHA i PHA oraz ich zastosowanie w różnych zabiegach kosmetycznych. Dowiedz się, który kwas najlepiej sprawdzi się przy twoich problemach skórnych.",
+      categories: ["Zabiegi", "Kosmetologia", "Składniki aktywne"],
+      tags: ["kwasy", "AHA", "BHA", "PHA", "peelingi"]
     }
   }
 ];
 
-// Sort posts by date (newest first)
-const sortedPosts = [...posts].sort((a, b) => {
-  const dateA = new Date(a.data.date.split('.').reverse().join('-')).getTime();
-  const dateB = new Date(b.data.date.split('.').reverse().join('-')).getTime();
+// Try to get posts from Tina CMS content directory
+let tinaPostsRaw = [];
+try {
+  tinaPostsRaw = await getCollection("posts", (post) => !post.data.draft);
+} catch (error) {
+  console.log("No posts found in content directory", error);
+}
+
+// Transform Tina posts to match our format
+const tinaPosts = tinaPostsRaw.map((post) => ({
+  slug: post.slug,
+  data: {
+    ...post.data,
+    // Ensure date is a Date object
+    date: post.data.date instanceof Date ? post.data.date : new Date(post.data.date)
+  }
+}));
+
+// Combine both post sources and sort by date (newest first)
+const allPosts = [...posts, ...tinaPosts];
+const sortedPosts = [...allPosts].sort((a, b) => {
+  const dateA = a.data.date.getTime();
+  const dateB = b.data.date.getTime();
   return dateB - dateA;
 });
+
+// Format date function
+function formatDate(date) {
+  if (!date) return "";
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+  return date instanceof Date 
+    ? date.toLocaleDateString('pl-PL', options)
+    : new Date(date).toLocaleDateString('pl-PL', options);
+}
+
+// Get all categories for filtering
+const allCategories = [...new Set(
+  sortedPosts.flatMap(post => post.data.categories || [])
+)];
+
+// Get all tags for filtering
+const allTags = [...new Set(
+  sortedPosts.flatMap(post => post.data.tags || [])
+)];
 ---
 
-<BaseLayout title="Blog - Beauty and Care" description="Porady i artykuły na temat pielęgnacji skóry, modelowania sylwetki i zabiegów kosmetycznych">
+<BaseLayout 
+  title="Blog - Beauty and Care" 
+  description="Porady i artykuły na temat pielęgnacji skóry, modelowania sylwetki i zabiegów kosmetycznych"
+  keywords={allCategories}
+>
   <div class="site-container pt-24 md:pt-36">
     <div class="mx-auto max-w-6xl text-center">
       <h1 class="h2 text-pretty uppercase">
         Blog - Najnowsze artykuły o pielęgnacji skóry i modelowaniu sylwetki
       </h1>
     </div>
+
+    <!-- Categories filter (optional) -->
+    {allCategories.length > 0 && (
+      <div class="mt-8 flex flex-wrap justify-center gap-2">
+        <span class="mr-2 text-base-700 font-medium">Kategorie:</span>
+        {allCategories.map(category => (
+          <a href={`/blog/kategoria/${category.toLowerCase().replace(/\s+/g, '-')}`} class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm hover:bg-primary-100 transition-colors">
+            {category}
+          </a>
+        ))}
+      </div>
+    )}
     
     <div class="mx-auto mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       {sortedPosts.map((post) => (
         <div class="border-base-200 group flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
           <div class="bg-primary-50 p-6">
             <h2 class="h3 mb-2 text-pretty group-hover:text-primary-600 transition-colors">{post.data.title}</h2>
-            <p class="text-primary-500 text-sm font-medium">
-              {post.data.date}
-            </p>
+            <div class="flex justify-between items-center">
+              <p class="text-primary-500 text-sm font-medium">
+                {formatDate(post.data.date)}
+              </p>
+              {post.data.authorName && (
+                <p class="text-primary-500 text-sm">
+                  {post.data.authorName}
+                </p>
+              )}
+            </div>
+            
+            {post.data.categories && post.data.categories.length > 0 && (
+              <div class="mt-2 flex flex-wrap gap-1">
+                {post.data.categories.map(category => (
+                  <span class="bg-primary-100 text-primary-700 px-2 py-0.5 text-xs rounded-full">
+                    {category}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
+          
           <div class="flex flex-grow flex-col justify-between p-6">
             <p class="text-base text-gray-600 mb-4">
               {post.data.excerpt}

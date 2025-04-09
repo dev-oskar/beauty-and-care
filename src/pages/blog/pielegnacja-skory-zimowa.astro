@@ -1,11 +1,25 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Button from "@components/Button/Button.astro";
+import { getCollection } from "astro:content";
 
-const postData = {
+// Try to get post from Tina CMS content
+let tinaPost = null;
+try {
+  const posts = await getCollection("posts");
+  tinaPost = posts.find(post => post.slug === "pielegnacja-skory-zimowa");
+} catch (error) {
+  console.log("Post not found in content directory", error);
+}
+
+// Default post data if not found in Tina CMS
+const postData = tinaPost?.data || {
   title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
-  date: "15 lutego 2025",
+  date: new Date("2025-02-15"),
   excerpt: "Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.",
+  authorName: "Beauty and Care Team",
+  categories: ["Pielęgnacja skóry", "Porady"],
+  tags: ["zima", "nawilżanie", "pielęgnacja"],
   content: `
     <h2>Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni</h2>
     <p>Zima to wyjątkowo wymagający okres dla naszej skóry. Niskie temperatury, wiatr, suche powietrze w ogrzewanych pomieszczeniach - wszystko to sprawia, że nasza skóra staje się sucha, podrażniona i pozbawiona blasku. Jak skutecznie zadbać o cerę zimą? Przedstawiamy najważniejsze zasady zimowej pielęgnacji.</p>
@@ -28,26 +42,75 @@ const postData = {
     <p>W Beauty and Care oferujemy specjalne zimowe rytuały pielęgnacyjne, które kompleksowo zadbają o twoją skórę w tym wymagającym okresie. Zapraszamy na konsultację z naszymi ekspertami!</p>
   `
 };
+
+// Format date for display
+function formatDate(date) {
+  if (!date) return "";
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date instanceof Date 
+    ? date.toLocaleDateString('pl-PL', options)
+    : new Date(date).toLocaleDateString('pl-PL', options);
+}
+
+// Post date
+const postDate = formatDate(postData.date);
+
+// Get post content - either from Tina CMS or static content
+const content = tinaPost ? tinaPost.body : postData.content;
 ---
 
 <BaseLayout 
   type="blog"
-  title={postData.title} 
-  description={postData.excerpt}
-  date="2025-02-15"
-  authorName="Beauty and Care Team"
-  categories={["Pielęgnacja skóry", "Porady"]}
-  tags={["zima", "nawilżanie", "pielęgnacja"]}>
+  title={postData.seoTitle || postData.title} 
+  description={postData.seoDescription || postData.excerpt}
+  date={postData.date instanceof Date ? postData.date.toISOString() : postData.date}
+  authorName={postData.authorName}
+  categories={postData.categories}
+  tags={postData.tags}
+  canonicalUrl={postData.canonicalUrl}
+  noindex={postData.noindex || false}
+  image={postData.featuredImage}>
   <div class="site-container pt-24 md:pt-36">
     <article class="mx-auto max-w-4xl pb-12">
       <h1 class="h2 text-center text-pretty">{postData.title}</h1>
       
-      <p class="text-primary-500 mt-4 text-center">
-        {postData.date}
-      </p>
+      <div class="flex flex-col items-center mt-4 space-y-2">
+        <p class="text-primary-500 font-medium">
+          {postDate}
+        </p>
+        
+        {postData.authorName && (
+          <p class="text-base-700">
+            Autor: <span class="font-medium">{postData.authorName}</span>
+          </p>
+        )}
+        
+        {/* Categories */}
+        {postData.categories && postData.categories.length > 0 && (
+          <div class="flex flex-wrap justify-center gap-2 mt-2">
+            {postData.categories.map(category => (
+              <a href={`/blog/kategoria/${category.toLowerCase().replace(/\s+/g, '-')}`} 
+                 class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm hover:bg-primary-100 transition-colors">
+                {category}
+              </a>
+            ))}
+          </div>
+        )}
+        
+        {/* Tags */}
+        {postData.tags && postData.tags.length > 0 && (
+          <div class="flex flex-wrap justify-center gap-1 mt-1">
+            {postData.tags.map(tag => (
+              <span class="bg-gray-100 text-gray-700 px-2 py-0.5 text-xs rounded-full">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
       
       <div class="prose prose-lg mx-auto mt-12 max-w-3xl">
-        <div set:html={postData.content} />
+        {tinaPost ? <tinaPost.Content /> : <div set:html={postData.content} />}
       </div>
       
       <div class="mt-12 flex justify-center">

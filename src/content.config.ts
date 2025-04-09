@@ -24,6 +24,14 @@ const portfolios = defineCollection({
 			// Transform string to Date object
 			date: z.coerce.date(),
 			order: z.number(),
+			// SEO fields
+			categories: z.array(z.string()).optional(),
+			tags: z.array(z.string()).optional(),
+			seoTitle: z.string().optional(),
+			seoDescription: z.string().optional(),
+			canonicalUrl: z.string().optional(),
+			noindex: z.boolean().optional(),
+			priceRange: z.string().optional(),
 			// will be excluded from build if draft is "true"
 			draft: z.boolean().optional(),
 		}),
@@ -48,12 +56,21 @@ const otherPages = defineCollection({
 
 // Blog posts
 const posts = defineCollection({
-	schema: z.object({
-		title: z.string(),
-		date: z.coerce.date().optional(),
-		excerpt: z.string().optional(),
-		draft: z.boolean().optional(),
-	}),
+	schema: ({ image }) => 
+		z.object({
+			title: z.string(),
+			date: z.coerce.date().optional(),
+			excerpt: z.string().optional(),
+			authorName: z.string().optional().default("Beauty and Care Team"),
+			categories: z.array(z.string()).optional(),
+			tags: z.array(z.string()).optional(),
+			featuredImage: image().optional(),
+			seoTitle: z.string().optional(),
+			seoDescription: z.string().optional(),
+			canonicalUrl: z.string().optional(),
+			noindex: z.boolean().optional(),
+			draft: z.boolean().optional(),
+		}),
 });
 
 export const collections = {
