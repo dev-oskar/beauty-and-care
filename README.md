@@ -1,132 +1,180 @@
-# Beauty and Care - Salon Kosmetyczny
+# Beauty and Care
 
-![Beauty and Care](https://github.com/username/beauty-and-care/raw/master/src/assets/images/logo-min.png)
+A modern, elegant website for a beauty salon built with Astro framework and Tina CMS. Converted from a wedding photography template to provide a premium aesthetic for beauty and care services.
 
-Elegancka i nowoczesna strona dla salonu kosmetycznego, stworzona na bazie szablonu fotograficznego z wykorzystaniem frameworku Astro i systemu zarządzania treścią Tina CMS.
+## Features
 
-## Funkcje
+- ✨ Modern, elegant design with premium aesthetics
+- 🔍 Comprehensive SEO implementation with Schema.org and Open Graph metadata
+- 📱 Fully responsive for mobile, tablet, and desktop devices
+- 📝 Integrated blog with categories and tags
+- 💼 Beauty services presentation section (converted from portfolio)
+- 💰 Pricing section with clear formatting
+- 📞 Contact page with Google Maps integration
+- 🔄 Tina CMS integration for easy content management
+- 🌐 Multi-language support (Polish content with English codebase)
 
-- ✨ Nowoczesny, elegancki design z naciskiem na estetykę premium
-- 🔍 Pełna optymalizacja SEO z Schema.org i metadanymi Open Graph
-- 📱 W pełni responsywna dla urządzeń mobilnych, tabletów i komputerów
-- 📝 Zintegrowany blog z kategoryzacją postów
-- 💼 Prezentacja usług/zabiegów kosmetycznych
-- 💰 Sekcja cennika z przejrzystym formatowaniem
-- 📞 Strona kontaktowa z integracją mapy Google
-- 🔄 Integracja z Tina CMS do łatwego zarządzania treścią
-- 🌐 Wielojęzyczność (obsługa języka polskiego)
+## Tech Stack
 
-## Technologie
+- [Astro](https://astro.build/) - Static site generator
+- [TailwindCSS](https://tailwindcss.com/) - Utility-first CSS framework
+- [Tina CMS](https://tina.io/) - Headless CMS for content management
+- [Schema.org](https://schema.org/) - Structured data implementation
+- [Google Maps API](https://developers.google.com/maps) - Map integration
 
-- [Astro](https://astro.build/) - Framework do tworzenia stron internetowych
-- [TailwindCSS](https://tailwindcss.com/) - Framework CSS do stylizacji
-- [Tina CMS](https://tina.io/) - Headless CMS do zarządzania treścią
-- [Schema.org](https://schema.org/) - Strukturyzowane dane dla SEO
-- [Google Maps API](https://developers.google.com/maps) - Integracja mapy
+## Quick Start
 
-## Szybki start
-
-1. Sklonuj repozytorium
 ```bash
+# Clone the repository
 git clone https://github.com/username/beauty-and-care.git
 cd beauty-and-care
-```
 
-2. Zainstaluj zależności
-```bash
+# Install dependencies
 npm install
-```
 
-3. Uruchom serwer deweloperski
-```bash
+# Run development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Start Tina CMS
+npm run tina
 ```
 
-4. Strona będzie dostępna pod adresem [http://localhost:4321](http://localhost:4321)
-
-## Struktura projektu
+## Project Structure
 
 ```
 beauty-and-care/
-├── content/            # Treści zarządzane przez Tina CMS
-│   └── posts/          # Posty na blogu
-├── public/             # Statyczne pliki
-│   ├── admin/          # Panel administracyjny Tina CMS
-│   ├── favicons/       # Ikony strony
-│   └── images/         # Obrazy statyczne
+├── content/            # Tina CMS managed content
+│   └── posts/          # Blog posts
+├── public/             # Static assets
+│   ├── admin/          # Tina CMS admin panel
+│   ├── favicons/       # Site icons
+│   └── images/         # Static images
 ├── src/
-│   ├── assets/         # Zasoby (obrazy, itp.)
-│   ├── components/     # Komponenty Astro
-│   ├── config/         # Konfiguracja (nawigacja, dane strony)
-│   ├── data/           # Dane strukturalne (portfolio, usługi)
-│   ├── layouts/        # Szablony stron
-│   ├── pages/          # Strony witryny
-│   │   ├── blog/       # Sekcja bloga
-│   │   ├── uslugi/     # Sekcja usług
-│   │   └── [...]
-│   └── styles/         # Style globalny i komponenty
-└── tina/               # Konfiguracja Tina CMS
+│   ├── assets/         # Asset files (images, etc.)
+│   ├── components/     # Astro components
+│   │   ├── About/      # About section components
+│   │   ├── Seo/        # SEO components
+│   │   └── ...         # Other component directories
+│   ├── config/         # Configuration
+│   │   ├── navData.json.ts  # Navigation structure
+│   │   └── siteData.json.ts # Site metadata & settings
+│   ├── data/           # Structured data
+│   │   ├── portfolios/ # Service data (renamed from portfolios)
+│   │   └── otherPages/ # Additional pages data
+│   ├── layouts/        # Page layouts
+│   ├── pages/          # Site pages
+│   │   ├── blog/       # Blog section
+│   │   ├── uslugi/     # Services section (renamed from portfolio)
+│   │   └── ...         # Other page routes
+│   └── styles/         # Global styles and components
+└── tina/               # Tina CMS configuration
 ```
 
-## Zarządzanie treścią
+## SEO Implementation
 
-### Panel administracyjny Tina CMS
+The site includes a comprehensive SEO layer with:
 
-1. Uruchom panel administracyjny Tina CMS
+### Components
+
+- `src/components/Seo/Seo.astro` - General SEO component with:
+  - Schema.org WebSite and LocalBusiness data
+  - Meta tags, Open Graph, and Twitter Card support
+  - Support for keywords, hreflang tags, and canonical URLs
+
+- `src/components/Seo/BlogSeo.astro` - Blog-specific SEO with:
+  - Schema.org Article markup
+  - BreadcrumbList structured data
+  - Article meta tags for social sharing
+
+### Tina CMS Integration
+
+SEO fields in Tina CMS include:
+- Custom titles and descriptions
+- Author information
+- Categories and tags
+- Featured images
+- Canonical URLs
+- noindex/nofollow controls
+
+Usage example:
+```astro
+<BaseLayout 
+  type="blog"
+  title={postData.seoTitle || postData.title} 
+  description={postData.seoDescription || postData.excerpt}
+  date={postData.date}
+  authorName={postData.authorName}
+  categories={postData.categories}
+  tags={postData.tags}
+  canonicalUrl={postData.canonicalUrl}
+  noindex={postData.noindex || false}
+  image={postData.featuredImage}>
+  <!-- Page content -->
+</BaseLayout>
+```
+
+## Content Management
+
+### Tina CMS Setup
+
+1. Run the Tina CMS admin panel:
 ```bash
 npm run tina
 ```
 
-2. Panel będzie dostępny pod adresem [http://localhost:3000/admin](http://localhost:3000/admin)
+2. Access the panel at [http://localhost:3000/admin](http://localhost:3000/admin)
 
-### Główne sekcje treści
+### Content Models
 
-- **Blog** - Artykuły na blogu z kategoryzacją i tagami
-- **Usługi** - Prezentacja zabiegów i usług kosmetycznych
-- **Cennik** - Kategorie usług z cenami
-- **Kontakt** - Dane kontaktowe, mapa, formularz kontaktowy
+- **Blog Posts**: `/tina/config.ts` contains the schema for blog posts with SEO fields
+- **Services**: Converted from portfolio collection with beauty service fields
+- **Site Settings**: General site information in `src/config/siteData.json.ts`
 
-## SEO
+## Customization
 
-Strona posiada rozbudowaną warstwę SEO z:
+### Styling
 
-- Strukturyzowanymi danymi Schema.org (LocalBusiness, Article, BreadcrumbList)
-- Metadanymi Open Graph dla mediów społecznościowych
-- Możliwością dostosowania tytułów i opisów SEO dla każdej podstrony
-- Pełnym wsparciem dla słów kluczowych i meta tagów
-- Generowaniem sitemap.xml i poprawnym robots.txt
+- `src/styles/global.css` - Global styles
+- `src/styles/tailwind-theme.css` - Tailwind theme config
+- Colors and fonts are configured in both files
+
+### Content Structure
+
+- Navigation: `src/config/navData.json.ts`
+- Site metadata: `src/config/siteData.json.ts`
+- Service pages: `/src/data/portfolios/` or via Tina CMS
+- Blog posts: `/content/posts/` or via Tina CMS
 
 ## Deployment
 
-### Netlify
+The project is set up for easy deployment to Netlify:
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/username/beauty-and-care)
+```bash
+# Build the site
+npm run build
 
-### Vercel
+# Deploy to Netlify (if you have Netlify CLI installed)
+netlify deploy
+```
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/username/beauty-and-care)
+Configuration for Netlify is in `netlify.toml`
 
-## Rozwój i modyfikacje
+## Development Notes
 
-### Dostosowanie stylów
+- The codebase was converted from a wedding photography template to a beauty salon website
+- Original "Portfolio" section was renamed to "Usługi" (Services) in Polish
+- Testimonials section was removed
+- New sections added: Blog, Pricing, Contact with map
+- All user-visible text is in Polish, but code comments and variables are in English
 
-Style można dostosować przez edycję plików:
-- `src/styles/global.css` - Style globalne
-- `src/styles/tailwind-theme.css` - Konfiguracja motywu Tailwind
-- `src/config/siteData.json.ts` - Dane witryny (tytuł, opis, kolory)
+## License
 
-### Dostosowanie zawartości
+This project is based on the Horizon template by [Cosmic Themes](https://cosmicthemes.com/) with a GPL-3.0 license.
 
-- Edycja nawigacji: `src/config/navData.json.ts`
-- Dodawanie usług: Panel Tina CMS lub `/src/data/portfolios/`
-- Modyfikacja głównej strony: `src/pages/index.astro`
+## Support
 
-## Licencja
-
-Projekt jest oparty na szablonie Horizon od [Cosmic Themes](https://cosmicthemes.com/) z licencją GPL-3.0. Dostosowanie do salonu kosmetycznego i integracja z Tina CMS została wykonana przez [Imię i Nazwisko].
-
-## Kontakt
-
-W przypadku pytań lub wsparcia, prosimy o kontakt:
+For questions or support, please contact:
 - Email: kontakt@beautyandcare.pl
-- Strona: https://beautyandcare.pl
