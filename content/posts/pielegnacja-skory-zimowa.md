@@ -33,4 +33,4 @@ Pamiętaj, że pielęgnacja to nie tylko kosmetyki. Równie ważna jest odpowied
 
 W Beauty and Care oferujemy specjalne zimowe rytuały pielęgnacyjne, które kompleksowo zadbają o twoją skórę w tym wymagającym okresie. Zapraszamy na konsultację z naszymi ekspertami!
 
-Test, test
+Test, test - co kurwa do chuja

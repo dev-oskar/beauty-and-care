@@ -37,8 +37,6 @@ const portfolios = defineCollection({
 		}),
 });
 
-// testimonials section removed
-
 // other pages
 const otherPages = defineCollection({
 	// type: "content",
@@ -56,6 +54,11 @@ const otherPages = defineCollection({
 
 // Blog posts
 const posts = defineCollection({
+	// Adding proper loader to read from content/posts
+	loader: glob({
+		pattern: "**/[^_]*.{md,mdx}",
+		base: "./content/posts",
+	}),
 	schema: ({ image }) => 
 		z.object({
 			title: z.string(),
@@ -73,8 +76,51 @@ const posts = defineCollection({
 		}),
 });
 
+// Services collection
+const services = defineCollection({
+	loader: glob({
+		pattern: "**/[^_]*.{md,mdx}",
+		base: "./content/services",
+	}),
+	schema: ({ image }) => 
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			heroImage: image().optional(),
+			date: z.coerce.date().optional(),
+			location: z.string().optional(),
+			clients: z.array(z.string()).optional(),
+			categories: z.array(z.string()).optional(),
+			tags: z.array(z.string()).optional(),
+			order: z.number().optional(),
+			priceRange: z.string().optional(),
+			draft: z.boolean().optional(),
+		}),
+});
+
+// Portfolios collection (from content directory)
+const tinaPortfolios = defineCollection({
+	loader: glob({
+		pattern: "**/[^_]*.{md,mdx}",
+		base: "./content/portfolios",
+	}),
+	schema: ({ image }) => 
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			heroImage: image().optional(),
+			date: z.coerce.date().optional(),
+			location: z.string().optional(),
+			clients: z.array(z.string()).optional(),
+			order: z.number().optional(),
+			draft: z.boolean().optional(),
+		}),
+});
+
 export const collections = {
 	portfolios,
+	tinaPortfolios,
 	otherPages,
 	posts,
+	services,
 };

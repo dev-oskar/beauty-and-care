@@ -29,3 +29,5 @@ Zima to doskonały czas na profesjonalne zabiegi, takie jak peelingi kwasowe czy
 Pamiętaj, że pielęgnacja to nie tylko kosmetyki. Równie ważna jest odpowiednia dieta bogata w kwasy omega-3, antyoksydanty i witaminy. Nie zapominaj o piciu odpowiedniej ilości wody - nawet jeśli zimą nie odczuwasz tak silnego pragnienia jak latem.
 
 W Beauty and Care oferujemy specjalne zimowe rytuały pielęgnacyjne, które kompleksowo zadbają o twoją skórę w tym wymagającym okresie. Zapraszamy na konsultację z naszymi ekspertami!
+
+Twoja stara! A nie bo twoja!

@@ -1,66 +1,82 @@
 ---
 import { getCollection } from "astro:content";
-import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Button from "@components/Button/Button.astro";
 
-// Get posts from content directory
-const posts = [
+// Hard-coded posts as a fallback - structured to match Astro Content Collection objects
+const hardcodedPosts = [
   {
+    id: "pielegnacja-skory-zimowa",
     slug: "pielegnacja-skory-zimowa",
+    collection: "posts",
+    body: "",
     data: {
       title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
       date: new Date("2025-02-15"),
       excerpt: "Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.",
       categories: ["Pielęgnacja skóry", "Porady"],
       tags: ["zima", "nawilżanie", "pielęgnacja"]
-    }
+    },
+    render: () => ({})
   },
   {
+    id: "karboksyterapia-zabieg",
     slug: "karboksyterapia-zabieg",
+    collection: "posts",
+    body: "",
     data: {
       title: "Karboksyterapia - zabieg, który podbił świat kosmetologii",
       date: new Date("2025-03-10"),
       excerpt: "Poznaj rewolucyjny zabieg, który rozwiązuje problemy z cellulitem, rozstępami i zmarszczkami. Karboksyterapia to bezpieczna i skuteczna metoda odmładzania skóry.",
       categories: ["Zabiegi", "Kosmetologia"],
       tags: ["karboksyterapia", "cellulit", "odmładzanie"]
-    }
+    },
+    render: () => ({})
   },
   {
+    id: "kwasy-w-kosmetologii",
     slug: "kwasy-w-kosmetologii",
+    collection: "posts",
+    body: "",
     data: {
       title: "Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach",
       date: new Date("2025-03-25"),
       excerpt: "Poznaj różnice między kwasami AHA, BHA i PHA oraz ich zastosowanie w różnych zabiegach kosmetycznych. Dowiedz się, który kwas najlepiej sprawdzi się przy twoich problemach skórnych.",
       categories: ["Zabiegi", "Kosmetologia", "Składniki aktywne"],
       tags: ["kwasy", "AHA", "BHA", "PHA", "peelingi"]
-    }
+    },
+    render: () => ({})
   }
 ];
 
-// Try to get posts from Tina CMS content directory
-let tinaPostsRaw = [];
+// Get posts from content directory
+let tinaPosts = [];
 try {
-  tinaPostsRaw = await getCollection("posts", (post) => !post.data.draft);
+  console.log("Trying to fetch posts from content/posts directory");
+  tinaPosts = await getCollection("posts", (post) => !post.data.draft);
+  console.log("Tina posts found:", tinaPosts.length);
+  tinaPosts.forEach(post => {
+    console.log("Post:", post.slug, post.data.title);
+    console.log("Body length:", post.body?.length || 0);
+    console.log("Last 50 chars:", post.body?.substring(post.body.length - 50) || '');
+  });
 } catch (error) {
-  console.log("No posts found in content directory", error);
+  console.log("Error fetching posts from content directory", error);
 }
 
-// Transform Tina posts to match our format
-const tinaPosts = tinaPostsRaw.map((post) => ({
-  slug: post.slug,
-  data: {
-    ...post.data,
-    // Ensure date is a Date object
-    date: post.data.date instanceof Date ? post.data.date : new Date(post.data.date)
-  }
-}));
+// Use tinaPosts if they exist, otherwise use hardcoded posts
+const postsToUse = tinaPosts.length > 0 ? tinaPosts : hardcodedPosts;
 
-// Combine both post sources and sort by date (newest first)
-const allPosts = [...posts, ...tinaPosts];
-const sortedPosts = [...allPosts].sort((a, b) => {
-  const dateA = a.data.date.getTime();
-  const dateB = b.data.date.getTime();
+// Debug logs to see what's happening with the slugs
+console.log("Posts to use count:", postsToUse.length);
+postsToUse.forEach((post, index) => {
+  console.log(`Post ${index + 1} slug:`, post.slug || post.id);
+});
+
+// Sort posts by date (newest first)
+const sortedPosts = [...postsToUse].sort((a, b) => {
+  const dateA = a.data.date?.getTime() || 0;
+  const dateB = b.data.date?.getTime() || 0;
   return dateB - dateA;
 });
 
@@ -140,7 +156,7 @@ const allTags = [...new Set(
               {post.data.excerpt}
             </p>
             <div>
-              <Button variant="ghost" arrow="right" href={`/blog/${post.slug}`} class="pl-0">
+              <Button variant="ghost" arrow="right" href={`/blog/${post.slug || post.id}`} class="pl-0">
                 Czytaj więcej
               </Button>
             </div>

@@ -1,0 +1,317 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Button from "@components/Button/Button.astro";
+
+// Define all possible blog post slugs for static generation
+export async function getStaticPaths() {
+	// Hard-coded slugs that we know should exist
+	const hardcodedSlugs = [
+		"pielegnacja-skory-zimowa",
+		"karboksyterapia-zabieg",
+		"kwasy-w-kosmetologii",
+		"kwasy-aha",
+	];
+
+	// Try to get content posts
+	let tinaPosts = [];
+	try {
+		tinaPosts = await getCollection("posts", (post) => !post.data.draft);
+		console.log("Found Tina posts:", tinaPosts.length);
+	} catch (error) {
+		console.error("Error fetching content posts:", error);
+	}
+
+	// Create paths for Tina posts
+	const tinaPaths = tinaPosts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post, isContentPost: true },
+	}));
+
+	// Create paths for hardcoded slugs not covered by Tina posts
+	const tinavslugs = tinaPosts.map((post) => post.slug);
+	const hardcodedPaths = hardcodedSlugs
+		.filter((slug) => !tinavslugs.includes(slug))
+		.map((slug) => ({
+			params: { slug },
+			props: { slug, isContentPost: false },
+		}));
+
+	// Return combined paths
+	return [...tinaPaths, ...hardcodedPaths];
+}
+
+// Get the props
+const { slug, post, isContentPost } = Astro.props;
+
+// Format date function
+function formatDate(date) {
+	if (!date) return "";
+	const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+	return date instanceof Date
+		? date.toLocaleDateString("pl-PL", options)
+		: new Date(date).toLocaleDateString("pl-PL", options);
+}
+
+// Handle content rendering
+let Content;
+let postData;
+
+if (isContentPost) {
+	// For content collection posts
+	const renderResult = await post.render();
+	Content = renderResult.Content;
+	postData = post.data;
+} else {
+	// For hardcoded posts
+	if (slug === "pielegnacja-skory-zimowa") {
+		postData = {
+			title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
+			date: new Date("2025-02-15"),
+			excerpt:
+				"Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.",
+			categories: ["Pielęgnacja skóry", "Porady"],
+			tags: ["zima", "nawilżanie", "pielęgnacja"],
+			authorName: "Beauty and Care Team",
+			content: `
+      <h2>Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni</h2>
+      <p>Zima to wymagający czas dla naszej skóry. Niskie temperatury, wiatr, suche powietrze w ogrzewanych pomieszczeniach - wszystko to sprawia, że skóra staje się przesuszona, wrażliwa i pozbawiona blasku. Jak sobie z tym poradzić? Przedstawiamy sprawdzone sposoby na zimową pielęgnację.</p>
+      
+      <h3>Nawilżanie to podstawa</h3>
+      <p>Podczas zimowych miesięcy szczególnie ważne jest intensywne nawilżanie skóry. Warto sięgnąć po bogatsze kremy, które zawierają:</p>
+      <ul>
+        <li>Kwas hialuronowy - wiąże wodę w skórze</li>
+        <li>Ceramidy - odbudowują barierę hydrolipidową</li>
+        <li>Glicerynę - nawilża i chroni przed utratą wody</li>
+        <li>Masło shea - odżywia i zmiękcza skórę</li>
+      </ul>
+      
+      <h3>Delikatne oczyszczanie</h3>
+      <p>Zimą warto zamienić żele i pianki na delikatniejsze produkty oczyszczające, które nie naruszają płaszcza hydrolipidowego skóry. Dobrym wyborem będą:</p>
+      <ul>
+        <li>Mleczka i olejki do demakijażu</li>
+        <li>Delikatne płyny micelarne</li>
+        <li>Kremy i balsamy myjące</li>
+      </ul>
+      
+      <h3>Ochrona przed słońcem</h3>
+      <p>Nawet zimą słońce emituje szkodliwe promieniowanie UV, które przyczynia się do starzenia skóry. Dlatego krem z filtrem SPF powinien być stosowany przez cały rok, a szczególnie podczas zimowych aktywności na świeżym powietrzu, gdy promieniowanie odbija się od śniegu.</p>
+      
+      <h3>Dodatkowe zabiegi regeneracyjne</h3>
+      <p>Zima to dobry czas na intensywną regenerację skóry. Warto rozważyć:</p>
+      <ol>
+        <li><strong>Zabiegi złuszczające</strong> - usuwają martwy naskórek i stymulują odnowę komórkową</li>
+        <li><strong>Maseczki nawilżające</strong> - intensywnie odżywiają skórę</li>
+        <li><strong>Mezoterapię</strong> - dostarcza skórze składniki odżywcze</li>
+      </ol>
+      
+      <h3>Nie zapominaj o nawodnieniu od wewnątrz</h3>
+      <p>Pamiętaj, że nawilżanie skóry to nie tylko odpowiednie kosmetyki, ale również właściwe nawodnienie organizmu. Pij przynajmniej 1,5 litra wody dziennie, a także herbaty ziołowe, które dodatkowo dostarczą antyoksydantów.</p>
+      
+      <p>W Beauty and Care oferujemy specjalne zabiegi pielęgnacyjne dostosowane do potrzeb skóry w sezonie zimowym. Zapraszamy na konsultację z naszymi kosmetologami, którzy pomogą dobrać odpowiednią pielęgnację do Twojego typu skóry.</p>
+      `,
+		};
+	} else if (slug === "karboksyterapia-zabieg") {
+		postData = {
+			title: "Karboksyterapia - zabieg, który podbił świat kosmetologii",
+			date: new Date("2025-03-10"),
+			excerpt:
+				"Poznaj rewolucyjny zabieg, który rozwiązuje problemy z cellulitem, rozstępami i zmarszczkami. Karboksyterapia to bezpieczna i skuteczna metoda odmładzania skóry.",
+			categories: ["Zabiegi", "Kosmetologia"],
+			tags: ["karboksyterapia", "cellulit", "odmładzanie"],
+			authorName: "Beauty and Care Team",
+			content: `
+      <h2>Karboksyterapia - zabieg, który podbił świat kosmetologii</h2>
+      <p>Karboksyterapia to jeden z najpopularniejszych zabiegów w nowoczesnej kosmetologii. Polega na podskórnej iniekcji dwutlenku węgla, który stymuluje naturalne procesy regeneracyjne organizmu. Ten prosty mechanizm ma zaskakująco szerokie zastosowanie w walce z niedoskonałościami skóry.</p>
+      
+      <h3>Jak działa karboksyterapia?</h3>
+      <p>Wprowadzony pod skórę dwutlenek węgla powoduje rozszerzenie naczyń krwionośnych i zwiększenie przepływu krwi w tkankach. Organizm, interpretując to jako stan niedotlenienia, zwiększa dopływ tlenu i składników odżywczych do danego obszaru. W efekcie następuje:</p>
+      <ul>
+        <li>Poprawa mikrokrążenia</li>
+        <li>Zwiększona produkcja kolagenu i elastyny</li>
+        <li>Redukcja tkanki tłuszczowej</li>
+        <li>Intensywna regeneracja skóry</li>
+      </ul>
+      
+      <h3>W jakich problemach pomaga?</h3>
+      <p>Karboksyterapia sprawdza się doskonale w walce z:</p>
+      <ol>
+        <li><strong>Cellulitem</strong> - rozbija złogi tłuszczowe i poprawia strukturę skóry</li>
+        <li><strong>Rozstępami</strong> - stymuluje produkcję kolagenu w uszkodzonych tkankach</li>
+        <li><strong>Zmarszczkami</strong> - poprawia elastyczność i napięcie skóry</li>
+        <li><strong>Cieniami pod oczami</strong> - rozjaśnia skórę i poprawia jej napięcie</li>
+        <li><strong>Łysieniem</strong> - stymuluje mieszki włosowe do wzrostu</li>
+      </ol>
+      
+      <h3>Jak wygląda zabieg?</h3>
+      <p>Procedura jest stosunkowo prosta. Przy użyciu cienkiej igły dwutlenek węgla wprowadzany jest pod skórę na odpowiednią głębokość. Pacjent może odczuwać delikatne pieczenie lub mrowienie, które szybko ustępuje. Zabieg trwa zazwyczaj od 15 do 30 minut, w zależności od wielkości obszaru poddawanego terapii.</p>
+      
+      <h3>Efekty i zalecana seria</h3>
+      <p>Pierwsze efekty można zauważyć już po jednym zabiegu, jednak dla optymalnych rezultatów zaleca się serię 6-10 zabiegów wykonywanych w odstępach 1-2 tygodni. Efekty utrzymują się długo, zwłaszcza przy właściwej pielęgnacji domowej.</p>
+      
+      <p>W Beauty and Care oferujemy karboksyterapię z wykorzystaniem najnowocześniejszego sprzętu, który zapewnia maksymalny komfort i bezpieczeństwo. Zapraszamy na konsultację, podczas której nasi specjaliści pomogą dobrać odpowiednią terapię do indywidualnych potrzeb.</p>
+      `,
+		};
+	} else if (slug === "kwasy-w-kosmetologii") {
+		postData = {
+			title: "Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach",
+			date: new Date("2025-03-25"),
+			excerpt:
+				"Poznaj różnice między kwasami AHA, BHA i PHA oraz ich zastosowanie w różnych zabiegach kosmetycznych. Dowiedz się, który kwas najlepiej sprawdzi się przy twoich problemach skórnych.",
+			categories: ["Zabiegi", "Kosmetologia", "Składniki aktywne"],
+			tags: ["kwasy", "AHA", "BHA", "PHA", "peelingi"],
+			authorName: "Beauty and Care Team",
+			content: `
+      <h2>Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach</h2>
+      <p>Kwasy to jedne z najpopularniejszych składników aktywnych w nowoczesnej kosmetologii. Stosowane są zarówno w zabiegach gabinetowych, jak i kosmetykach do codziennej pielęgnacji. Czym różnią się poszczególne rodzaje kwasów i które warto wybrać dla swojej skóry?</p>
+      
+      <h3>Kwasy AHA (alfa-hydroksykwasy)</h3>
+      <p>To rozpuszczalne w wodzie kwasy pochodzenia naturalnego. Do najpopularniejszych należą:</p>
+      <ul>
+        <li><strong>Kwas glikolowy</strong> - najmniejsza cząsteczka wśród AHA, głęboko penetruje skórę, idealny do cery dojrzałej i z przebarwieniami</li>
+        <li><strong>Kwas mlekowy</strong> - łagodniejszy, nawilża i rozjaśnia cerę, polecany dla skóry wrażliwej</li>
+        <li><strong>Kwas migdałowy</strong> - duża cząsteczka, działa powierzchniowo, bezpieczny dla skóry naczyniowej i trądzikowej</li>
+      </ul>
+      <p>Kwasy AHA pomagają w przypadku przesuszenia, drobnych zmarszczek, przebarwień i nierównej struktury skóry.</p>
+      
+      <h3>Kwasy BHA (beta-hydroksykwasy)</h3>
+      <p>Najbardziej znanym przedstawicielem tej grupy jest:</p>
+      <ul>
+        <li><strong>Kwas salicylowy</strong> - rozpuszczalny w tłuszczach, świetnie oczyszcza pory i działa przeciwzapalnie</li>
+      </ul>
+      <p>Kwasy BHA są idealne dla skóry tłustej, trądzikowej, z zaskórnikami i rozszerzonymi porami.</p>
+      
+      <h3>Kwasy PHA (polihydroksykwasy)</h3>
+      <p>To nowsza generacja kwasów o dużych cząsteczkach, które działają łagodniej:</p>
+      <ul>
+        <li><strong>Kwas laktobionowy</strong> - silnie nawilża i działa antyoksydacyjnie</li>
+        <li><strong>Glukonolakton</strong> - łagodzi podrażnienia i wzmacnia barierę skórną</li>
+      </ul>
+      <p>Kwasy PHA polecane są dla każdego typu skóry, nawet bardzo wrażliwej, naczyniowej i atopowej.</p>
+      
+      <h3>Jak wybrać odpowiedni kwas?</h3>
+      <p>Wybór kwasu powinien być uzależniony od typu skóry i problemu, który chcemy rozwiązać:</p>
+      <ol>
+        <li><strong>Skóra sucha i dojrzała</strong> - kwas mlekowy, kwas hialuronowy</li>
+        <li><strong>Skóra trądzikowa</strong> - kwas salicylowy, azelainowy</li>
+        <li><strong>Przebarwienia</strong> - kwas glikolowy, kojowy</li>
+        <li><strong>Skóra wrażliwa</strong> - kwasy PHA, migdałowy</li>
+      </ol>
+      
+      <h3>Zabiegi kwasowe w Beauty and Care</h3>
+      <p>W naszym salonie oferujemy profesjonalne zabiegi kwasowe o różnym stężeniu i pH, dobrane indywidualnie do potrzeb skóry. Peelingi chemiczne wykonywane przez naszych specjalistów są bezpieczne i dają spektakularne efekty w walce z wieloma problemami skórnymi.</p>
+      
+      <p>Zapraszamy na konsultację, podczas której dobierzemy idealny rodzaj kwasu dla Twojej skóry i zaplanujemy serię zabiegów dostosowanych do Twoich potrzeb.</p>
+      `,
+		};
+	} else if (slug === "kwasy-aha") {
+		postData = {
+			title: "Kwasy AHA w kosmetologii - wszystko co musisz wiedzieć",
+			date: new Date("2025-04-05"),
+			excerpt:
+				"Poznaj zastosowanie, działanie i korzyści kwasów AHA w kosmetyce. Dowiedz się, jak stosować kwasy alfa-hydroksylowe w codziennej pielęgnacji.",
+			categories: ["Zabiegi", "Kosmetologia", "Składniki aktywne"],
+			tags: ["kwasy", "AHA", "peelingi"],
+			authorName: "Beauty and Care Team",
+			content: `
+      <h2>Kwasy AHA w kosmetologii - wszystko co musisz wiedzieć</h2>
+      <p>Kwasy AHA (alfa-hydroksykwasy) to grupa substancji szeroko stosowanych w nowoczesnej kosmetologii. Charakteryzują się małą cząsteczką i doskonałą rozpuszczalnością w wodzie, co sprawia, że są jednymi z najskuteczniejszych składników aktywnych w produktach do pielęgnacji skóry.</p>
+      
+      <h3>Rodzaje kwasów AHA</h3>
+      <p>Do najpopularniejszych kwasów AHA należą:</p>
+      <ul>
+        <li><strong>Kwas glikolowy</strong> - otrzymywany z trzciny cukrowej, ma najmniejszą cząsteczkę i najgłębiej penetruje skórę</li>
+        <li><strong>Kwas mlekowy</strong> - łagodniejszy od glikolowego, świetnie nawilża i rozjaśnia</li>
+        <li><strong>Kwas migdałowy</strong> - otrzymywany z gorzkich migdałów, działa przeciwzapalnie</li>
+        <li><strong>Kwas cytrynowy</strong> - rozjaśnia przebarwienia, reguluje produkcję sebum</li>
+        <li><strong>Kwas jabłkowy</strong> - poprawia nawilżenie i elastyczność skóry</li>
+      </ul>
+      
+      <h3>Działanie kwasów AHA</h3>
+      <p>Kwasy alfa-hydroksylowe działają przede wszystkim poprzez:</p>
+      <ul>
+        <li>Złuszczanie martwych komórek naskórka</li>
+        <li>Stymulację produkcji kolagenu i elastyny</li>
+        <li>Poprawę nawilżenia skóry</li>
+        <li>Regulację procesu rogowacenia</li>
+        <li>Rozjaśnienie przebarwień</li>
+        <li>Wygładzenie drobnych zmarszczek</li>
+      </ul>
+      
+      <h3>Dla kogo są kwasy AHA?</h3>
+      <p>Kwasy AHA są szczególnie polecane dla osób z:</p>
+      <ul>
+        <li>Skórą dojrzałą z pierwszymi oznakami starzenia</li>
+        <li>Przebarwieniami posłonecznymi i hormonalnymi</li>
+        <li>Nierówną teksturą skóry</li>
+        <li>Rozszerzonymi porami</li>
+        <li>Suchą, szarą i pozbawioną blasku cerą</li>
+      </ul>
+      
+      <h3>Jak stosować kwasy AHA?</h3>
+      <p>Kwasy AHA można stosować na kilka sposobów:</p>
+      <ol>
+        <li><strong>W kosmetykach do codziennej pielęgnacji</strong> - zwykle w niskich stężeniach (5-10%)</li>
+        <li><strong>W peelingach do stosowania 1-2 razy w tygodniu</strong> - stężenia do 15%</li>
+        <li><strong>W zabiegach gabinetowych</strong> - wysokie stężenia (20-70%) stosowane przez profesjonalistów</li>
+      </ol>
+      
+      <p>Pamiętaj, że podczas stosowania kwasów AHA należy bezwzględnie używać kremów z filtrem SPF, ponieważ zwiększają one wrażliwość skóry na promieniowanie UV.</p>
+      
+      <h3>Zabiegi z kwasami AHA w Beauty and Care</h3>
+      <p>W naszym salonie oferujemy profesjonalne zabiegi z użyciem kwasów AHA, dostosowane do potrzeb i typu skóry każdego klienta. Wykonujemy zarówno delikatne peelingi dla skóry wrażliwej, jak i intensywne zabiegi głęboko złuszczające dla skór problematycznych.</p>
+      
+      <p>Zapraszamy na konsultację, podczas której dobierzemy odpowiedni rodzaj i stężenie kwasu oraz zaplanujemy optymalną serię zabiegów dla osiągnięcia najlepszych efektów.</p>
+      `,
+		};
+	} else {
+		// Fallback for unknown slugs
+		postData = {
+			title: "Blog Post",
+			date: new Date(),
+			excerpt: "Blog post content",
+			content: "<p>This post could not be found.</p>",
+		};
+	}
+}
+---
+
+<BaseLayout
+	type="blog"
+	title={postData?.title || "Blog Post"}
+	description={postData?.excerpt || ""}
+	date={postData?.date}
+	authorName={postData?.authorName || "Beauty and Care Team"}
+	categories={postData?.categories}
+	tags={postData?.tags}
+>
+	<div class="site-container pt-24 md:pt-36">
+		<article class="mx-auto max-w-4xl pb-12">
+			<h1 class="h2 text-center text-pretty">{postData?.title}</h1>
+
+			<p class="text-primary-500 mt-4 text-center">
+				{formatDate(postData?.date)}
+			</p>
+
+			{
+				postData?.categories && postData.categories.length > 0 && (
+					<div class="mt-4 flex flex-wrap justify-center gap-2">
+						{postData.categories.map((category) => (
+							<span class="bg-primary-100 text-primary-700 rounded-full px-3 py-1 text-sm">
+								{category}
+							</span>
+						))}
+					</div>
+				)
+			}
+
+			<div class="prose prose-lg mx-auto mt-12 max-w-3xl">
+				{Content ? <Content /> : <div set:html={postData?.content} />}
+			</div>
+
+			<div class="mt-12 flex justify-center">
+				<Button variant="ghost" arrow="left" href="/blog" class="pl-0"> Wróć do bloga </Button>
+			</div>
+		</article>
+	</div>
+</BaseLayout>

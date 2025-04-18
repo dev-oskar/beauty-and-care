@@ -10,74 +10,102 @@ import Button from "@components/Button/Button.astro";
 import { formatDateShort, formatDateLong } from "@js/textUtils";
 
 export async function getStaticPaths() {
-  const portfolioEntries = await getCollection("portfolios");
-  return portfolioEntries.map((entry) => ({
-    params: { slug: entry.id },
-    props: { 
-      title: entry.data.title,
-      description: entry.data.description,
-      heroImage: entry.data.heroImage,
-      date: entry.data.date,
-      location: entry.data.location,
-      clients: entry.data.clients,
-      images: entry.data.images,
-      body: entry.body,
-      id: entry.id
-    },
-  }));
+  // Try to get all portfolio entries
+  let portfolioEntries = [];
+  try {
+    portfolioEntries = await getCollection("portfolios");
+  } catch (error) {
+    console.error("Error fetching portfolios:", error);
+  }
+  
+  // If we found portfolios, create paths for each one
+  if (portfolioEntries.length > 0) {
+    return portfolioEntries.map((entry) => ({
+      params: { slug: entry.id },
+      props: { 
+        isFound: true,
+        title: entry.data.title,
+        description: entry.data.description,
+        heroImage: entry.data.heroImage,
+        date: entry.data.date,
+        location: entry.data.location,
+        clients: entry.data.clients,
+        images: entry.data.images || [],
+        body: entry.body,
+        id: entry.id
+      },
+    }));
+  }
+  
+  // If we couldn't find any portfolios, return a default path
+  return [
+    {
+      params: { slug: "default" },
+      props: { isFound: false }
+    }
+  ];
 }
 
 // Get the entry directly from the props
-const { title, description, heroImage, date, location, clients, images, body, id } = Astro.props;
+const { isFound, title, description, heroImage, date, location, clients, images, body, id } = Astro.props;
 
-// get related portfolios
-const portfolios = await getCollection("portfolios", ({ id: portfolioId }) => {
-  return portfolioId !== id;
-});
-
-const numRelatedToShow = 3;
-const relatedPortfolios = portfolios.slice(0, numRelatedToShow);
+// Get related portfolios only if the current entry was found
+let relatedPortfolios = [];
+if (isFound) {
+  try {
+    const portfolios = await getCollection("portfolios", ({ id: portfolioId }) => {
+      return portfolioId !== id;
+    });
+    
+    const numRelatedToShow = 3;
+    relatedPortfolios = portfolios.slice(0, numRelatedToShow);
+  } catch (error) {
+    console.error("Error fetching related portfolios:", error);
+  }
+}
 ---
 
-<BaseLayout title={title} description={description}>
-  <div class="site-container pt-24 md:pt-36">
-    <article class="mx-auto max-w-4xl pb-12">
-      <h1 class="h2 text-center text-pretty uppercase">{title}</h1>
-      <p class="text-primary-500 md:text-primary-600 mt-4 text-center font-semibold uppercase">{description}</p>
+{isFound ? (
+  <BaseLayout title={title} description={description}>
+    <div class="site-container pt-24 md:pt-36">
+      <article class="mx-auto max-w-4xl pb-12">
+        <h1 class="h2 text-center text-pretty uppercase">{title}</h1>
+        <p class="text-primary-500 md:text-primary-600 mt-4 text-center font-semibold uppercase">{description}</p>
 
-      <!-- hero image -->
-      <div class="mt-6 h-auto max-h-[50vh] w-full overflow-hidden md:max-h-[80vh]">
-        <Image
-          src={heroImage}
-          alt={`${title}`}
-          width={1120}
-          quality="high"
-          densities={[1.5, 2]}
-          class="h-auto min-h-full w-full min-w-full object-cover"
-        />
-      </div>
+        <!-- hero image -->
+        {heroImage && (
+          <div class="mt-6 h-auto max-h-[50vh] w-full overflow-hidden md:max-h-[80vh]">
+            <Image
+              src={heroImage}
+              alt={`${title}`}
+              width={1120}
+              quality="high"
+              densities={[1.5, 2]}
+              class="h-auto min-h-full w-full min-w-full object-cover"
+            />
+          </div>
+        )}
 
-      <div class="mt-4 flex flex-wrap justify-center gap-4">
-        <p class="text-lg">
-          <span class="font-bold">Data wprowadzenia:</span>
-          {formatDateLong(date)}
-        </p>
-        <p class="text-lg">
-          <span class="font-bold">Salon:</span>
-          {location}
-        </p>
-      </div>
+        <div class="mt-4 flex flex-wrap justify-center gap-4">
+          <p class="text-lg">
+            <span class="font-bold">Data wprowadzenia:</span>
+            {formatDateLong(date)}
+          </p>
+          <p class="text-lg">
+            <span class="font-bold">Salon:</span>
+            {location}
+          </p>
+        </div>
 
-      <!-- Content from markdown -->
-      <div class="prose prose-sm sm:prose md:prose-lg mx-auto mt-10 max-w-4xl">
-        <p set:html={body} />
-      </div>
+        <!-- Content from markdown -->
+        <div class="prose prose-sm sm:prose md:prose-lg mx-auto mt-10 max-w-4xl">
+          <p set:html={body} />
+        </div>
 
-      <hr class="mt-12 border-[1.5px]" />
+        <hr class="mt-12 border-[1.5px]" />
 
-      <!-- Grid of portfolio images -->
-      {
-        images.map((row: any, rowIndex: number) => (
+        <!-- Grid of portfolio images -->
+        {images && images.length > 0 && images.map((row: any, rowIndex: number) => (
           <div class="grid-gallery mt-12">
             <div
               class:list={[
@@ -99,45 +127,61 @@ const relatedPortfolios = portfolios.slice(0, numRelatedToShow);
               ))}
             </div>
           </div>
-        ))
-      }
+        ))}
 
-      <hr class="mt-12 mb-12 border-[1.5px]" />
+        <hr class="mt-12 mb-12 border-[1.5px]" />
 
-      <div class="my-4 flex justify-between">
-        <Button variant="ghost" arrow="left" href="/uslugi" class="pl-0">
-          Wróć do zabiegów
-        </Button>
-      </div>
-    </article>
+        <div class="my-4 flex justify-between">
+          <Button variant="ghost" arrow="left" href="/uslugi" class="pl-0">
+            Wróć do zabiegów
+          </Button>
+        </div>
+      </article>
 
-    <section id="related-portfolios" class="mx-auto max-w-6xl px-4 pb-12">
-      <h2 class="h2 text-center text-pretty uppercase">Inne zabiegi</h2>
-      <div class="grid gap-12 pt-8 md:grid-cols-3 md:pt-12">
-        {
-          relatedPortfolios.map((portfolio) => (
-            <a href={`/uslugi/${portfolio.id}`} class="block group">
-              <div>
-                <div class="aspect-square w-full overflow-hidden">
-                  <Image
-                    src={portfolio.data.heroImage}
-                    alt={portfolio.data.title}
-                    width={400}
-                    densities={[1.5, 2]}
-                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
+      {relatedPortfolios.length > 0 && (
+        <section id="related-portfolios" class="mx-auto max-w-6xl px-4 pb-12">
+          <h2 class="h2 text-center text-pretty uppercase">Inne zabiegi</h2>
+          <div class="grid gap-12 pt-8 md:grid-cols-3 md:pt-12">
+            {relatedPortfolios.map((portfolio) => (
+              <a href={`/uslugi/${portfolio.id}`} class="block group">
+                <div>
+                  <div class="aspect-square w-full overflow-hidden">
+                    {portfolio.data.heroImage && (
+                      <Image
+                        src={portfolio.data.heroImage}
+                        alt={portfolio.data.title}
+                        width={400}
+                        densities={[1.5, 2]}
+                        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                      />
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div class="mt-6">
-                <h3 class="h3 tracking-widest">{portfolio.data.title}</h3>
-                <p class="text-primary-500 mt-2 text-sm font-semibold uppercase tracking-wide">
-                  {formatDateShort(portfolio.data.date)}
-                </p>
-              </div>
-            </a>
-          ))
-        }
+                <div class="mt-6">
+                  <h3 class="h3 tracking-widest">{portfolio.data.title}</h3>
+                  <p class="text-primary-500 mt-2 text-sm font-semibold uppercase tracking-wide">
+                    {formatDateShort(portfolio.data.date)}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  </BaseLayout>
+) : (
+  <BaseLayout title="Usługi" description="Nasze usługi">
+    <div class="site-container pt-24 md:pt-36">
+      <div class="mx-auto max-w-6xl text-center">
+        <h1 class="h2 text-pretty uppercase">Usługi</h1>
+        <p class="mt-8">Nie znaleziono usługi. Sprawdź naszą ofertę na stronie głównej.</p>
+        <div class="mt-8">
+          <Button variant="ghost" arrow="left" href="/uslugi" class="pl-0">
+            Wróć do zabiegów
+          </Button>
+        </div>
       </div>
-    </section>
-  </div>
-</BaseLayout>
+    </div>
+  </BaseLayout>
+)}

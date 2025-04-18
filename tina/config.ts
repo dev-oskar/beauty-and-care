@@ -122,9 +122,64 @@ export default defineConfig({
 				],
 			},
 			{
+				name: "portfolio",
+				label: "Portfolio",
+				path: "content/portfolios",
+				fields: [
+					{
+						type: "string",
+						name: "title",
+						label: "Tytuł portfolio",
+						isTitle: true,
+						required: true,
+					},
+					{
+						type: "string",
+						name: "description",
+						label: "Krótki opis",
+						ui: {
+							component: "textarea",
+						},
+					},
+					{
+						type: "image",
+						name: "heroImage",
+						label: "Zdjęcie główne",
+						required: false,
+					},
+					{
+						type: "datetime",
+						name: "date",
+						label: "Data",
+					},
+					{
+						type: "string",
+						name: "location",
+						label: "Lokalizacja",
+					},
+					{
+						type: "string",
+						name: "clients",
+						label: "Klienci",
+						list: true,
+					},
+					{
+						type: "number",
+						name: "order",
+						label: "Kolejność",
+					},
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Pełny opis",
+						isBody: true,
+					},
+				],
+			},
+			{
 				name: "service",
 				label: "Usługi",
-				path: "src/data/portfolios",
+				path: "content/services",
 				fields: [
 					{
 						type: "string",
@@ -145,7 +200,7 @@ export default defineConfig({
 						type: "image",
 						name: "heroImage",
 						label: "Zdjęcie główne",
-						required: true,
+						required: false,
 					},
 					{
 						type: "datetime",
