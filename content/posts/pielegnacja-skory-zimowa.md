@@ -1,7 +1,10 @@
 ---
-title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni"
-date: 2025-02-15
-excerpt: "Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem."
+title: Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni
+date: 2025-02-15T00:00:00.000Z
+excerpt: >-
+  Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy.
+  Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.
+seoTitle: Test tytuł SEO
 ---
 
 ## Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni
@@ -29,3 +32,5 @@ Zima to doskonały czas na profesjonalne zabiegi, takie jak peelingi kwasowe czy
 Pamiętaj, że pielęgnacja to nie tylko kosmetyki. Równie ważna jest odpowiednia dieta bogata w kwasy omega-3, antyoksydanty i witaminy. Nie zapominaj o piciu odpowiedniej ilości wody - nawet jeśli zimą nie odczuwasz tak silnego pragnienia jak latem.
 
 W Beauty and Care oferujemy specjalne zimowe rytuały pielęgnacyjne, które kompleksowo zadbają o twoją skórę w tym wymagającym okresie. Zapraszamy na konsultację z naszymi ekspertami!
+
+Test, test
