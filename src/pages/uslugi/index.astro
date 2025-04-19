@@ -6,26 +6,97 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 // components
 import Contact from "@components/Contact/Contact.astro";
-// import PortfolioGrid from "@components/Portfolio/PortfolioGrid.astro";
+import ServicesGrid from "@components/Services/ServicesGrid.astro";
 
-const posts = await getCollection("posts", ({ data }) => {
-	// filter out draft pages
-	return data.draft !== true;
+// Get all services and sort by categories or order
+const services = await getCollection("services", ({ data }) => {
+  // filter out draft services
+  return data.draft !== true;
+});
+
+// Group services by category for enhanced organization
+const categories = [...new Set(
+  services.flatMap(service => 
+    service.data.categories?.length ? service.data.categories : ['Inne']
+  )
+)];
+
+// Sort categories - put certain important categories first
+const priorityCategories = ['Zabiegi na twarz', 'Modelowanie sylwetki', 'Pielęgnacja skóry'];
+categories.sort((a, b) => {
+  const indexA = priorityCategories.indexOf(a);
+  const indexB = priorityCategories.indexOf(b);
+  
+  if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+  if (indexA !== -1) return -1;
+  if (indexB !== -1) return 1;
+  return a.localeCompare(b);
+});
+
+// Sort services by order value if present, otherwise by date
+services.sort((a, b) => {
+  if (a.data.order !== undefined && b.data.order !== undefined) {
+    return a.data.order - b.data.order;
+  } else if (a.data.order !== undefined) {
+    return -1;
+  } else if (b.data.order !== undefined) {
+    return 1;
+  } else {
+    return new Date(b.data.date || 0).getTime() - new Date(a.data.date || 0).getTime();
+  }
 });
 ---
 
 <BaseLayout
-	title="Usługi"
-	description="Kompleksowe zabiegi kosmetyczne, pielęgnacja twarzy i modelowanie sylwetki."
+  title="Usługi | Beauty and Care"
+  description="Kompleksowe zabiegi kosmetyczne, pielęgnacja twarzy i modelowanie sylwetki wykorzystujące najnowocześniejsze technologie."
 >
-	<div class="site-container pt-24 md:pt-36">
-		<div class="mx-auto max-w-6xl text-center">
-			<h1 class="h2 text-pretty uppercase">
-				Zaawansowane zabiegi kosmetyczne wykorzystujące nowoczesne technologie.
-			</h1>
-		</div>
-		<!-- <PortfolioGrid posts={posts} /> -->
-	</div>
+  <div class="site-container pt-24 md:pt-36">
+    <div class="mx-auto max-w-6xl text-center">
+      <h1 class="h2 text-pretty uppercase">
+        Zaawansowane zabiegi kosmetyczne
+      </h1>
+      <p class="mt-4 text-xl text-gray-600">
+        Nasza oferta obejmuje szeroki zakres specjalistycznych zabiegów kosmetycznych i pielęgnacyjnych.
+      </p>
+    </div>
 
-	<Contact class="mt-12" />
+    {categories.length > 0 && (
+      <div class="mt-8 flex flex-wrap justify-center gap-2">
+        {categories.map(category => (
+          <a 
+            href={`#${category.toLowerCase().replace(/\s+/g, '-')}`}
+            class="px-4 py-2 bg-primary-50 hover:bg-primary-100 text-primary-700 rounded-full transition-colors"
+          >
+            {category}
+          </a>
+        ))}
+      </div>
+    )}
+
+    {/* Display all services if categories aren't used */}
+    {categories.length === 0 && (
+      <ServicesGrid services={services} />
+    )}
+
+    {/* Display services by category */}
+    {categories.length > 0 && categories.map(category => {
+      const categoryServices = services.filter(service => 
+        !service.data.categories?.length 
+          ? category === 'Inne'
+          : service.data.categories.includes(category)
+      );
+      
+      if (categoryServices.length === 0) return null;
+      
+      return (
+        <div id={category.toLowerCase().replace(/\s+/g, '-')} class="mt-16 scroll-mt-24">
+          <h2 class="h3 border-b border-primary-100 pb-3 mb-8">{category}</h2>
+          <ServicesGrid services={categoryServices} />
+        </div>
+      );
+    })}
+  </div>
+
+  <Contact class="mt-16" />
 </BaseLayout>

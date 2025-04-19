@@ -7,7 +7,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 // components
 import Hero from "@components/Hero/Hero.astro";
 import FeatureNumbers from "@components/Feature/FeatureNumbers.astro";
-// Testimonials removed
+import FeaturedServices from "@components/Services/FeaturedServices.astro";
 import PricingTable from "@components/Pricing/PricingTable.astro";
 import BlogPreview from "@components/BlogPreview/BlogPreview.astro";
 import About from "@components/About/About.astro";
@@ -21,6 +21,7 @@ import siteData from "@config/siteData.json";
 <BaseLayout title={siteData.title} description={siteData.description} navStartStyle="white">
 	<Hero />
 	<FeatureNumbers />
+	<FeaturedServices />
 	<PricingTable />
 	<BlogPreview />
 	<About />

@@ -1,0 +1,91 @@
+---
+import { type CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+import Button from "@components/Button/Button.astro";
+
+interface Props {
+  services: CollectionEntry<"services">[];
+}
+
+const { services } = Astro.props;
+
+// Format date function
+function formatDate(date) {
+  if (!date) return "";
+  const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+  return date instanceof Date
+    ? date.toLocaleDateString("pl-PL", options)
+    : new Date(date).toLocaleDateString("pl-PL", options);
+}
+---
+
+<div class="mx-auto mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {
+    services.map((service) => (
+      <div class="border-base-200 group flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
+        <div class="bg-primary-50 p-6">
+          <h2 class="h3 group-hover:text-primary-600 mb-2 text-pretty transition-colors">
+            {service.data.title}
+          </h2>
+          
+          {service.data.heroImage && (
+            <div class="aspect-video overflow-hidden rounded-md mb-4">
+              <Image
+                src={service.data.heroImage}
+                alt={service.data.title}
+                width={400}
+                height={225}
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+          )}
+          
+          <div class="flex flex-wrap items-center justify-between">
+            <p class="text-primary-500 text-sm font-medium">{formatDate(service.data.date)}</p>
+            {service.data.priceRange && (
+              <span class="bg-primary-100 text-primary-700 rounded-full px-3 py-1 text-sm font-medium">
+                {service.data.priceRange}
+              </span>
+            )}
+          </div>
+
+          {service.data.categories && service.data.categories.length > 0 && (
+            <div class="mt-2 flex flex-wrap gap-1">
+              {service.data.categories.map((category) => (
+                <span class="bg-primary-100 text-primary-700 rounded-full px-2 py-0.5 text-xs">
+                  {category}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div class="flex flex-grow flex-col justify-between p-6">
+          <p class="mb-4 text-base text-gray-600">{service.data.description}</p>
+          
+          {service.data.clients && service.data.clients.length > 0 && (
+            <div class="mb-4">
+              <p class="text-sm font-medium text-gray-700 mb-1">Polecane dla:</p>
+              <ul class="list-disc list-inside text-sm text-gray-600 ml-2">
+                {service.data.clients.map((client) => (
+                  <li>{client}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          
+          <div>
+            <Button
+              variant="ghost"
+              arrow="right"
+              href={`/uslugi/${service.slug}`}
+              class="pl-0"
+            >
+              Szczegóły zabiegu
+            </Button>
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

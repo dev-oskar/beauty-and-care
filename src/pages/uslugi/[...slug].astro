@@ -1,28 +1,188 @@
 ---
-// Redirect from services pages to blog pages
-export const prerender = true;
-
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Button from "@components/Button/Button.astro";
 
+// Define all possible service slugs for static generation
 export async function getStaticPaths() {
-  // Get all posts
-  const posts = await getCollection("posts", ({ data }) => !data.draft);
-  
-  // Add a path for the index page
-  const paths = [{ params: { slug: undefined } }];
-  
-  // Add paths for each post
-  for (const post of posts) {
-    paths.push({ params: { slug: post.slug } });
+  // Try to get service entries
+  let services = [];
+  try {
+    services = await getCollection("services", (service) => !service.data.draft);
+    console.log("Found services:", services.length);
+  } catch (error) {
+    console.error("Error fetching services:", error);
   }
-  
-  return paths;
+
+  // Create paths for each service
+  const servicePaths = services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+
+  return servicePaths;
 }
 
-const { slug } = Astro.params;
+// Get the props
+const { service } = Astro.props;
+
+// Format date function
+function formatDate(date) {
+  if (!date) return "";
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  return date instanceof Date
+    ? date.toLocaleDateString("pl-PL", options)
+    : new Date(date).toLocaleDateString("pl-PL", options);
+}
+
+// Render the service content
+const { Content } = await service.render();
+
+// Find related services (same category)
+let relatedServices = [];
+if (service.data.categories && service.data.categories.length > 0) {
+  const allServices = await getCollection("services", (s) => !s.data.draft && s.slug !== service.slug);
+  
+  // Find services with at least one matching category
+  relatedServices = allServices.filter(s => 
+    s.data.categories && s.data.categories.some(category => 
+      service.data.categories.includes(category)
+    )
+  );
+  
+  // Limit to 3 related services
+  relatedServices = relatedServices.slice(0, 3);
+}
 ---
 
-<meta http-equiv="refresh" content={`0;url=/blog${slug ? '/' + slug : ''}`} />
-<script>
-  window.location.href = `/blog${slug ? '/' + slug : ''}`;
-</script>
+<BaseLayout
+  title={service.data.title}
+  description={service.data.description}
+  seoTitle={service.data.seoTitle}
+  seoDescription={service.data.seoDescription}
+  canonicalUrl={service.data.canonicalUrl}
+  noindex={service.data.noindex}
+>
+  <div class="site-container pt-24 md:pt-36">
+    <article class="mx-auto max-w-4xl pb-12">
+      <h1 class="h2 text-center text-pretty">{service.data.title}</h1>
+
+      <!-- Service image -->
+      {service.data.heroImage && (
+        <div class="mt-8 overflow-hidden rounded-lg shadow-md">
+          <Image
+            src={service.data.heroImage}
+            alt={service.data.title}
+            width={1000}
+            height={563}
+            class="w-full h-auto"
+          />
+        </div>
+      )}
+
+      <!-- Price, date and location info -->
+      <div class="mt-6 flex flex-wrap justify-center gap-4">
+        {service.data.priceRange && (
+          <div class="flex items-center px-4 py-2 bg-primary-50 rounded-lg shadow-sm">
+            <span class="text-primary-800 font-semibold">Cena: {service.data.priceRange}</span>
+          </div>
+        )}
+        
+        {service.data.location && (
+          <div class="flex items-center px-4 py-2 bg-primary-50 rounded-lg shadow-sm">
+            <span class="text-primary-800">Salon: {service.data.location}</span>
+          </div>
+        )}
+        
+        {service.data.date && (
+          <div class="flex items-center px-4 py-2 bg-primary-50 rounded-lg shadow-sm">
+            <span class="text-gray-600 text-sm">Aktualizacja: {formatDate(service.data.date)}</span>
+          </div>
+        )}
+      </div>
+
+      <!-- Categories and tags -->
+      {(service.data.categories?.length > 0 || service.data.tags?.length > 0) && (
+        <div class="mt-6 flex flex-col items-center gap-2">
+          {service.data.categories && service.data.categories.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-2">
+              {service.data.categories.map((category) => (
+                <span class="bg-primary-100 text-primary-700 rounded-full px-3 py-1 text-sm">
+                  {category}
+                </span>
+              ))}
+            </div>
+          )}
+          
+          {service.data.tags && service.data.tags.length > 0 && (
+            <div class="flex flex-wrap justify-center gap-1 mt-1">
+              {service.data.tags.map((tag) => (
+                <span class="bg-gray-100 text-gray-700 rounded-full px-2 py-0.5 text-xs">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      <!-- For whom section -->
+      {service.data.clients && service.data.clients.length > 0 && (
+        <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+          <h2 class="text-xl font-semibold text-center mb-4">Dla kogo jest ten zabieg?</h2>
+          <ul class="grid gap-2 md:grid-cols-2">
+            {service.data.clients.map((client) => (
+              <li class="flex items-center">
+                <span class="text-primary-500 mr-2">✓</span>
+                <span>{client}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <!-- Main content -->
+      <div class="prose prose-lg mx-auto mt-12 max-w-3xl">
+        <Content />
+      </div>
+
+      <!-- Back button -->
+      <div class="mt-12 flex justify-center">
+        <Button variant="ghost" arrow="left" href="/uslugi" class="pl-0"> 
+          Wszystkie zabiegi 
+        </Button>
+      </div>
+    </article>
+
+    <!-- Related services -->
+    {relatedServices.length > 0 && (
+      <section class="mx-auto max-w-5xl mb-12">
+        <h2 class="h3 text-center mb-8">Podobne zabiegi</h2>
+        <div class="grid gap-6 md:grid-cols-3">
+          {relatedServices.map((relatedService) => (
+            <a href={`/uslugi/${relatedService.slug}`} class="group block">
+              <div class="border-base-200 overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md h-full flex flex-col">
+                {relatedService.data.heroImage && (
+                  <div class="aspect-video overflow-hidden">
+                    <Image
+                      src={relatedService.data.heroImage}
+                      alt={relatedService.data.title}
+                      width={300}
+                      height={169}
+                      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                <div class="p-4 flex-grow">
+                  <h3 class="text-lg font-semibold group-hover:text-primary-600 transition-colors">{relatedService.data.title}</h3>
+                  <p class="text-sm text-gray-600 mt-2 line-clamp-2">{relatedService.data.description}</p>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>
