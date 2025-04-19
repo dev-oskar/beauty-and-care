@@ -2,6 +2,7 @@
 title: "Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach"
 date: 2025-03-25
 excerpt: "Poznaj różnice między kwasami AHA, BHA i PHA oraz ich zastosowanie w różnych zabiegach kosmetycznych. Dowiedz się, który kwas najlepiej sprawdzi się przy twoich problemach skórnych."
+slug: kwasy-w-kosmetologii
 ---
 
 ## Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach

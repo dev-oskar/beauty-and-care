@@ -2,6 +2,7 @@
 title: "Karboksyterapia - zabieg, który podbił świat kosmetologii"
 date: 2025-03-10
 excerpt: "Poznaj rewolucyjny zabieg, który rozwiązuje problemy z cellulitem, rozstępami i zmarszczkami. Karboksyterapia to bezpieczna i skuteczna metoda odmładzania skóry."
+slug: karboksyterapia-zabieg
 ---
 
 ## Karboksyterapia - zabieg, który podbił świat kosmetologii

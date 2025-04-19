@@ -7,6 +7,7 @@ categories: ["Pielęgnacja skóry", "Zabiegi anti-aging", "Kwasy w kosmetologii"
 tags: ["kwasy AHA", "glikolowy", "migdałowy", "skóra dojrzała", "zmarszczki"]
 seoTitle: "Kwasy AHA na skórę dojrzałą - efekty, badania i zastosowanie w kosmetologii"
 seoDescription: "Odkryj, jak kwasy AHA wpływają na skórę dojrzałą. Przegląd badań, efekty zabiegów, korzyści stosowania kwasów owocowych i protokoły zabiegowe."
+slug: kwasy-aha
 ---
 
 # Wpływ kwasów AHA na skórę dojrzałą - badania i efekty
@@ -47,11 +48,13 @@ Badanie przeprowadzone w 2023 roku na grupie 120 kobiet w wieku 45-65 lat wykaza
 W naszym salonie oferujemy zabiegi z kwasami AHA dostosowane do potrzeb skóry dojrzałej:
 
 ### Zabieg "Młoda skóra"
+
 - Stężenie: 15-20% kwas glikolowy
 - Seria: 6 zabiegów co 2 tygodnie
 - Efekty: redukcja zmarszczek, poprawa jędrności, rozjaśnienie przebarwień
 
 ### Zabieg "Intensywna regeneracja"
+
 - Stężenie: 20-25% kwas migdałowy
 - Seria: 4 zabiegi co 3 tygodnie
 - Efekty: głęboka regeneracja, redukcja szorstkości skóry, wyrównanie kolorytu

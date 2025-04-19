@@ -3,166 +3,63 @@ import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Button from "@components/Button/Button.astro";
 
-// Hard-coded posts as a fallback - structured to match Astro Content Collection objects
-const hardcodedPosts = [
-  {
-    id: "pielegnacja-skory-zimowa",
-    slug: "pielegnacja-skory-zimowa",
-    collection: "posts",
-    body: "",
-    data: {
-      title: "Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni",
-      date: new Date("2025-02-15"),
-      excerpt: "Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy. Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.",
-      categories: ["Pielęgnacja skóry", "Porady"],
-      tags: ["zima", "nawilżanie", "pielęgnacja"]
-    },
-    render: () => ({})
-  },
-  {
-    id: "karboksyterapia-zabieg",
-    slug: "karboksyterapia-zabieg",
-    collection: "posts",
-    body: "",
-    data: {
-      title: "Karboksyterapia - zabieg, który podbił świat kosmetologii",
-      date: new Date("2025-03-10"),
-      excerpt: "Poznaj rewolucyjny zabieg, który rozwiązuje problemy z cellulitem, rozstępami i zmarszczkami. Karboksyterapia to bezpieczna i skuteczna metoda odmładzania skóry.",
-      categories: ["Zabiegi", "Kosmetologia"],
-      tags: ["karboksyterapia", "cellulit", "odmładzanie"]
-    },
-    render: () => ({})
-  },
-  {
-    id: "kwasy-w-kosmetologii",
-    slug: "kwasy-w-kosmetologii",
-    collection: "posts",
-    body: "",
-    data: {
-      title: "Kwasy w kosmetologii - przewodnik po najpopularniejszych substancjach",
-      date: new Date("2025-03-25"),
-      excerpt: "Poznaj różnice między kwasami AHA, BHA i PHA oraz ich zastosowanie w różnych zabiegach kosmetycznych. Dowiedz się, który kwas najlepiej sprawdzi się przy twoich problemach skórnych.",
-      categories: ["Zabiegi", "Kosmetologia", "Składniki aktywne"],
-      tags: ["kwasy", "AHA", "BHA", "PHA", "peelingi"]
-    },
-    render: () => ({})
-  }
-];
-
 // Get posts from content directory
-let tinaPosts = [];
-try {
-  console.log("Trying to fetch posts from content/posts directory");
-  tinaPosts = await getCollection("posts", (post) => !post.data.draft);
-  console.log("Tina posts found:", tinaPosts.length);
-  tinaPosts.forEach(post => {
-    console.log("Post:", post.slug, post.data.title);
-    console.log("Body length:", post.body?.length || 0);
-    console.log("Last 50 chars:", post.body?.substring(post.body.length - 50) || '');
-  });
-} catch (error) {
-  console.log("Error fetching posts from content directory", error);
-}
-
-// Use tinaPosts if they exist, otherwise use hardcoded posts
-const postsToUse = tinaPosts.length > 0 ? tinaPosts : hardcodedPosts;
-
-// Debug logs to see what's happening with the slugs
-console.log("Posts to use count:", postsToUse.length);
-postsToUse.forEach((post, index) => {
-  console.log(`Post ${index + 1} slug:`, post.slug || post.id);
-});
-
-// Sort posts by date (newest first)
-const sortedPosts = [...postsToUse].sort((a, b) => {
-  const dateA = a.data.date?.getTime() || 0;
-  const dateB = b.data.date?.getTime() || 0;
-  return dateB - dateA;
-});
-
-// Format date function
-function formatDate(date) {
-  if (!date) return "";
-  const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-  return date instanceof Date 
-    ? date.toLocaleDateString('pl-PL', options)
-    : new Date(date).toLocaleDateString('pl-PL', options);
-}
-
-// Get all categories for filtering
-const allCategories = [...new Set(
-  sortedPosts.flatMap(post => post.data.categories || [])
-)];
-
-// Get all tags for filtering
-const allTags = [...new Set(
-  sortedPosts.flatMap(post => post.data.tags || [])
-)];
+const tinaPosts = await getCollection("posts", (post) => !post.data.draft);
 ---
 
-<BaseLayout 
-  title="Blog - Beauty and Care" 
-  description="Porady i artykuły na temat pielęgnacji skóry, modelowania sylwetki i zabiegów kosmetycznych"
-  keywords={allCategories}
+<BaseLayout
+	title="Blog - Beauty and Care"
+	description="Porady i artykuły na temat pielęgnacji skóry, modelowania sylwetki i zabiegów kosmetycznych"
 >
-  <div class="site-container pt-24 md:pt-36">
-    <div class="mx-auto max-w-6xl text-center">
-      <h1 class="h2 text-pretty uppercase">
-        Blog - Najnowsze artykuły o pielęgnacji skóry i modelowaniu sylwetki
-      </h1>
-    </div>
+	<div class="site-container pt-24 md:pt-36">
+		<div class="mx-auto max-w-6xl text-center">
+			<h1 class="h2 text-pretty uppercase">
+				Blog - Najnowsze artykuły o pielęgnacji skóry i modelowaniu sylwetki
+			</h1>
+		</div>
 
-    <!-- Categories filter (optional) -->
-    {allCategories.length > 0 && (
-      <div class="mt-8 flex flex-wrap justify-center gap-2">
-        <span class="mr-2 text-base-700 font-medium">Kategorie:</span>
-        {allCategories.map(category => (
-          <a href={`/blog/kategoria/${category.toLowerCase().replace(/\s+/g, '-')}`} class="bg-primary-50 text-primary-700 px-3 py-1 rounded-full text-sm hover:bg-primary-100 transition-colors">
-            {category}
-          </a>
-        ))}
-      </div>
-    )}
-    
-    <div class="mx-auto mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-      {sortedPosts.map((post) => (
-        <div class="border-base-200 group flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
-          <div class="bg-primary-50 p-6">
-            <h2 class="h3 mb-2 text-pretty group-hover:text-primary-600 transition-colors">{post.data.title}</h2>
-            <div class="flex justify-between items-center">
-              <p class="text-primary-500 text-sm font-medium">
-                {formatDate(post.data.date)}
-              </p>
-              {post.data.authorName && (
-                <p class="text-primary-500 text-sm">
-                  {post.data.authorName}
-                </p>
-              )}
-            </div>
-            
-            {post.data.categories && post.data.categories.length > 0 && (
-              <div class="mt-2 flex flex-wrap gap-1">
-                {post.data.categories.map(category => (
-                  <span class="bg-primary-100 text-primary-700 px-2 py-0.5 text-xs rounded-full">
-                    {category}
-                  </span>
-                ))}
-              </div>
-            )}
-          </div>
-          
-          <div class="flex flex-grow flex-col justify-between p-6">
-            <p class="text-base text-gray-600 mb-4">
-              {post.data.excerpt}
-            </p>
-            <div>
-              <Button variant="ghost" arrow="right" href={`/blog/${post.slug || post.id}`} class="pl-0">
-                Czytaj więcej
-              </Button>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
+		<div class="mx-auto mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+			{
+				tinaPosts.map((post) => (
+					<div class="border-base-200 group flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
+						<div class="bg-primary-50 p-6">
+							<h2 class="h3 group-hover:text-primary-600 mb-2 text-pretty transition-colors">
+								{post.data.title}
+							</h2>
+							<div class="flex items-center justify-between">
+								<p class="text-primary-500 text-sm font-medium">{post.data.date}</p>
+								{post.data.authorName && (
+									<p class="text-primary-500 text-sm">{post.data.authorName}</p>
+								)}
+							</div>
+
+							{post.data.categories && post.data.categories.length > 0 && (
+								<div class="mt-2 flex flex-wrap gap-1">
+									{post.data.categories.map((category) => (
+										<span class="bg-primary-100 text-primary-700 rounded-full px-2 py-0.5 text-xs">
+											{category}
+										</span>
+									))}
+								</div>
+							)}
+						</div>
+
+						<div class="flex flex-grow flex-col justify-between p-6">
+							<p class="mb-4 text-base text-gray-600">{post.data.excerpt}</p>
+							<div>
+								<Button
+									variant="ghost"
+									arrow="right"
+									href={`/blog/${post.slug || post.id}`}
+									class="pl-0"
+								>
+									Czytaj więcej
+								</Button>
+							</div>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
 </BaseLayout>

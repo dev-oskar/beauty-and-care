@@ -5,6 +5,7 @@ excerpt: >-
   Poznaj sprawdzone sposoby na pielęgnację skóry podczas zimowych miesięcy.
   Dowiedz się, jak chronić cerę przed mrozem i suchym powietrzem.
 seoTitle: Test tytuł SEO
+slug: pielegnacja-skory-zimowa
 ---
 
 ## Zimowa pielęgnacja skóry - jak zadbać o cerę w chłodne dni

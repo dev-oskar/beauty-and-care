@@ -24,9 +24,9 @@ export default defineConfig({
 	schema: {
 		collections: [
 			{
-				name: "post",
+				name: "posts",
 				label: "Blog Posts",
-				path: "content/posts",
+				path: "src/content/posts",
 				fields: [
 					{
 						type: "string",
@@ -122,9 +122,9 @@ export default defineConfig({
 				],
 			},
 			{
-				name: "portfolio",
+				name: "portfolios",
 				label: "Portfolio",
-				path: "content/portfolios",
+				path: "src/content/portfolios",
 				fields: [
 					{
 						type: "string",
@@ -177,9 +177,9 @@ export default defineConfig({
 				],
 			},
 			{
-				name: "service",
+				name: "services",
 				label: "Usługi",
-				path: "content/services",
+				path: "src/content/services",
 				fields: [
 					{
 						type: "string",

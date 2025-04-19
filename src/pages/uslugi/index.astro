@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from "astro:content";
+import { getCollection } from "astro:content";
 
 // layout
 import BaseLayout from "@layouts/BaseLayout.astro";
@@ -8,7 +8,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Contact from "@components/Contact/Contact.astro";
 import PortfolioGrid from "@components/Portfolio/PortfolioGrid.astro";
 
-const portfolios = await getCollection("portfolios", ({ data }) => {
+const posts = await getCollection("posts", ({ data }) => {
 	// filter out draft pages
 	return data.draft !== true;
 });
@@ -21,7 +21,7 @@ const portfolios = await getCollection("portfolios", ({ data }) => {
 				Zaawansowane zabiegi kosmetyczne wykorzystujące nowoczesne technologie.
 			</h1>
 		</div>
-		<PortfolioGrid portfolios={portfolios} />
+		<PortfolioGrid posts={posts} />
 	</div>
 
 	<Contact class="mt-12" />

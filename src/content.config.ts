@@ -1,26 +1,20 @@
 import { defineCollection, reference, z } from "astro:content";
-import { glob } from "astro/loaders";
+// import { glob } from "astro/loaders";
 
-// Type-check frontmatter using a schema
-// portfolios
 const portfolios = defineCollection({
-	// type: "content",
-	loader: glob({
-		pattern: "**/[^_]*.{md,mdx}",
-		base: "./src/data/portfolios",
-	}),
+	type: "content",
 	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
 			description: z.string(),
-			heroImage: image(),
+			heroImage: image().optional(),
 			clients: z.array(z.string()),
 			location: z.string(),
 			images: z.array(
 				z.array(image()).refine((arr) => [1, 2, 3].includes(arr.length), {
 					message: "Each sub-array must contain 1, 2, or 3 items",
 				}),
-			),
+			).optional(),
 			// Transform string to Date object
 			date: z.coerce.date(),
 			order: z.number(),
@@ -39,11 +33,7 @@ const portfolios = defineCollection({
 
 // other pages
 const otherPages = defineCollection({
-	// type: "content",
-	loader: glob({
-		pattern: "**/[^_]*.{md,mdx}",
-		base: "./src/data/otherPages",
-	}),
+	type: "content",
 	schema: () =>
 		z.object({
 			title: z.string(),
@@ -54,12 +44,8 @@ const otherPages = defineCollection({
 
 // Blog posts
 const posts = defineCollection({
-	// Adding proper loader to read from content/posts
-	loader: glob({
-		pattern: "**/[^_]*.{md,mdx}",
-		base: "./content/posts",
-	}),
-	schema: ({ image }) => 
+	type: "content",
+	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
 			date: z.coerce.date().optional(),
@@ -78,11 +64,8 @@ const posts = defineCollection({
 
 // Services collection
 const services = defineCollection({
-	loader: glob({
-		pattern: "**/[^_]*.{md,mdx}",
-		base: "./content/services",
-	}),
-	schema: ({ image }) => 
+	type: "content",
+	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
 			description: z.string(),
@@ -98,29 +81,9 @@ const services = defineCollection({
 		}),
 });
 
-// Portfolios collection (from content directory)
-const tinaPortfolios = defineCollection({
-	loader: glob({
-		pattern: "**/[^_]*.{md,mdx}",
-		base: "./content/portfolios",
-	}),
-	schema: ({ image }) => 
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			heroImage: image().optional(),
-			date: z.coerce.date().optional(),
-			location: z.string().optional(),
-			clients: z.array(z.string()).optional(),
-			order: z.number().optional(),
-			draft: z.boolean().optional(),
-		}),
-});
 
 export const collections = {
 	portfolios,
-	tinaPortfolios,
-	otherPages,
 	posts,
 	services,
 };
