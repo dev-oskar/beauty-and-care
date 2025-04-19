@@ -1,0 +1,173 @@
+---
+interface Props {
+  galleryId: string;
+}
+
+const { galleryId } = Astro.props;
+---
+
+<!-- Lightbox modal -->
+<div id={`lightbox-${galleryId}`} class="lightbox fixed inset-0 bg-black bg-opacity-95 z-50 hidden flex items-center justify-center p-4">
+  <button class="close-lightbox absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+    </svg>
+  </button>
+  
+  <button class="prev-image absolute left-4 text-white hover:text-gray-300 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  
+  <div class="lightbox-content max-w-4xl mx-auto relative">
+    <div class="lightbox-loader absolute inset-0 flex items-center justify-center">
+      <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div>
+    </div>
+    <img src="" alt="" class="lightbox-img max-h-[80vh] max-w-full mx-auto" onload="this.previousElementSibling.style.display = 'none';" />
+    <div class="text-white text-center mt-4 lightbox-caption max-w-2xl mx-auto"></div>
+    <div class="text-gray-400 text-sm text-center mt-2 lightbox-counter"></div>
+  </div>
+  
+  <button class="next-image absolute right-4 text-white hover:text-gray-300 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+</div>
+
+<script define:vars={{ galleryId }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const gallery = document.getElementById(galleryId);
+    if (!gallery) return;
+
+    const galleryItems = gallery.querySelectorAll('.gallery-item');
+    const lightbox = document.getElementById(`lightbox-${galleryId}`);
+    
+    if (!lightbox) return;
+    
+    const lightboxImg = lightbox.querySelector('.lightbox-img');
+    const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+    const lightboxCounter = lightbox.querySelector('.lightbox-counter');
+    const closeLightbox = lightbox.querySelector('.close-lightbox');
+    const prevButton = lightbox.querySelector('.prev-image');
+    const nextButton = lightbox.querySelector('.next-image');
+    
+    let currentIndex = 0;
+    let visibleItems = [...galleryItems];
+
+    // Lightbox functionality
+    galleryItems.forEach((item) => {
+      item.addEventListener('click', () => {
+        // Get only currently visible items for navigation
+        visibleItems = [...galleryItems].filter(item => 
+          item.style.display !== 'none'
+        );
+        
+        const imgElement = item.querySelector('img');
+        if (!imgElement) return;
+        
+        const caption = item.querySelector('p')?.textContent || '';
+        const indexAttr = item.getAttribute('data-index');
+        const index = indexAttr ? parseInt(indexAttr) : 0;
+        
+        openLightbox(imgElement.src, caption, index);
+      });
+    });
+
+    function openLightbox(src, caption, index) {
+      // Reset loader
+      const loader = lightbox.querySelector('.lightbox-loader');
+      if (loader) loader.style.display = 'flex';
+      
+      lightbox.classList.remove('hidden');
+      lightbox.classList.add('flex');
+      lightboxImg.src = src;
+      lightboxCaption.textContent = caption;
+      
+      // Find the position of this item in the visibleItems array
+      currentIndex = visibleItems.findIndex(item => 
+        parseInt(item.getAttribute('data-index') || '0') === index
+      );
+      
+      if (currentIndex === -1) currentIndex = 0;
+      
+      // Update counter
+      updateCounter();
+      
+      // Prevent scrolling when lightbox is open
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function updateCounter() {
+      if (lightboxCounter && visibleItems.length > 0) {
+        lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+      }
+    }
+
+    closeLightbox.addEventListener('click', closeLightboxFunc);
+    
+    // Click outside to close
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        closeLightboxFunc();
+      }
+    });
+    
+    function closeLightboxFunc() {
+      lightbox.classList.add('hidden');
+      lightbox.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    // Navigation
+    prevButton.addEventListener('click', () => {
+      if (visibleItems.length === 0) return;
+      // Reset loader
+      const loader = lightbox.querySelector('.lightbox-loader');
+      if (loader) loader.style.display = 'flex';
+      
+      currentIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+      const prevItem = visibleItems[currentIndex];
+      const imgElement = prevItem.querySelector('img');
+      if (!imgElement) return;
+      
+      const caption = prevItem.querySelector('p')?.textContent || '';
+      
+      lightboxImg.src = imgElement.src;
+      lightboxCaption.textContent = caption;
+      updateCounter();
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (visibleItems.length === 0) return;
+      // Reset loader
+      const loader = lightbox.querySelector('.lightbox-loader');
+      if (loader) loader.style.display = 'flex';
+      
+      currentIndex = (currentIndex + 1) % visibleItems.length;
+      const nextItem = visibleItems[currentIndex];
+      const imgElement = nextItem.querySelector('img');
+      if (!imgElement) return;
+      
+      const caption = nextItem.querySelector('p')?.textContent || '';
+      
+      lightboxImg.src = imgElement.src;
+      lightboxCaption.textContent = caption;
+      updateCounter();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('hidden')) {
+        if (e.key === 'Escape') {
+          closeLightboxFunc();
+        } else if (e.key === 'ArrowLeft') {
+          prevButton.click();
+        } else if (e.key === 'ArrowRight') {
+          nextButton.click();
+        }
+      }
+    });
+  });
+</script>

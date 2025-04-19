@@ -1,0 +1,16 @@
+---
+import type { CollectionEntry } from "astro:content";
+import GalleryCard from "./GalleryCard.astro";
+
+interface Props {
+  galleries: CollectionEntry<"gallery">[];
+}
+
+const { galleries } = Astro.props;
+---
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+  {galleries.map((gallery) => (
+    <GalleryCard gallery={gallery} />
+  ))}
+</div>

@@ -16,13 +16,94 @@ export default defineConfig({
 	},
 	media: {
 		tina: {
-			mediaRoot: "",
-			publicFolder: "public",
+			mediaRoot: "src/assets",
+			publicFolder: "src",
 		},
 	},
 	// See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
 	schema: {
 		collections: [
+			{
+				name: "gallery",
+				label: "Galeria",
+				path: "src/content/gallery",
+				fields: [
+					{
+						type: "string",
+						name: "title",
+						label: "Tytuł galerii",
+						isTitle: true,
+						required: true,
+					},
+					{
+						type: "string",
+						name: "description",
+						label: "Opis galerii",
+						ui: {
+							component: "textarea",
+						},
+					},
+					{
+						type: "image",
+						name: "coverImage",
+						label: "Zdjęcie główne",
+						required: true,
+					},
+					{
+						type: "object",
+						name: "images",
+						label: "Zdjęcia",
+						list: true,
+						ui: {
+							itemProps: (item) => {
+								return { label: item?.caption || "Zdjęcie" };
+							},
+						},
+						fields: [
+							{
+								type: "image",
+								name: "src",
+								label: "Zdjęcie",
+								required: true,
+							},
+							{
+								type: "string",
+								name: "caption",
+								label: "Podpis",
+							},
+							{
+								type: "string",
+								name: "alt",
+								label: "Tekst alternatywny",
+								description: "Opis zdjęcia dla osób niewidomych (SEO)",
+							},
+							{
+								type: "string",
+								name: "category",
+								label: "Kategoria",
+							},
+						],
+					},
+					{
+						type: "number",
+						name: "order",
+						label: "Kolejność",
+						description: "Niższe liczby będą wyświetlane wcześniej",
+					},
+					{
+						type: "boolean",
+						name: "featured",
+						label: "Wyróżnione",
+						description: "Wyróżnij tę galerię na stronie głównej",
+					},
+					{
+						type: "boolean",
+						name: "draft",
+						label: "Wersja robocza",
+						description: "Zaznacz, aby ukryć galerię na stronie",
+					},
+				],
+			},
 			{
 				name: "posts",
 				label: "Blog Posts",

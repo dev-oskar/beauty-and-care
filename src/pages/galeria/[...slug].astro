@@ -1,0 +1,17 @@
+---
+// Since we're displaying all images in a single gallery, we redirect to the main gallery page
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [
+    { params: { slug: 'zabiegi-beauty' } },
+    { params: { slug: 'efekty-zabiegow' } },
+    { params: { slug: 'undefined' } }
+  ];
+}
+---
+
+<meta http-equiv="refresh" content="0;url=/galeria" />
+<script>
+  window.location.href = '/galeria';
+</script>

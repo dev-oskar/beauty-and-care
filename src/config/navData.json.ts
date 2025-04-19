@@ -31,16 +31,7 @@ const navConfig: navItem[] = [
 	},
 	{
 		text: "Galeria",
-		dropdown: [
-			{
-				text: "Zabiegi",
-				link: "/uslugi/modelowanie-sylwetki",
-			},
-			{
-				text: "Regulamin",
-				link: "/privacy-policy/",
-			},
-		],
+		link: "/galeria",
 	},
 	{
 		text: "Kontakt",

@@ -1,6 +1,30 @@
 import { defineCollection, reference, z } from "astro:content";
 // import { glob } from "astro/loaders";
 
+// Gallery collection
+const gallery = defineCollection({
+	type: "content",
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			description: z.string().optional(),
+			coverImage: image(),
+			images: z
+				.array(
+					z.object({
+						src: image(),
+						caption: z.string().optional(),
+						alt: z.string().optional(),
+						category: z.string().optional(),
+					})
+				)
+				.optional(),
+			order: z.number().optional(),
+			featured: z.boolean().optional(),
+			draft: z.boolean().optional(),
+		}),
+});
+
 // other pages
 const otherPages = defineCollection({
 	type: "content",
@@ -56,4 +80,5 @@ export const collections = {
 	otherPages,
 	posts,
 	services,
+	gallery,
 };

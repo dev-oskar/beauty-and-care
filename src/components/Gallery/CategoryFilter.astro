@@ -1,0 +1,97 @@
+---
+interface Props {
+  categories: string[];
+  galleryId: string;
+}
+
+const { categories, galleryId } = Astro.props;
+
+// Simple array of strings - no complex operations
+---
+
+<div class="mb-8 flex flex-wrap gap-2 justify-center">
+  <button 
+    class="py-2 px-4 rounded-full bg-gray-200 text-gray-700 font-medium hover:bg-gray-300 transition-colors duration-300 focus:outline-none filter-btn active" 
+    data-category="all"
+    data-gallery-id={galleryId}
+  >
+    Wszystkie
+  </button>
+  {categories.map((category) => (
+    <button 
+      class="py-2 px-4 rounded-full bg-gray-100 text-gray-700 font-medium hover:bg-gray-200 transition-colors duration-300 focus:outline-none filter-btn" 
+      data-category={category}
+      data-gallery-id={galleryId}
+    >
+      {category}
+    </button>
+  ))}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Initialize filter buttons for each gallery
+    document.querySelectorAll('.filter-btn').forEach(button => {
+      button.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const category = target.getAttribute('data-category');
+        const galleryId = target.getAttribute('data-gallery-id');
+        
+        if (!category || !galleryId) return;
+        
+        // Find all buttons in this gallery
+        const gallery = document.getElementById(galleryId);
+        if (!gallery) return;
+        
+        const filterButtons = gallery.querySelectorAll('.filter-btn');
+        const galleryItems = gallery.querySelectorAll('.gallery-item');
+        const loadingIndicator = gallery.querySelector('.loading-indicator');
+        
+        // Show loading indicator
+        if (loadingIndicator) {
+          loadingIndicator.classList.remove('hidden');
+          loadingIndicator.classList.add('flex');
+        }
+        
+        // Update active button
+        filterButtons.forEach(btn => {
+          btn.classList.remove('active', 'bg-gray-200', 'text-gray-800');
+          btn.classList.add('bg-gray-100', 'text-gray-700');
+        });
+        target.classList.add('active', 'bg-gray-200', 'text-gray-800');
+        target.classList.remove('bg-gray-100', 'text-gray-700');
+        
+        // Use setTimeout to add a slight delay for visual feedback
+        setTimeout(() => {
+          // Filter items
+          galleryItems.forEach(item => {
+            const itemCategory = item.getAttribute('data-category');
+            if (category === 'all' || category === itemCategory) {
+              (item as HTMLElement).style.display = 'block';
+            } else {
+              (item as HTMLElement).style.display = 'none';
+            }
+          });
+          
+          // Hide loading indicator
+          if (loadingIndicator) {
+            loadingIndicator.classList.add('hidden');
+            loadingIndicator.classList.remove('flex');
+          }
+          
+          // Dispatch a custom event that filtering is complete
+          gallery.dispatchEvent(new CustomEvent('gallery:filtered', {
+            detail: { category: category }
+          }));
+        }, 300);
+      });
+    });
+  });
+</script>
+
+<style>
+  .filter-btn.active {
+    background-color: rgb(229, 231, 235); /* bg-gray-200 */
+    color: rgb(31, 41, 55); /* text-gray-800 */
+  }
+</style>

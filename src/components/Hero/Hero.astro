@@ -4,14 +4,12 @@
  * You'll want a mobile image, and a desktop image for this.
  */
 
-import { Image } from "astro:assets";
-
 // components
 import Button from "@components/Button/Button.astro";
 
-// images
-import heroImage from "@images/hero-bg-min.jpg";
-import heroImageMobile from "@images/hero-bg-min.jpg";
+// Import directly from actual file path to avoid any import issues
+// Using relative path to import since absolute imports are causing problems
+import heroImagePath from "../../assets/images/hero-bg-min.jpg";
 ---
 
 <section id="hero" class="relative z-10 flex min-h-[100lvh] w-full">
@@ -19,21 +17,26 @@ import heroImageMobile from "@images/hero-bg-min.jpg";
 	<div class="absolute -z-10 h-full min-h-full w-full overflow-hidden">
 		<div class="absolute inset-0 bg-black/10"></div>
 
-		<Image
-			src={heroImage}
+		<!-- Desktop image -->
+		<img
+			src={heroImagePath.src}
 			class="hidden h-auto min-h-full w-full object-cover object-bottom sm:block"
-			alt="wedding"
+			alt="Beauty and Care"
 			aria-hidden="true"
 			loading="eager"
-			height={1400}
+			height="1400"
+			width="1800"
 		/>
-		<Image
-			src={heroImageMobile}
+		
+		<!-- Mobile image - same source for simplicity -->
+		<img
+			src={heroImagePath.src}
 			class="h-auto min-h-full w-full object-cover sm:hidden"
-			alt="wedding"
+			alt="Beauty and Care"
 			aria-hidden="true"
 			loading="eager"
-			width={1200}
+			height="1400"
+			width="1200"
 		/>
 	</div>
 
