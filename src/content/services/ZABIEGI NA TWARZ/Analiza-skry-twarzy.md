@@ -1,8 +1,10 @@
 ---
 title: Analiza skóry twarzy
-description: |-
+description: >-
   Analiza skóry twarzy to inwestycja w zdrowy wygląd i dobre samopoczucie.
-   Zrozumienie potrzeb swojej skóry to fundament skutecznej pielęgnacji – a dzięki profesjonalnej analizie masz szansę ją poznać jak nigdy dotąd.
+
+  Zrozumienie potrzeb swojej skóry to fundament skutecznej pielęgnacji – a
+  dzięki profesjonalnej analizie masz szansę ją poznać jak nigdy dotąd.
 date: 2025-04-22T22:00:00.000Z
 clients:
   - ''
