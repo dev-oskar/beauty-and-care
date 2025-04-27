@@ -4,7 +4,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Button from "@components/Button/Button.astro";
 
 // Get posts from content directory
-const tinaPosts = await getCollection("posts", (post) => !post.data.draft);
+const posts = await getCollection("posts", (post) => !post.data.draft);
 ---
 
 <BaseLayout
@@ -20,7 +20,7 @@ const tinaPosts = await getCollection("posts", (post) => !post.data.draft);
 
 		<div class="mx-auto mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 			{
-				tinaPosts.map((post) => (
+				posts.map((post) => (
 					<div class="border-base-200 group flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
 						<div class="bg-primary-50 p-6">
 							<h2 class="h3 group-hover:text-primary-600 mb-2 text-pretty transition-colors">

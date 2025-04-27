@@ -14,25 +14,33 @@ export default defineConfig({
 		outputFolder: "admin",
 		publicFolder: "public",
 	},
+	// Configure media manager to only show images in the assets/images folder
 	media: {
 		tina: {
-			mediaRoot: "src/assets",
+			mediaRoot: "assets/images/",
 			publicFolder: "src",
 		},
 	},
-	// See docs on content modeling for more info on how to setup new content models: https://tina.io/docs/schema/
+	// Simplified schema with single gallery collection
 	schema: {
 		collections: [
 			{
 				name: "gallery",
-				label: "Galeria",
+				label: "Galeria zdjęć",
 				path: "src/content/gallery",
+				format: "md",
+				ui: {
+					// Show a single gallery
+					allowedActions: {
+						create: false,
+						delete: false,
+					},
+				},
 				fields: [
 					{
 						type: "string",
 						name: "title",
 						label: "Tytuł galerii",
-						isTitle: true,
 						required: true,
 					},
 					{
@@ -44,20 +52,16 @@ export default defineConfig({
 						},
 					},
 					{
-						type: "image",
-						name: "coverImage",
-						label: "Zdjęcie główne",
-						required: true,
-					},
-					{
 						type: "object",
 						name: "images",
-						label: "Zdjęcia",
+						label: "Zdjęcia w galerii",
 						list: true,
 						ui: {
 							itemProps: (item) => {
 								return { label: item?.caption || "Zdjęcie" };
 							},
+							description:
+								"Dodaj zdjęcia do galerii. Wszystkie dodane zdjęcia będą wyświetlane na stronie galerii.",
 						},
 						fields: [
 							{
@@ -69,7 +73,8 @@ export default defineConfig({
 							{
 								type: "string",
 								name: "caption",
-								label: "Podpis",
+								label: "Podpis pod zdjęciem",
+								description: "Tekst wyświetlany pod zdjęciem",
 							},
 							{
 								type: "string",
@@ -77,30 +82,7 @@ export default defineConfig({
 								label: "Tekst alternatywny",
 								description: "Opis zdjęcia dla osób niewidomych (SEO)",
 							},
-							{
-								type: "string",
-								name: "category",
-								label: "Kategoria",
-							},
 						],
-					},
-					{
-						type: "number",
-						name: "order",
-						label: "Kolejność",
-						description: "Niższe liczby będą wyświetlane wcześniej",
-					},
-					{
-						type: "boolean",
-						name: "featured",
-						label: "Wyróżnione",
-						description: "Wyróżnij tę galerię na stronie głównej",
-					},
-					{
-						type: "boolean",
-						name: "draft",
-						label: "Wersja robocza",
-						description: "Zaznacz, aby ukryć galerię na stronie",
 					},
 				],
 			},
@@ -135,7 +117,6 @@ export default defineConfig({
 						name: "authorName",
 						label: "Autor",
 						description: "Imię i nazwisko autora artykułu",
-						// default: "Beauty and Care Team",
 					},
 					{
 						type: "string",
@@ -163,36 +144,6 @@ export default defineConfig({
 						label: "Zdjęcie wyróżniające",
 						description:
 							"Zdjęcie wyświetlane w podglądzie artykułu i przy udostępnianiu w mediach społecznościowych",
-					},
-					{
-						type: "string",
-						name: "seoTitle",
-						label: "Tytuł SEO",
-						description:
-							"Alternatywny tytuł dla wyszukiwarek (opcjonalnie, domyślnie używany jest główny tytuł)",
-					},
-					{
-						type: "string",
-						name: "seoDescription",
-						label: "Opis SEO",
-						description: "Opis dla wyszukiwarek (opcjonalnie, domyślnie używany jest excerpt)",
-						ui: {
-							component: "textarea",
-						},
-					},
-					{
-						type: "string",
-						name: "canonicalUrl",
-						label: "URL kanoniczny",
-						description:
-							"Pełny URL kanoniczny (tylko jeśli treść występuje również pod innym adresem)",
-					},
-					{
-						type: "boolean",
-						name: "noindex",
-						label: "Ukryj w wyszukiwarkach",
-						description: "Zaznacz, aby ukryć artykuł w wynikach wyszukiwania",
-						// default: false,
 					},
 					{
 						type: "rich-text",
@@ -229,27 +180,6 @@ export default defineConfig({
 						required: false,
 					},
 					{
-						type: "datetime",
-						name: "date",
-						label: "Data wprowadzenia",
-					},
-					{
-						type: "string",
-						name: "location",
-						label: "Salon",
-					},
-					{
-						type: "string",
-						name: "clients",
-						label: "Typy zabiegów",
-						list: true,
-					},
-					{
-						type: "number",
-						name: "order",
-						label: "Kolejność",
-					},
-					{
 						type: "string",
 						name: "categories",
 						label: "Kategorie",
@@ -258,46 +188,6 @@ export default defineConfig({
 						ui: {
 							component: "tags",
 						},
-					},
-					{
-						type: "string",
-						name: "tags",
-						label: "Tagi",
-						description: "Tagi usługi (np. lifting, karboksyterapia)",
-						list: true,
-						ui: {
-							component: "tags",
-						},
-					},
-					{
-						type: "string",
-						name: "seoTitle",
-						label: "Tytuł SEO",
-						description:
-							"Alternatywny tytuł dla wyszukiwarek (opcjonalnie, domyślnie używany jest główny tytuł)",
-					},
-					{
-						type: "string",
-						name: "seoDescription",
-						label: "Opis SEO",
-						description: "Opis dla wyszukiwarek (opcjonalnie, domyślnie używany jest krótki opis)",
-						ui: {
-							component: "textarea",
-						},
-					},
-					{
-						type: "string",
-						name: "canonicalUrl",
-						label: "URL kanoniczny",
-						description:
-							"Pełny URL kanoniczny (tylko jeśli treść występuje również pod innym adresem)",
-					},
-					{
-						type: "boolean",
-						name: "noindex",
-						label: "Ukryj w wyszukiwarkach",
-						description: "Zaznacz, aby ukryć usługę w wynikach wyszukiwania",
-						// default: false,
 					},
 					{
 						type: "string",

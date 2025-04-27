@@ -1,10 +1,17 @@
 ---
+import { Image } from "astro:assets";
+
+// Dynamic imports to support any image added through CMS
+import { getImage } from "astro:assets";
+
+// Import all images from src/assets/images dynamically
+const imageModules = import.meta.glob('/src/assets/images/*.{png,jpg,jpeg,gif,webp}');
+
 interface Props {
   image: {
-    src: string | any;
+    src: string;
     caption?: string;
     alt?: string;
-    category?: string;
     galleryTitle?: string;
     galleryDescription?: string;
   };
@@ -12,25 +19,62 @@ interface Props {
 }
 
 const { image, index } = Astro.props;
+const imageCaption = image.caption || image.galleryTitle || "";
 
-// Extract image source properly - handles both string paths and imported image objects
-const imageSrc = typeof image.src === 'string' ? image.src : image.src.src;
+// Function to get image from src/assets/images/
+const getImagePath = (filename: string): string | null => {
+  if (!filename) return null;
+
+  // Check if the filename already includes /assets/images/
+  if (filename.startsWith('/assets/images/')) {
+    // Convert from /assets/images/file.jpg to /src/assets/images/file.jpg
+    return `/src${filename}`;
+  }
+  
+  // If it's just a filename, add the full path
+  return `/src/assets/images/${filename}`;
+};
+
+// Extract just the filename for fallback path
+const getJustFilename = (path: string): string => {
+  // If it's a full path, extract just the filename
+  if (path.includes('/')) {
+    const parts = path.split('/');
+    return parts[parts.length - 1];
+  }
+  // Otherwise return as is
+  return path;
+};
+
+// Get image path
+const imagePath = getImagePath(image.src);
+const fallbackFilename = getJustFilename(image.src);
 ---
 
 <div 
   class="gallery-item overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-lg" 
-  data-category={image.category || "uncategorized"}
   data-index={index}
 >
   <div class="relative group cursor-pointer overflow-hidden aspect-square">
-    <img 
-      src={imageSrc}
-      alt={image.alt || "Gallery image"} 
-      width="400" 
-      height="400"
-      loading="lazy"
-      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-    />
+    {imagePath && imageModules[imagePath] ? (
+      <Image 
+        src={imageModules[imagePath]()} 
+        alt={image.alt || imageCaption || "Gallery image"} 
+        width={400} 
+        height={400}
+        loading="lazy"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+    ) : (
+      <img 
+        src={`/images/${fallbackFilename}`}
+        alt={image.alt || imageCaption || "Gallery image"} 
+        width={400} 
+        height={400}
+        loading="lazy"
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+      />
+    )}
     <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 transition-all duration-300 flex items-center justify-center">
       <div class="transform translate-y-10 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
         <span class="text-white bg-gray-800 rounded-full w-12 h-12 flex items-center justify-center">
@@ -41,19 +85,9 @@ const imageSrc = typeof image.src === 'string' ? image.src : image.src.src;
       </div>
     </div>
   </div>
-  <div class="p-4 bg-white">
-    {image.caption && (
-      <p class="text-gray-800 font-medium line-clamp-2">{image.caption}</p>
-    )}
-    
-    {image.category && (
-      <span class="text-xs text-gray-600 mt-1 inline-block px-2 py-0.5 bg-gray-100 rounded-full">
-        {image.category}
-      </span>
-    )}
-    
-    {image.galleryTitle && !image.caption && (
-      <p class="text-gray-800 font-medium line-clamp-1">{image.galleryTitle}</p>
-    )}
-  </div>
+  {imageCaption && (
+    <div class="p-4 bg-white">
+      <p class="text-gray-800 font-medium line-clamp-2">{imageCaption}</p>
+    </div>
+  )}
 </div>

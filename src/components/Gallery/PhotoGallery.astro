@@ -1,46 +1,27 @@
 ---
 import GalleryItem from "./GalleryItem.astro";
-import CategoryFilter from "./CategoryFilter.astro";
 import Lightbox from "./Lightbox.astro";
 
 interface GalleryImage {
   src: string | any;
   caption?: string;
   alt?: string;
-  category?: string;
   galleryTitle?: string;
   galleryDescription?: string;
 }
 
-interface CategoryInfo {
-  name: string;
-  count: number;
-}
-
 interface Props {
   images: GalleryImage[];
-  categories?: CategoryInfo[] | string[];
   totalCount?: number;
 }
 
-const { images, categories = [], totalCount } = Astro.props;
-
-// Handle both string[] and CategoryInfo[] types for categories
-const categoryStrings = categories.map(cat => {
-  if (typeof cat === 'string') return cat;
-  return cat.name;
-});
+const { images, totalCount } = Astro.props;
 
 // Generate a unique ID for this gallery instance
 const galleryId = `gallery-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
 <div class="photo-gallery" id={galleryId}>
-  {/* Category filter buttons - only show if we have categories */}
-  {categoryStrings.length > 0 && (
-    <CategoryFilter categories={categoryStrings} galleryId={galleryId} />
-  )}
-
   {/* Total count display */}
   {totalCount && (
     <div class="text-center mb-6">
@@ -50,21 +31,11 @@ const galleryId = `gallery-${Math.random().toString(36).substring(2, 9)}`;
     </div>
   )}
 
-  {/* Loading indicator */}
-  <div class="loading-indicator hidden flex justify-center items-center py-8">
-    <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
-  </div>
-
   {/* Gallery grid */}
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gallery-container">
     {images.map((image, index) => (
       <GalleryItem image={image} index={index} />
     ))}
-  </div>
-  
-  {/* No results message */}
-  <div class="no-results hidden text-center py-12">
-    <p class="text-lg text-gray-600">Brak zdjęć w wybranej kategorii</p>
   </div>
 </div>
 
@@ -72,44 +43,46 @@ const galleryId = `gallery-${Math.random().toString(36).substring(2, 9)}`;
 <Lightbox galleryId={galleryId} />
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const galleries = document.querySelectorAll('.photo-gallery');
-    
-    galleries.forEach(gallery => {
-      const galleryId = gallery.id;
-      const filterButtons = gallery.querySelectorAll('.filter-btn');
-      const galleryItems = gallery.querySelectorAll('.gallery-item');
-      const noResults = gallery.querySelector('.no-results');
+  // Add lazy loading observer for performance
+  document.addEventListener('DOMContentLoaded', function() {
+    // Only run if IntersectionObserver is supported
+    if ('IntersectionObserver' in window) {
+      const galleryItems = document.querySelectorAll('.gallery-item');
       
-      // Function to check if there are visible items
-      function checkVisibleItems() {
-        const visibleItems = [...galleryItems].filter(item => 
-          item.style.display !== 'none'
-        );
-        
-        if (visibleItems.length === 0 && noResults) {
-          noResults.classList.remove('hidden');
-        } else if (noResults) {
-          noResults.classList.add('hidden');
-        }
-      }
-      
-      // Update filter buttons to call checkVisibleItems
-      filterButtons.forEach(button => {
-        const originalClickHandler = button.onclick;
-        button.onclick = (e) => {
-          if (originalClickHandler) {
-            originalClickHandler.call(button, e);
+      const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const item = entry.target;
+            item.classList.add('is-visible');
+            
+            // Stop observing after animation is complete
+            setTimeout(() => {
+              observer.unobserve(item);
+            }, 500);
           }
-          setTimeout(checkVisibleItems, 100);
-        };
+        });
+      }, {
+        rootMargin: '200px 0px', // Load images 200px before they come into view
+        threshold: 0.1
       });
-
-      // Listen for custom filtered event
-      gallery.addEventListener('gallery:filtered', () => {
-        checkVisibleItems();
+      
+      // Observe each gallery item
+      galleryItems.forEach(item => {
+        // Add initial opacity class
+        item.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+        lazyLoadObserver.observe(item);
       });
-    });
+      
+      // Add CSS rule for visible elements
+      const style = document.createElement('style');
+      style.textContent = '.gallery-item.is-visible { opacity: 1 !important; }';
+      document.head.appendChild(style);
+    } else {
+      // Fallback for browsers that don't support IntersectionObserver
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        item.classList.add('opacity-100');
+      });
+    }
   });
 </script>
 

@@ -8,15 +8,15 @@ const gallery = defineCollection({
 		z.object({
 			title: z.string(),
 			description: z.string().optional(),
-			coverImage: image(),
+			coverImage: image().optional(),
 			images: z
 				.array(
 					z.object({
-						src: image(),
+						src: z.string(),
 						caption: z.string().optional(),
 						alt: z.string().optional(),
 						category: z.string().optional(),
-					})
+					}),
 				)
 				.optional(),
 			order: z.number().optional(),
@@ -74,7 +74,6 @@ const services = defineCollection({
 			draft: z.boolean().optional(),
 		}),
 });
-
 
 export const collections = {
 	otherPages,

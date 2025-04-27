@@ -2,95 +2,33 @@
 import { getCollection } from "astro:content";
 import PhotoGallery from "./PhotoGallery.astro";
 
-// Get all images from all galleries
-const galleries = await getCollection("gallery", ({ data }) => !data.draft);
+// Get the single gallery that contains all images
+const galleries = await getCollection("gallery");
 
-// Collect all images and their categories
-const allImages = [];
-const allCategories = new Set();
-
-// Simple process for galleries and images - no try/catch needed
-galleries.forEach(gallery => {
+// Get the images from the gallery
+let allImages = [];
+if (galleries.length > 0) {
+  // Use the first gallery found (should be main-gallery.md)
+  const gallery = galleries[0];
   if (gallery.data.images) {
-    gallery.data.images.forEach(image => {
-      // Add gallery title and description to image for context
-      allImages.push({
-        ...image,
-        galleryTitle: gallery.data.title,
-        galleryDescription: gallery.data.description
-      });
-      
-      if (image.category) {
-        allCategories.add(image.category);
-      }
-    });
+    allImages = gallery.data.images;
   }
-});
+}
 
-// Sort categories alphabetically
-const categories = [...allCategories].sort();
-
-// Count images per category for UI display
-const categoryCounts = {};
-categories.forEach(category => {
-  categoryCounts[category] = allImages.filter(img => img.category === category).length;
-});
-
-// Total count
+// Total count for informational purposes
 const totalImages = allImages.length;
 ---
 
-<div class="gallery-wrapper">
+<div class="mx-auto max-w-6xl">
+  <div class="text-center mb-8">
+    <h1 class="h2 text-pretty uppercase">Galeria zdjęć</h1>
+    <p class="mt-4 text-xl text-gray-600">
+      Zobacz nasze najlepsze prace i przekonaj się o skuteczności zabiegów
+    </p>
+  </div>
+  
   <PhotoGallery 
     images={allImages} 
-    categories={categories.map(cat => ({ 
-      name: cat, 
-      count: categoryCounts[cat] 
-    }))} 
     totalCount={totalImages} 
   />
 </div>
-
-<script>
-  // Add lazy loading observer for performance
-  document.addEventListener('DOMContentLoaded', function() {
-    // Only run if IntersectionObserver is supported
-    if ('IntersectionObserver' in window) {
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      
-      const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const item = entry.target;
-            item.classList.add('is-visible');
-            
-            // Stop observing after animation is complete
-            setTimeout(() => {
-              observer.unobserve(item);
-            }, 500);
-          }
-        });
-      }, {
-        rootMargin: '200px 0px', // Load images 200px before they come into view
-        threshold: 0.1
-      });
-      
-      // Observe each gallery item
-      galleryItems.forEach(item => {
-        // Add initial opacity class
-        item.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-        lazyLoadObserver.observe(item);
-      });
-      
-      // Add CSS rule for visible elements
-      const style = document.createElement('style');
-      style.textContent = '.gallery-item.is-visible { opacity: 1 !important; }';
-      document.head.appendChild(style);
-    } else {
-      // Fallback for browsers that don't support IntersectionObserver
-      document.querySelectorAll('.gallery-item').forEach(item => {
-        item.classList.add('opacity-100');
-      });
-    }
-  });
-</script>
