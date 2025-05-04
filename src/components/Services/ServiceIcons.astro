@@ -1,0 +1,70 @@
+---
+/**
+ * * This component displays service icons with descriptions
+ */
+
+import { Image } from "astro:assets";
+
+// Import icon images
+import kosmetologiaIcon from "@images/kosmetologia.png";
+import lipolizaLaserowaIcon from "@images/lipoliza-laserowa.png";
+import modelowanieSylwetkiIcon from "@images/modelowanie-sylwetki.png";
+
+interface ServiceIconData {
+	title: string;
+	description: string;
+	icon: ImageMetadata;
+}
+
+// Service data with icons
+const serviceIcons: ServiceIconData[] = [
+	{
+		title: "Kosmetologia",
+		description: "Profesjonalne zabiegi pielęgnacyjne dla każdego rodzaju skóry",
+		icon: kosmetologiaIcon,
+	},
+	{
+		title: "Lipoliza laserowa",
+		description: "Nieinwazyjna metoda redukcji tkanki tłuszczowej",
+		icon: lipolizaLaserowaIcon,
+	},
+	{
+		title: "Modelowanie sylwetki",
+		description: "Kompleksowe zabiegi modelujące z wykorzystaniem najnowszych technologii",
+		icon: modelowanieSylwetkiIcon,
+	},
+];
+---
+
+<section id="service-icons" class="bg-base-100 scroll-mt-10 py-8 md:py-12">
+	<div class="mx-auto max-w-6xl px-4">
+		<div class="text-prety mr-auto text-center">
+			<h2 class="h2">
+				Oddaj swoje piękno w ręce doświadczonych specjalistów w dziedzinie kosmetologii
+			</h2>
+		</div>
+
+		<div
+			id="service-icons-grid"
+			class="mt-10 grid gap-8 sm:grid-cols-2 md:mt-12 lg:grid-cols-3"
+		>
+			{
+				serviceIcons.map((service) => (
+					<div class="flex flex-col items-center text-center">
+						<div class="mb-6 flex h-32 w-32 items-center justify-center">
+							<Image
+								src={service.icon}
+								alt={service.title}
+								width={128}
+								height={128}
+								class="h-auto max-h-full w-auto max-w-full"
+							/>
+						</div>
+						<h3 class="font-heading-1 text-primary-500 mb-2 text-2xl">{service.title}</h3>
+						<p class="text-base-600 max-w-xs">{service.description}</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

@@ -6,7 +6,7 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 
 // components
 import Hero from "@components/Hero/Hero.astro";
-import FeatureNumbers from "@components/Feature/FeatureNumbers.astro";
+import ServiceIcons from "@components/Services/ServiceIcons.astro";
 import FeaturedServices from "@components/Services/FeaturedServices.astro";
 import FeaturedGallery from "@components/Gallery/FeaturedGallery.astro";
 import PricingTable from "@components/Pricing/PricingTable.astro";
@@ -21,7 +21,7 @@ import siteData from "@config/siteData.json";
 
 <BaseLayout title={siteData.title} description={siteData.description} navStartStyle="white">
 	<Hero />
-	<FeatureNumbers />
+	<ServiceIcons />
 	<FeaturedServices />
 	<FeaturedGallery />
 	<PricingTable />
