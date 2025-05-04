@@ -4,8 +4,12 @@
  */
 
 import { Image } from "astro:assets";
+import siteData from "@config/siteData.json";
 
 import profileImage from "@assets/images/photographer-min.jpg";
+
+// Get site name for display
+const siteName = siteData.name;
 ---
 
 <section id="about" class="site-container scroll-mt-10 py-8 md:py-12">
@@ -41,18 +45,18 @@ import profileImage from "@assets/images/photographer-min.jpg";
 	<div class="flex flex-col md:flex-row">
 		<div class="md:w-2/3">
 			<h2 class="h3 text-primary-500 text-pretty uppercase">O naszym salonie</h2>
-			<h3 class="h2 mt-4">Beauty and Care</h3>
+			<h3 class="h2 mt-4">{siteName}</h3>
 			<div class="bg-base-100 mt-8 p-8 md:mb-20 lg:text-lg">
 				<p>
 					Nasz salon specjalizuje się w innowacyjnych zabiegach kosmetycznych z wykorzystaniem
 					najnowszych technologii. Oferujemy kompleksowe usługi z zakresu liftingu bez skalpela,
 					terapii bioelektrycznej oraz modelowania sylwetki. Każdy zabieg przeprowadzany jest przez
 					certyfikowanych specjalistów, którzy indywidualnie dopasowują metody do potrzeb i
-					oczekiwań klienta. W Beauty and Care dbamy o najwyższą jakość usług i komfort naszych
+					oczekiwań klienta. W {siteName} dbamy o najwyższą jakość usług i komfort naszych
 					klientów.
 				</p>
 				<div class="flex w-3/4 justify-end">
-					<p class="font-heading-1 text-3xl italic">- Zespół Beauty and Care</p>
+					<p class="font-heading-1 text-3xl italic">- Zespół {siteName}</p>
 				</div>
 			</div>
 		</div>

@@ -4,6 +4,7 @@
  */
 
 import { Icon } from "astro-icon/components";
+import siteData from "@config/siteData.json";
 
 // components
 import ContactForm from "@components/Forms/ContactForm.astro";
@@ -14,24 +15,23 @@ interface Props {
 
 const { class: className } = Astro.props as Props;
 
-// Contact info
+// Contact info from site data
 const contactInfo = {
-  address: "Fryderyka Szopena 33, 33-055 Rzeszów",
-  phone: "+48 123 456 789",
-  email: "kontakt@beautyandcare.pl",
-  hours: [
-    { days: "Poniedziałek - Piątek", hours: "10:00 - 20:00" },
-    { days: "Sobota", hours: "10:00 - 16:00" },
-    { days: "Niedziela", hours: "Zamknięte" }
-  ],
+  address: `${siteData.business?.address}, ${siteData.business?.postalCode} ${siteData.business?.city}`,
+  phone: siteData.business?.phone || "",
+  email: siteData.business?.email || "",
+  hours: siteData.business?.openingHours || [],
   social: [
-    { name: "Facebook", url: "https://facebook.com/", icon: "socials/mdi-facebook" },
-    { name: "Instagram", url: "https://instagram.com/", icon: "socials/basil-instagram-solid" }
+    { name: "Facebook", url: siteData.social?.facebook || "#", icon: "socials/mdi-facebook" },
+    { name: "Instagram", url: siteData.social?.instagram || "#", icon: "socials/basil-instagram-solid" }
   ]
 };
 
+// TODO: Move API key to environment variable
+const MAPS_API_KEY = import.meta.env.PUBLIC_MAPS_API_KEY || "AIzaSyBXX56OwIHEAh4xNsM8ydakzM-Qm7-yD5s";
+
 // Google Maps embed URL with the address
-const mapsEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=AIzaSyBXX56OwIHEAh4xNsM8ydakzM-Qm7-yD5s&q=${encodeURIComponent(contactInfo.address)}&zoom=15`;
+const mapsEmbedUrl = `https://www.google.com/maps/embed/v1/place?key=${MAPS_API_KEY}&q=${encodeURIComponent(contactInfo.address)}&zoom=15`;
 ---
 
 <section
