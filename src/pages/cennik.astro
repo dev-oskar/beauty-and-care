@@ -1,20 +1,31 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
-import PricingTable from "@components/Pricing/PricingTable.astro";
+import PricingTableCMS from "@components/Pricing/PricingTableCMS.astro";
 import Contact from "@components/Contact/Contact.astro";
+import { getCollection } from "astro:content";
+
+// Get pricing data
+const pricingEntries = await getCollection("pricing", ({ data }) => {
+  return !data.draft;
+});
+
+const pricingEntry = pricingEntries.length > 0 ? pricingEntries[0] : null;
 ---
 
-<BaseLayout title="Cennik Usług - Beauty and Care" description="Pełna oferta zabiegów kosmetologicznych z cennikiem - Beauty and Care">
+<BaseLayout
+  title={pricingEntry?.title ? `${pricingEntry.title} - Beauty and Care` : "Cennik Usług - Beauty and Care"}
+  description={pricingEntry?.description || "Pełna oferta zabiegów kosmetologicznych z cennikiem - Beauty and Care"}
+>
   <div class="site-container pt-24 md:pt-36">
     <div class="mx-auto max-w-6xl text-center mb-12">
-      <h1 class="h2 text-pretty uppercase">Cennik Usług</h1>
+      <h1 class="h2 text-pretty uppercase">{pricingEntry?.title || "Cennik Usług"}</h1>
       <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
-        Pełna oferta zabiegów kosmetologicznych w naszym salonie. Zapoznaj się z listą usług i skontaktuj się z nami, aby umówić się na wizytę.
+        {pricingEntry?.description || "Pełna oferta zabiegów kosmetologicznych w naszym salonie. Zapoznaj się z listą usług i skontaktuj się z nami, aby umówić się na wizytę."}
       </p>
     </div>
-    
-    <PricingTable />
-    
+
+    <PricingTableCMS />
+
     <Contact class="mt-12" />
   </div>
 </BaseLayout>

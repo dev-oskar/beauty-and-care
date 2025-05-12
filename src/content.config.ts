@@ -104,10 +104,23 @@ const services = defineCollection({
 		}),
 });
 
+// Pricing collection
+const pricing = defineCollection({
+	type: "content",
+	schema: () =>
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			categories: z.array(z.string()).optional(),
+			draft: z.boolean().optional(),
+		}),
+});
+
 export const collections = {
 	otherPages,
 	posts,
 	services,
 	gallery,
 	settings,
+	pricing,
 };

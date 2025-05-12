@@ -146,6 +146,52 @@ export default defineConfig({
 				],
 			},
 			{
+				name: "pricing",
+				label: "Cennik",
+				path: "src/content/pricing",
+				format: "md",
+				ui: {
+					// Show a single pricing file
+					allowedActions: {
+						create: false,
+						delete: false,
+					},
+				},
+				fields: [
+					{
+						type: "string",
+						name: "title",
+						label: "Tytuł cennika",
+						required: true,
+						isTitle: true,
+					},
+					{
+						type: "string",
+						name: "description",
+						label: "Opis cennika",
+						ui: {
+							component: "textarea",
+						},
+					},
+					{
+						type: "string",
+						name: "categories",
+						label: "Kategorie cennika",
+						description: "Kategorie usług (np. Kosmetologia, Pakiety Zabiegowe)",
+						list: true,
+						ui: {
+							component: "tags",
+						},
+					},
+					{
+						type: "rich-text",
+						name: "body",
+						label: "Zawartość cennika",
+						isBody: true,
+					},
+				],
+			},
+			{
 				name: "gallery",
 				label: "Galeria zdjęć",
 				path: "src/content/gallery",
