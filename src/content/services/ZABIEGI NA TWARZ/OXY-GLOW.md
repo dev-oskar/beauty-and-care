@@ -5,6 +5,11 @@ description: >-
   dotlenia ją i intensywnie odżywia. Efekty są widoczne natychmiast, dlatego
   OxyGlow często nazywany jest "zabiegiem bankietowym" – idealnym przed wielkim
   wyjściem.
+categories:
+  - zabieg bankietowy
+  - ' odżywianie skóry'
+  - ' odmładzanie skóry'
+  - zabiegi na twarz
 priceRange: 250-300 zł
 ---
 
@@ -42,7 +47,7 @@ OxyGlow inspiruje się naturalnymi gorącymi źródłami – jego unikalne dzia�
 
 ●	Odnowienie i odżywienie struktury skóry
 
-⭐ OxyGlow Hydrate – intensywne nawilżenie
+#### OxyGlow Hydrate – intensywne nawilżenie
 
 ●	Głębokie nawodnienie skóry na poziomie komórkowym
 
