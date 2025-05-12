@@ -1,6 +1,35 @@
 import { defineCollection, reference, z } from "astro:content";
 // import { glob } from "astro/loaders";
 
+// Site settings collection
+const settings = defineCollection({
+	type: "content",
+	schema: () =>
+		z.object({
+			title: z.string(),
+			business: z.object({
+				address: z.string(),
+				city: z.string(),
+				postalCode: z.string(),
+				country: z.string(),
+				phone: z.string(),
+				email: z.string(),
+			}),
+			openingHours: z.array(
+				z.object({
+					days: z.string(),
+					hours: z.string(),
+				})
+			),
+			social: z.object({
+				facebook: z.string().optional(),
+				instagram: z.string().optional(),
+				twitter: z.string().optional(),
+				youtube: z.string().optional(),
+			}),
+		}),
+});
+
 // Gallery collection
 const gallery = defineCollection({
 	type: "content",
@@ -80,4 +109,5 @@ export const collections = {
 	posts,
 	services,
 	gallery,
+	settings,
 };

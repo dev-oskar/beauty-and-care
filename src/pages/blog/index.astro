@@ -27,7 +27,7 @@ const posts = await getCollection("posts", (post) => !post.data.draft);
 								{post.data.title}
 							</h2>
 							<div class="flex items-center justify-between">
-								<p class="text-primary-500 text-sm font-medium">{post.data.date}</p>
+								<p class="text-primary-500 text-sm font-medium">{post.data.date instanceof Date ? post.data.date.toLocaleDateString("pl-PL", {day: "numeric", month: "long", year: "numeric"}) : new Date(post.data.date).toLocaleDateString("pl-PL", {day: "numeric", month: "long", year: "numeric"})}</p>
 								{post.data.authorName && (
 									<p class="text-primary-500 text-sm">{post.data.authorName}</p>
 								)}

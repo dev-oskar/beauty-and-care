@@ -25,6 +25,127 @@ export default defineConfig({
 	schema: {
 		collections: [
 			{
+				name: "siteSettings",
+				label: "Ustawienia Strony",
+				path: "src/content/settings",
+				format: "md",
+				match: {
+					include: "site-settings",
+				},
+				document: "site-settings",
+				ui: {
+					// Only allow one site settings file
+					allowedActions: {
+						create: false,
+						delete: false,
+					},
+				},
+				fields: [
+					{
+						type: "string",
+						name: "title",
+						label: "Tytuł ustawień",
+						required: true,
+						isTitle: true,
+					},
+					{
+						type: "object",
+						name: "business",
+						label: "Informacje kontaktowe",
+						fields: [
+							{
+								type: "string",
+								name: "address",
+								label: "Adres",
+								required: true,
+							},
+							{
+								type: "string",
+								name: "city",
+								label: "Miasto",
+								required: true,
+							},
+							{
+								type: "string",
+								name: "postalCode",
+								label: "Kod pocztowy",
+								required: true,
+							},
+							{
+								type: "string",
+								name: "country",
+								label: "Kraj",
+								required: true,
+							},
+							{
+								type: "string",
+								name: "phone",
+								label: "Telefon",
+								required: true,
+							},
+							{
+								type: "string",
+								name: "email",
+								label: "Email",
+								required: true,
+							},
+						],
+					},
+					{
+						type: "object",
+						name: "openingHours",
+						label: "Godziny otwarcia",
+						list: true,
+						ui: {
+							itemProps: (item) => {
+								return { label: item?.days || "Dzień" };
+							},
+						},
+						fields: [
+							{
+								type: "string",
+								name: "days",
+								label: "Dni",
+								required: true,
+							},
+							{
+								type: "string",
+								name: "hours",
+								label: "Godziny",
+								required: true,
+							},
+						],
+					},
+					{
+						type: "object",
+						name: "social",
+						label: "Media społecznościowe",
+						fields: [
+							{
+								type: "string",
+								name: "facebook",
+								label: "Facebook URL",
+							},
+							{
+								type: "string",
+								name: "instagram",
+								label: "Instagram URL",
+							},
+							{
+								type: "string",
+								name: "twitter",
+								label: "Twitter URL",
+							},
+							{
+								type: "string",
+								name: "youtube",
+								label: "YouTube URL",
+							},
+						],
+					},
+				],
+			},
+			{
 				name: "gallery",
 				label: "Galeria zdjęć",
 				path: "src/content/gallery",

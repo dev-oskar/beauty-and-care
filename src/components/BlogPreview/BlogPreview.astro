@@ -48,7 +48,7 @@ const posts = [
           <div class="bg-primary-50 p-5">
             <h3 class="h4 line-clamp-2 mb-2 min-h-[3rem]">{post.data.title}</h3>
             <p class="text-primary-500 text-sm font-medium">
-              {post.data.date}
+              {post.data.date instanceof Date ? post.data.date.toLocaleDateString("pl-PL", {day: "numeric", month: "long", year: "numeric"}) : post.data.date}
             </p>
           </div>
           <div class="flex flex-grow flex-col justify-between p-5">

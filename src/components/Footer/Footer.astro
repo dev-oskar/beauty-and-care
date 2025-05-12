@@ -5,10 +5,12 @@ import { Icon } from "astro-icon/components";
 import FooterLink from "./FooterLink.astro";
 import SiteLogo from "@components/SiteLogo/SiteLogo.astro";
 
-// data
+// site settings
+import { getSiteSettings } from "../../utils/getSiteSettings";
 import siteData from "@config/siteData.json";
 
 const today = new Date();
+const siteSettings = await getSiteSettings();
 ---
 
 <footer class="bg-base-100/40 mt-12 flex flex-col items-center justify-center py-8">
@@ -44,14 +46,30 @@ const today = new Date();
 
 		<!-- socials -->
 		<div class="text-primary-500 mt-8 flex justify-center gap-4">
-			<a href="https://facebook.com/" target="_blank" rel="noopener noreferrer">
-				<Icon name="socials/mdi-facebook" class="size-6 transition hover:opacity-80" />
-				<span class="sr-only">Facebook</span>
-			</a>
-			<a href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
-				<Icon name="socials/basil-instagram-solid" class="size-6 transition hover:opacity-80" />
-				<span class="sr-only">Instagram</span>
-			</a>
+			{siteSettings.social.facebook && (
+				<a href={siteSettings.social.facebook} target="_blank" rel="noopener noreferrer">
+					<Icon name="socials/mdi-facebook" class="size-6 transition hover:opacity-80" />
+					<span class="sr-only">Facebook</span>
+				</a>
+			)}
+			{siteSettings.social.instagram && (
+				<a href={siteSettings.social.instagram} target="_blank" rel="noopener noreferrer">
+					<Icon name="socials/basil-instagram-solid" class="size-6 transition hover:opacity-80" />
+					<span class="sr-only">Instagram</span>
+				</a>
+			)}
+			{siteSettings.social.twitter && (
+				<a href={siteSettings.social.twitter} target="_blank" rel="noopener noreferrer">
+					<Icon name="socials/mdi-twitter" class="size-6 transition hover:opacity-80" />
+					<span class="sr-only">Twitter</span>
+				</a>
+			)}
+			{siteSettings.social.youtube && (
+				<a href={siteSettings.social.youtube} target="_blank" rel="noopener noreferrer">
+					<Icon name="socials/mdi-youtube" class="size-6 transition hover:opacity-80" />
+					<span class="sr-only">YouTube</span>
+				</a>
+			)}
 		</div>
 
 		<!-- copyright -->

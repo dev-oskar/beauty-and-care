@@ -4,7 +4,7 @@
  */
 
 import { Icon } from "astro-icon/components";
-import siteData from "@config/siteData.json";
+import { getSiteSettings } from "../../utils/getSiteSettings";
 
 // components
 import ContactForm from "@components/Forms/ContactForm.astro";
@@ -15,15 +15,20 @@ interface Props {
 
 const { class: className } = Astro.props as Props;
 
-// Contact info from site data
+// Get site settings
+const siteSettings = await getSiteSettings();
+
+// Contact info from site settings
 const contactInfo = {
-  address: `${siteData.business?.address}, ${siteData.business?.postalCode} ${siteData.business?.city}`,
-  phone: siteData.business?.phone || "",
-  email: siteData.business?.email || "",
-  hours: siteData.business?.openingHours || [],
+  address: `${siteSettings.business.address}, ${siteSettings.business.postalCode} ${siteSettings.business.city}`,
+  phone: siteSettings.business.phone || "",
+  email: siteSettings.business.email || "",
+  hours: siteSettings.openingHours || [],
   social: [
-    { name: "Facebook", url: siteData.social?.facebook || "#", icon: "socials/mdi-facebook" },
-    { name: "Instagram", url: siteData.social?.instagram || "#", icon: "socials/basil-instagram-solid" }
+    ...(siteSettings.social.facebook ? [{ name: "Facebook", url: siteSettings.social.facebook, icon: "socials/mdi-facebook" }] : []),
+    ...(siteSettings.social.instagram ? [{ name: "Instagram", url: siteSettings.social.instagram, icon: "socials/basil-instagram-solid" }] : []),
+    ...(siteSettings.social.twitter ? [{ name: "Twitter", url: siteSettings.social.twitter, icon: "socials/mdi-twitter" }] : []),
+    ...(siteSettings.social.youtube ? [{ name: "YouTube", url: siteSettings.social.youtube, icon: "socials/mdi-youtube" }] : [])
   ]
 };
 

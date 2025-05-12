@@ -47,7 +47,7 @@ const { slug, post, isContentPost } = Astro.props;
 // Format date function
 function formatDate(date) {
 	if (!date) return "";
-	const options = { year: "numeric", month: "2-digit", day: "2-digit" };
+	const options = { year: "numeric", month: "long", day: "numeric" };
 	return date instanceof Date
 		? date.toLocaleDateString("pl-PL", options)
 		: new Date(date).toLocaleDateString("pl-PL", options);
@@ -289,7 +289,7 @@ if (isContentPost) {
 		<article class="mx-auto max-w-4xl pb-12">
 			<h1 class="h2 text-center text-pretty">{postData?.title}</h1>
 
-			<p class="text-primary-500 mt-4 text-center">
+			<p class="text-primary-600 mt-4 text-center font-medium italic">
 				{formatDate(postData?.date)}
 			</p>
 
