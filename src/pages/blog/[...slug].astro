@@ -280,10 +280,14 @@ if (isContentPost) {
 	type="blog"
 	title={postData?.title || "Blog Post"}
 	description={postData?.excerpt || ""}
+	seoTitle={postData?.seoTitle}
+	seoDescription={postData?.seoDescription}
 	date={postData?.date}
 	authorName={postData?.authorName || "Beauty and Care Team"}
 	categories={postData?.categories}
 	tags={postData?.tags}
+	keywords={postData?.keywords}
+	heroImage={postData?.featuredImage}
 >
 	<div class="site-container pt-24 md:pt-36">
 		<article class="mx-auto max-w-4xl pb-12">

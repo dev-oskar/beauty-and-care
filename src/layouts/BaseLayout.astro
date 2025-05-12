@@ -16,6 +16,8 @@ interface Props {
 	navStartStyle?: "default" | "white";
 	title: string;
 	description: string;
+	seoTitle?: string; // Override title for SEO purposes
+	seoDescription?: string; // Override description for SEO purposes
 	heroImage?: ImageMetadata;
 	noindex?: boolean; // you need to opt-in to no indexing, as it hides the page from search engines
 	lang?: string;
@@ -32,6 +34,8 @@ const {
 	navStartStyle = "default",
 	title,
 	description,
+	seoTitle,
+	seoDescription,
 	heroImage,
 	noindex = false,
 	lang = "pl",
@@ -49,8 +53,8 @@ const {
 	<head>
 		<BaseHead
 			type={type}
-			title={title}
-			description={description}
+			title={seoTitle || title}
+			description={seoDescription || description}
 			image={heroImage ? heroImage : undefined}
 			noindex={noindex}
 			lang={lang}
