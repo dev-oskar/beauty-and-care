@@ -2,11 +2,17 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PhotoGalleryGrid from "@components/Gallery/PhotoGalleryGrid.astro";
 import Contact from "@components/Contact/Contact.astro";
+import siteData from "@config/siteData.json";
 ---
 
 <BaseLayout
   title="Galeria | Beauty and Care"
   description="Galeria zabiegów kosmetycznych i efektów naszej pracy w salonie Beauty and Care. Zobacz przykłady naszych usług i ich rezultaty."
+  seoTitle={siteData.pages?.gallery?.seoTitle}
+  seoDescription={siteData.pages?.gallery?.seoDescription}
+  keywords={siteData.pages?.gallery?.keywords}
+  canonicalUrl={siteData.pages?.gallery?.canonicalUrl}
+  noindex={siteData.pages?.gallery?.noindex}
 >
   <div class="site-container pt-24 md:pt-36">
     <PhotoGalleryGrid />

@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Button from "@components/Button/Button.astro";
+import siteData from "@config/siteData.json";
 
 // Get posts from content directory
 const posts = await getCollection("posts", (post) => !post.data.draft);
@@ -10,6 +11,11 @@ const posts = await getCollection("posts", (post) => !post.data.draft);
 <BaseLayout
 	title="Blog - Beauty and Care"
 	description="Porady i artykuły na temat pielęgnacji skóry, modelowania sylwetki i zabiegów kosmetycznych"
+	seoTitle={siteData.pages?.blog?.seoTitle}
+	seoDescription={siteData.pages?.blog?.seoDescription}
+	keywords={siteData.pages?.blog?.keywords}
+	canonicalUrl={siteData.pages?.blog?.canonicalUrl}
+	noindex={siteData.pages?.blog?.noindex}
 >
 	<div class="site-container pt-24 md:pt-36">
 		<div class="mx-auto max-w-6xl text-center">
