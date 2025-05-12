@@ -19,7 +19,15 @@ import Button from "@components/Button/Button.astro";
 import siteData from "@config/siteData.json";
 ---
 
-<BaseLayout title={siteData.title} description={siteData.description} navStartStyle="white">
+<BaseLayout
+	title={siteData.title}
+	description={siteData.description}
+	seoTitle={siteData.pages?.home?.seoTitle}
+	seoDescription={siteData.pages?.home?.seoDescription}
+	keywords={siteData.pages?.home?.keywords}
+	canonicalUrl={siteData.pages?.home?.canonicalUrl}
+	noindex={siteData.pages?.home?.noindex}
+	navStartStyle="white">
 	<Hero />
 	<ServiceIcons />
 	<FeaturedServices />

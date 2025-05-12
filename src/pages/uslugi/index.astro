@@ -8,6 +8,9 @@ import BaseLayout from "@layouts/BaseLayout.astro";
 import Contact from "@components/Contact/Contact.astro";
 import ServicesGrid from "@components/Services/ServicesGrid.astro";
 
+// data
+import siteData from "@config/siteData.json";
+
 // Get all services and sort by categories or order
 const services = await getCollection("services", ({ data }) => {
   // filter out draft services
@@ -50,6 +53,11 @@ services.sort((a, b) => {
 <BaseLayout
   title="Usługi | Beauty and Care"
   description="Kompleksowe zabiegi kosmetyczne, pielęgnacja twarzy i modelowanie sylwetki wykorzystujące najnowocześniejsze technologie."
+  seoTitle={siteData.pages?.services?.seoTitle}
+  seoDescription={siteData.pages?.services?.seoDescription}
+  keywords={siteData.pages?.services?.keywords}
+  canonicalUrl={siteData.pages?.services?.canonicalUrl}
+  noindex={siteData.pages?.services?.noindex}
 >
   <div class="site-container pt-24 md:pt-36">
     <div class="mx-auto max-w-6xl text-center">

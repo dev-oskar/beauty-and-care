@@ -50,6 +50,12 @@ const gallery = defineCollection({
 				.optional(),
 			order: z.number().optional(),
 			featured: z.boolean().optional(),
+			// SEO fields
+			seoTitle: z.string().optional(),
+			seoDescription: z.string().optional(),
+			canonicalUrl: z.string().optional(),
+			noindex: z.boolean().optional(),
+			keywords: z.array(z.string()).optional(),
 			draft: z.boolean().optional(),
 		}),
 });
@@ -61,6 +67,12 @@ const otherPages = defineCollection({
 		z.object({
 			title: z.string(),
 			description: z.string(),
+			// SEO fields
+			seoTitle: z.string().optional(),
+			seoDescription: z.string().optional(),
+			canonicalUrl: z.string().optional(),
+			noindex: z.boolean().optional(),
+			keywords: z.array(z.string()).optional(),
 			draft: z.boolean().optional(),
 		}),
 });
@@ -79,8 +91,7 @@ const posts = defineCollection({
 			featuredImage: image().optional(),
 			seoTitle: z.string().optional(),
 			seoDescription: z.string().optional(),
-			canonicalUrl: z.string().optional(),
-			noindex: z.boolean().optional(),
+			keywords: z.array(z.string()).optional(),
 			draft: z.boolean().optional(),
 		}),
 });
@@ -100,6 +111,12 @@ const services = defineCollection({
 			tags: z.array(z.string()).optional(),
 			order: z.number().optional(),
 			priceRange: z.string().optional(),
+			// SEO fields
+			seoTitle: z.string().optional(),
+			seoDescription: z.string().optional(),
+			canonicalUrl: z.string().optional(),
+			noindex: z.boolean().optional(),
+			keywords: z.array(z.string()).optional(),
 			draft: z.boolean().optional(),
 		}),
 });

@@ -251,6 +251,44 @@ export default defineConfig({
 							},
 						],
 					},
+					// SEO fields for gallery
+					{
+						type: "string",
+						name: "seoTitle",
+						label: "Tytuł SEO",
+						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)"
+					},
+					{
+						type: "string",
+						name: "seoDescription",
+						label: "Opis SEO",
+						description: "Opis używany w meta tagu (jeśli inny niż główny opis)",
+						ui: {
+							component: "textarea",
+						},
+					},
+					{
+						type: "string",
+						name: "canonicalUrl",
+						label: "URL kanoniczny",
+						description: "Pełny adres URL, jeśli treść występuje też pod innym adresem",
+					},
+					{
+						type: "boolean",
+						name: "noindex",
+						label: "Ukryj przed wyszukiwarkami",
+						description: "Zaznacz, jeśli strona nie powinna być indeksowana przez wyszukiwarki",
+					},
+					{
+						type: "string",
+						name: "keywords",
+						label: "Słowa kluczowe",
+						description: "Słowa kluczowe dla wyszukiwarek",
+						list: true,
+						ui: {
+							component: "tags",
+						},
+					},
 				],
 			},
 			{
@@ -312,6 +350,32 @@ export default defineConfig({
 						description:
 							"Zdjęcie wyświetlane w podglądzie artykułu i przy udostępnianiu w mediach społecznościowych",
 					},
+					// SEO fields for posts
+					{
+						type: "string",
+						name: "seoTitle",
+						label: "Tytuł SEO",
+						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)"
+					},
+					{
+						type: "string",
+						name: "seoDescription",
+						label: "Opis SEO",
+						description: "Opis używany w meta tagu (jeśli inny niż główny opis)",
+						ui: {
+							component: "textarea",
+						},
+					},
+					{
+						type: "string",
+						name: "keywords",
+						label: "Słowa kluczowe",
+						description: "Słowa kluczowe dla wyszukiwarek",
+						list: true,
+						ui: {
+							component: "tags",
+						},
+					},
 					{
 						type: "rich-text",
 						name: "body",
@@ -358,9 +422,64 @@ export default defineConfig({
 					},
 					{
 						type: "string",
+						name: "tags",
+						label: "Tagi",
+						description: "Tagi usługi (np. twarz, ciało)",
+						list: true,
+						ui: {
+							component: "tags",
+						},
+					},
+					{
+						type: "string",
 						name: "priceRange",
 						label: "Przedział cenowy",
 						description: "Np. 200-500 zł",
+					},
+					{
+						type: "string",
+						name: "clients",
+						label: "Dla kogo",
+						description: "Grupy odbiorców dla których usługa jest zalecana",
+						list: true,
+					},
+					// SEO fields
+					{
+						type: "string",
+						name: "seoTitle",
+						label: "Tytuł SEO",
+						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)"
+					},
+					{
+						type: "string",
+						name: "seoDescription",
+						label: "Opis SEO",
+						description: "Opis używany w meta tagu (jeśli inny niż główny opis)",
+						ui: {
+							component: "textarea",
+						},
+					},
+					{
+						type: "string",
+						name: "canonicalUrl",
+						label: "URL kanoniczny",
+						description: "Pełny adres URL, jeśli treść występuje też pod innym adresem",
+					},
+					{
+						type: "boolean",
+						name: "noindex",
+						label: "Ukryj przed wyszukiwarkami",
+						description: "Zaznacz, jeśli strona nie powinna być indeksowana przez wyszukiwarki",
+					},
+					{
+						type: "string",
+						name: "keywords",
+						label: "Słowa kluczowe",
+						description: "Słowa kluczowe dla wyszukiwarek",
+						list: true,
+						ui: {
+							component: "tags",
+						},
 					},
 					{
 						type: "rich-text",
