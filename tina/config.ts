@@ -143,6 +143,37 @@ export default defineConfig({
 							},
 						],
 					},
+					{
+						type: "object",
+						name: "about",
+						label: "O mnie / O nas",
+						description: "Sekcja 'O mnie/O nas' wyświetlana na stronie głównej",
+						fields: [
+							{
+								type: "string",
+								name: "title",
+								label: "Tytuł sekcji",
+								description: "Np. 'O mnie', 'O salonie', 'Nasza misja'",
+								default: "O naszym salonie",
+							},
+							{
+								type: "string",
+								name: "content",
+								label: "Treść",
+								ui: {
+									component: "textarea",
+								},
+								description: "Krótki opis dla sekcji 'O mnie/O nas'",
+							},
+							{
+								type: "string",
+								name: "signature",
+								label: "Podpis",
+								description: "Podpis pod tekstem, np. 'Anna Kowalska' lub 'Zespół Beauty and Care'",
+								default: "Zespół Beauty and Care",
+							},
+						],
+					},
 				],
 			},
 			{

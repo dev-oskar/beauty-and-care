@@ -22,6 +22,11 @@ export interface SiteSettings {
     twitter?: string;
     youtube?: string;
   };
+  about?: {
+    title?: string;
+    content?: string;
+    signature?: string;
+  };
 }
 
 // Default site settings (fallback if CMS data not available)
@@ -45,6 +50,11 @@ export const defaultSiteSettings: SiteSettings = {
     instagram: "https://instagram.com/beautyandcarepl",
     twitter: "https://twitter.com/BeautyAndCarePL",
     youtube: "https://youtube.com/channel/beautyandcarepl"
+  },
+  about: {
+    title: "O naszym salonie",
+    content: "Nasz salon specjalizuje się w innowacyjnych zabiegach kosmetycznych z wykorzystaniem najnowszych technologii. Oferujemy kompleksowe usługi z zakresu liftingu bez skalpela, terapii bioelektrycznej oraz modelowania sylwetki. Każdy zabieg przeprowadzany jest przez certyfikowanych specjalistów, którzy indywidualnie dopasowują metody do potrzeb i oczekiwań klienta.",
+    signature: "Zespół Beauty and Care"
   }
 };
 
@@ -69,6 +79,7 @@ export async function getSiteSettings(): Promise<SiteSettings> {
       business: settingsEntry.data.business,
       openingHours: settingsEntry.data.openingHours,
       social: settingsEntry.data.social,
+      about: settingsEntry.data.about,
     };
   } catch (error) {
     console.error('Error loading site settings:', error);
