@@ -27,6 +27,11 @@ const settings = defineCollection({
 				twitter: z.string().optional(),
 				youtube: z.string().optional(),
 			}),
+			about: z.object({
+				title: z.string().optional(),
+				content: z.string().optional(),
+				signature: z.string().optional(),
+			}).optional(),
 		}),
 });
 

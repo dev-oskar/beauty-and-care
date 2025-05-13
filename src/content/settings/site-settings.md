@@ -19,5 +19,9 @@ social:
   instagram: 'https://instagram.com/beautyandcarepl'
   twitter: 'https://twitter.com/BeautyAndCarePL'
   youtube: 'https://youtube.com/channel/beautyandcarepl'
+about:
+  title: 'O naszym salonie'
+  content: 'Nasz salon specjalizuje się w innowacyjnych zabiegach kosmetycznych z wykorzystaniem najnowszych technologii. Oferujemy kompleksowe usługi z zakresu liftingu bez skalpela, terapii bioelektrycznej oraz modelowania sylwetki. Każdy zabieg przeprowadzany jest przez certyfikowanych specjalistów, którzy indywidualnie dopasowują metody do potrzeb i oczekiwań klienta. W Beauty and Care dbamy o najwyższą jakość usług i komfort naszych klientów.'
+  signature: 'Zespół Beauty and Care'
 ---
 
