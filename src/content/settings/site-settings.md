@@ -17,8 +17,8 @@ openingHours:
 social:
   facebook: 'https://facebook.com/beautyandcare.pl'
   instagram: 'https://instagram.com/beautyandcarepl'
-  twitter: 'https://twitter.com/BeautyAndCarePL'
-  youtube: 'https://youtube.com/channel/beautyandcarepl'
+  twitter: ''
+  youtube: ''
 about:
   title: O naszym salonie
   content: >-
