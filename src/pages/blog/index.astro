@@ -9,6 +9,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Contact from "@components/Contact/Contact.astro";
 import siteData from "@config/siteData.json";
+import { formatDateLong } from "../../utils/dateUtils";
 
 // Get all published blog posts
 const posts = await getCollection("posts", ({ data }) => !data.draft);
@@ -20,15 +21,7 @@ posts.sort((a, b) => {
 	return dateB - dateA;
 });
 
-// Helper to format dates
-const formatDate = (date) => {
-	if (!date) return "";
-	return new Date(date).toLocaleDateString("pl-PL", {
-		year: "numeric",
-		month: "long",
-		day: "numeric",
-	});
-};
+// formatDateLong imported from utils/dateUtils
 ---
 
 <BaseLayout
@@ -78,7 +71,7 @@ const formatDate = (date) => {
 
 								<div class="flex flex-wrap items-center justify-between">
 									{post.data.date && (
-										<p class="text-primary-500 text-sm font-medium">{formatDate(post.data.date)}</p>
+										<p class="text-primary-500 text-sm font-medium">{formatDateLong(post.data.date)}</p>
 									)}
 									{post.data.authorName && (
 										<p class="text-primary-500 text-sm font-medium">{post.data.authorName}</p>

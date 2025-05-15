@@ -6,17 +6,18 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import { formatDate } from "../../utils/dateUtils";
 
 // Define all possible blog post slugs for static generation
 export async function getStaticPaths() {
-  // Get all non-draft blog posts
-  const posts = await getCollection("posts", (post) => !post.data.draft);
-  
-  // Create paths for each post
-  return posts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+	// Get all non-draft blog posts
+	const posts = await getCollection("posts", (post) => !post.data.draft);
+
+	// Create paths for each post
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
 }
 
 // Get the post from props
@@ -25,14 +26,7 @@ const { post } = Astro.props;
 // Render the post content
 const { Content } = await post.render();
 
-// Format date function
-function formatDate(date) {
-  if (!date) return "";
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  return date instanceof Date
-    ? date.toLocaleDateString("pl-PL" as string, options)
-    : new Date(date).toLocaleDateString("pl-PL" as string, options);
-}
+// formatDate imported from utils/dateUtils
 
 // Get random related posts
 let relatedPosts: import("astro:content").CollectionEntry<"posts">[] = [];
@@ -40,129 +34,147 @@ const allPosts = await getCollection("posts", (p) => !p.data.draft && p.slug !==
 
 // Get up to 3 random posts
 if (allPosts.length > 0) {
-  // Shuffle the array using Fisher-Yates algorithm
-  for (let i = allPosts.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [allPosts[i], allPosts[j]] = [allPosts[j], allPosts[i]];
-  }
-  
-  // Get first 3 (or fewer if there aren't enough)
-  relatedPosts = allPosts.slice(0, Math.min(3, allPosts.length)) as typeof allPosts;
+	// Shuffle the array using Fisher-Yates algorithm
+	for (let i = allPosts.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[allPosts[i], allPosts[j]] = [allPosts[j], allPosts[i]];
+	}
+
+	// Get first 3 (or fewer if there aren't enough)
+	relatedPosts = allPosts.slice(0, Math.min(3, allPosts.length)) as typeof allPosts;
 }
 ---
 
 <BaseLayout
-  title={post.data.title}
-  description={post.data.excerpt}
-  seoTitle={post.data.seoTitle}
-  seoDescription={post.data.seoDescription}
-  keywords={post.data.keywords}
-  heroImage={post.data.featuredImage}
-  tags={post.data.tags}
+	title={post.data.title}
+	description={post.data.excerpt || ""}
+	seoTitle={post.data.seoTitle}
+	seoDescription={post.data.seoDescription}
+	keywords={post.data.keywords}
+	heroImage={post.data.featuredImage}
+	tags={post.data.tags}
 >
-  <div class="site-container pt-24 md:pt-36">
-    <article class="mx-auto max-w-4xl pb-12">
-      <h1 class="h2 text-center text-pretty">{post.data.title}</h1>
+	<div class="site-container pt-24 md:pt-36">
+		<article class="mx-auto max-w-4xl pb-12">
+			<h1 class="h2 text-center text-pretty">{post.data.title}</h1>
 
-      <!-- Post metadata -->
-      <div class="mt-6 flex flex-wrap justify-center gap-4">
-        {post.data.date && (
-          <p class="text-primary-600 font-medium italic">
-            {formatDate(post.data.date)}
-          </p>
-        )}
-        
-        {post.data.authorName && (
-          <p class="text-gray-600">
-            Autor: {post.data.authorName}
-          </p>
-        )}
-      </div>
+			<!-- Post metadata -->
+			<div class="mt-6 flex flex-wrap justify-center gap-4">
+				{
+					post.data.date && (
+						<p class="text-primary-600 font-medium italic">{formatDate(post.data.date)}</p>
+					)
+				}
 
-      <!-- Featured image -->
-      {post.data.featuredImage && (
-        <div class="mt-8 overflow-hidden rounded-lg shadow-md">
-          <Image
-            src={post.data.featuredImage}
-            alt={post.data.title}
-            width={1000}
-            height={563}
-            class="w-full h-auto"
-          />
-        </div>
-      )}
+				{post.data.authorName && <p class="text-gray-600">Autor: {post.data.authorName}</p>}
+			</div>
 
-      <!-- Categories -->
-      {post.data.categories && post.data.categories.length > 0 && (
-        <div class="mt-6 flex flex-wrap justify-center gap-2">
-          {post.data.categories.map((category) => (
-            <span class="bg-primary-100 text-primary-700 rounded-full px-3 py-1 text-sm">
-              {category}
-            </span>
-          ))}
-        </div>
-      )}
+			<!-- Featured image -->
+			{
+				post.data.featuredImage && (
+					<div class="mt-8 overflow-hidden rounded-lg shadow-md">
+						<Image
+							src={post.data.featuredImage}
+							alt={post.data.title}
+							width={1000}
+							height={563}
+							class="h-auto w-full"
+						/>
+					</div>
+				)
+			}
 
-      <!-- Tags -->
-      {post.data.tags && post.data.tags.length > 0 && (
-        <div class="mt-4 flex flex-col items-center gap-2">
-          <div class="flex flex-wrap justify-center gap-1">
-            {post.data.tags.map((tag) => (
-              <span class="bg-gray-100 text-gray-700 rounded-full px-2 py-0.5 text-xs">
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
+			<!-- Categories -->
+			{
+				post.data.categories && post.data.categories.length > 0 && (
+					<div class="mt-6 flex flex-wrap justify-center gap-2">
+						{post.data.categories.map((category) => (
+							<span class="bg-primary-100 text-primary-700 rounded-full px-3 py-1 text-sm">
+								{category}
+							</span>
+						))}
+					</div>
+				)
+			}
 
-      <!-- Main content -->
-      <div class="prose prose-lg mx-auto mt-12 max-w-3xl">
-        <Content />
-      </div>
+			<!-- Tags -->
+			{
+				post.data.tags && post.data.tags.length > 0 && (
+					<div class="mt-4 flex flex-col items-center gap-2">
+						<div class="flex flex-wrap justify-center gap-1">
+							{post.data.tags.map((tag) => (
+								<span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700">
+									#{tag}
+								</span>
+							))}
+						</div>
+					</div>
+				)
+			}
 
-      <!-- Back button -->
-      <div class="mt-12 flex justify-center">
-        <a 
-          href="/blog" 
-          class="text-primary-600 hover:text-primary-700 inline-flex items-center font-medium"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-          Wróć do bloga
-        </a>
-      </div>
-    </article>
+			<!-- Main content -->
+			<div class="prose prose-lg mx-auto mt-12 max-w-3xl">
+				<Content />
+			</div>
 
-    <!-- Related posts -->
-    {relatedPosts.length > 0 && (
-      <section class="mx-auto max-w-5xl mb-12">
-        <h2 class="h3 text-center mb-8">Zobacz również</h2>
-        <div class="grid gap-6 md:grid-cols-3">
-          {relatedPosts.map((relatedPost) => (
-            <a href={`/blog/${relatedPost.slug}`} class="group block">
-              <div class="border-base-200 overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md h-full flex flex-col">
-                {relatedPost.data.featuredImage && (
-                  <div class="aspect-video overflow-hidden">
-                    <Image
-                      src={relatedPost.data.featuredImage}
-                      alt={relatedPost.data.title}
-                      width={300}
-                      height={169}
-                      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <div class="p-4 flex-grow">
-                  <h3 class="text-lg font-semibold group-hover:text-primary-600 transition-colors">{relatedPost.data.title}</h3>
-                  <p class="text-sm text-gray-600 mt-2 line-clamp-2">{relatedPost.data.excerpt}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-    )}
-  </div>
+			<!-- Back button -->
+			<div class="mt-12 flex justify-center">
+				<a
+					href="/blog"
+					class="text-primary-600 hover:text-primary-700 inline-flex items-center font-medium"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="mr-1 h-5 w-5 rotate-180"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+					</svg>
+					Wróć do bloga
+				</a>
+			</div>
+		</article>
+
+		<!-- Related posts -->
+		{
+			relatedPosts.length > 0 && (
+				<section class="mx-auto mb-12 max-w-5xl">
+					<h2 class="h3 mb-8 text-center">Zobacz również</h2>
+					<div class="grid gap-6 md:grid-cols-3">
+						{relatedPosts.map((relatedPost) => (
+							<a href={`/blog/${relatedPost.slug}`} class="group block">
+								<div class="border-base-200 flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
+									{relatedPost.data.featuredImage && (
+										<div class="aspect-video overflow-hidden">
+											<Image
+												src={relatedPost.data.featuredImage}
+												alt={relatedPost.data.title}
+												width={300}
+												height={169}
+												class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+											/>
+										</div>
+									)}
+									<div class="flex-grow p-4">
+										<h3 class="group-hover:text-primary-600 text-lg font-semibold transition-colors">
+											{relatedPost.data.title}
+										</h3>
+										<p class="mt-2 line-clamp-2 text-sm text-gray-600">
+											{relatedPost.data.excerpt}
+										</p>
+									</div>
+								</div>
+							</a>
+						))}
+					</div>
+				</section>
+			)
+		}
+	</div>
 </BaseLayout>

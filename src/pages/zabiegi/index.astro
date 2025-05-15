@@ -9,6 +9,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Contact from "@components/Contact/Contact.astro";
 import siteData from "@config/siteData.json";
+import { formatDate } from "../../utils/dateUtils";
 
 // Get all published zabiegi (services)
 const zabiegi = await getCollection("zabiegi", ({ data }) => !data.draft);
@@ -28,15 +29,7 @@ zabiegi.sort((a, b) => {
 	return dateB - dateA;
 });
 
-// Helper to format dates
-const formatDate = (date) => {
-	if (!date) return "";
-	return new Date(date).toLocaleDateString("pl-PL", {
-		year: "numeric",
-		month: "2-digit",
-		day: "2-digit",
-	});
-};
+// formatDate imported from utils/dateUtils
 ---
 
 <BaseLayout
