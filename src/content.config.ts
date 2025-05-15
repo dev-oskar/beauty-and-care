@@ -101,8 +101,8 @@ const posts = defineCollection({
 		}),
 });
 
-// Services collection
-const services = defineCollection({
+// Zabiegi collection (services)
+const zabiegi = defineCollection({
 	type: "content",
 	schema: ({ image }) =>
 		z.object({
@@ -112,7 +112,6 @@ const services = defineCollection({
 			date: z.coerce.date().optional(),
 			location: z.string().optional(),
 			clients: z.array(z.string()).optional(),
-			categories: z.array(z.string()).optional(),
 			tags: z.array(z.string()).optional(),
 			order: z.number().optional(),
 			priceRange: z.string().optional(),
@@ -141,7 +140,7 @@ const pricing = defineCollection({
 export const collections = {
 	otherPages,
 	posts,
-	services,
+	zabiegi,
 	gallery,
 	settings,
 	pricing,
