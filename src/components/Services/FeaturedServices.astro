@@ -7,7 +7,7 @@ import { Image } from "astro:assets";
 import Button from "@components/Button/Button.astro";
 
 // Get services from content directory and sort by order
-const services = await getCollection("services", (service) => !service.data.draft);
+const services = await getCollection("zabiegi", (service) => !service.data.draft);
 
 // Sort by order or date if order is not available
 const sortedServices = services.sort((a, b) => {
