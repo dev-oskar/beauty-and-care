@@ -15,7 +15,7 @@ openingHours:
   - days: Niedziela
     hours: Zamknięte
 social:
-  facebook: 'https://facebook.com/beautyandcare.pl'
+  facebook: 'https://www.facebook.com/profile.php?id=61573434628290'
   instagram: 'https://instagram.com/beautyandcarepl'
   twitter: ''
   youtube: ''
