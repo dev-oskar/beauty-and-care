@@ -1,9 +1,9 @@
 ---
 title: Ustawienia strony
 business:
-  address: Fryderyka Szopena 33
+  address: Słowackiego 16
   city: Rzeszów
-  postalCode: 33-055
+  postalCode: 35-060
   country: PL
   phone: +48 881 086 856
   email: kontakt@beautyandcare.pl
