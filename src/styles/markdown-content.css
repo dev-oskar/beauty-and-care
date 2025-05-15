@@ -11,7 +11,7 @@
 
 /* text coloring for most items */
 .markdown-content
-	:not(pre *, .admonition *, details *, blockquote *, span, a, h1, h2, h3, h4, h5, h6):not(
+	:not(pre *, details *, blockquote *, span, a, h1, h2, h3, h4, h5, h6):not(
 		:where(.not-content *)
 	) {
 	@apply text-base-900/85;
@@ -174,10 +174,6 @@
 	text-align: start;
 }
 
-/* <table>s, and <hr>s inside admonitions */
-.markdown-content .admonition :is(th, td, hr):not(:where(.not-content *)) {
-	@apply border-base-200;
-}
 
 .markdown-content hr:not(:where(.not-content *)) {
 	@apply border-b-base-300 my-8 border-0 border-b-1;

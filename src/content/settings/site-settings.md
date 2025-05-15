@@ -20,7 +20,7 @@ social:
   twitter: ''
   youtube: ''
 about:
-  title: O naszym salonie
+  title: O naszym salonie Test
   content: >-
     Nasz salon specjalizuje się w innowacyjnych zabiegach kosmetycznych z
     wykorzystaniem najnowszych technologii. Oferujemy kompleksowe usługi z
