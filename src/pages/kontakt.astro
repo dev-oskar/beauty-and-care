@@ -5,21 +5,15 @@ import siteData from "@config/siteData.json";
 ---
 
 <BaseLayout
-  title="Kontakt - Beauty and Care"
-  description="Skontaktuj się z nami, aby umówić wizytę lub uzyskać więcej informacji o naszych zabiegach"
-  seoTitle={siteData.pages?.contact?.seoTitle}
-  seoDescription={siteData.pages?.contact?.seoDescription}
-  keywords={siteData.pages?.contact?.keywords}
-  canonicalUrl={siteData.pages?.contact?.canonicalUrl}
-  noindex={siteData.pages?.contact?.noindex}>
-  <div class="site-container pt-24 md:pt-36">
-    <div class="mx-auto max-w-6xl text-center mb-12">
-      <h1 class="h2 text-pretty uppercase">Kontakt</h1>
-      <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
-        Znajdź nas w sercu Rzeszowa. Zapraszamy do kontaktu telefonicznego, mailowego lub osobistego.
-      </p>
-    </div>
-    
-    <Contact />
-  </div>
+	title="Kontakt - Beauty and Care"
+	description="Skontaktuj się z nami, aby umówić wizytę lub uzyskać więcej informacji o naszych zabiegach"
+	seoTitle={siteData.pages?.contact?.seoTitle}
+	seoDescription={siteData.pages?.contact?.seoDescription}
+	keywords={siteData.pages?.contact?.keywords}
+	canonicalUrl={siteData.pages?.contact?.canonicalUrl}
+	noindex={siteData.pages?.contact?.noindex}
+>
+	<div class="site-container pt-24 md:pt-36">
+		<Contact />
+	</div>
 </BaseLayout>
