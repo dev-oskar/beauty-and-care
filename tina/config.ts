@@ -287,7 +287,7 @@ export default defineConfig({
 						type: "string",
 						name: "seoTitle",
 						label: "Tytuł SEO",
-						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)"
+						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)",
 					},
 					{
 						type: "string",
@@ -324,7 +324,7 @@ export default defineConfig({
 			},
 			{
 				name: "posts",
-				label: "Blog Posts",
+				label: "Posty na bloga",
 				path: "src/content/posts",
 				fields: [
 					{
@@ -386,7 +386,7 @@ export default defineConfig({
 						type: "string",
 						name: "seoTitle",
 						label: "Tytuł SEO",
-						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)"
+						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)",
 					},
 					{
 						type: "string",
@@ -416,9 +416,9 @@ export default defineConfig({
 				],
 			},
 			{
-				name: "services",
-				label: "Usługi",
-				path: "src/content/services",
+				name: "zabiegi",
+				label: "Zabiegi",
+				path: "src/content/zabiegi",
 				fields: [
 					{
 						type: "string",
@@ -440,16 +440,6 @@ export default defineConfig({
 						name: "heroImage",
 						label: "Zdjęcie główne",
 						required: false,
-					},
-					{
-						type: "string",
-						name: "categories",
-						label: "Kategorie",
-						description: "Kategorie usługi (np. Modelowanie sylwetki, Zabiegi na twarz)",
-						list: true,
-						ui: {
-							component: "tags",
-						},
 					},
 					{
 						type: "string",
@@ -479,7 +469,7 @@ export default defineConfig({
 						type: "string",
 						name: "seoTitle",
 						label: "Tytuł SEO",
-						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)"
+						description: "Tytuł używany w meta tagu (jeśli inny niż główny tytuł)",
 					},
 					{
 						type: "string",

@@ -1,228 +1,128 @@
 ---
 /**
- * * Pricing table component that displays services from TinaCMS content
+ * PricingTableCMS.astro
+ * Simple pricing table component that displays content from the CMS
  */
 
 import { getCollection } from "astro:content";
 import { marked } from "marked";
-import { Icon } from "astro-icon/components";
 import Button from "@components/Button/Button.astro";
 
-// Get pricing data from TinaCMS content
-const pricingEntries = await getCollection("pricing", ({ data }) => {
-	return !data.draft;
-});
-
-const pricingEntry = pricingEntries.length > 0 ? pricingEntries[0] : null;
-
-// Function to process markdown content into structured pricing data
-function processPricingMarkdown(markdownContent) {
-	if (!markdownContent) return [];
-
-	const html = marked.parse(markdownContent);
-	const parser = new DOMParser();
-	const doc = parser.parseFromString(html, "text/html");
-	
-	const categories = [];
-	let currentCategory = null;
-	
-	// Find all h2 elements (category headers)
-	const headings = doc.querySelectorAll("h2");
-	
-	headings.forEach(heading => {
-		currentCategory = {
-			name: heading.textContent.trim(),
-			services: []
-		};
-		categories.push(currentCategory);
-		
-		// Get all content until next h2
-		let nextElement = heading.nextElementSibling;
-		while (nextElement && nextElement.tagName !== "H2") {
-			// Process ul/li elements for services
-			if (nextElement.tagName === "UL") {
-				const items = nextElement.querySelectorAll("li");
-				items.forEach(item => {
-					// Parse the service item
-					const content = item.innerHTML;
-					const service = parseServiceItem(content);
-					if (service) {
-						currentCategory.services.push(service);
-					}
-				});
-			}
-			nextElement = nextElement.nextElementSibling;
-		}
-	});
-	
-	return categories;
+// Component props
+interface Props {
+  class?: string;
 }
 
-// Helper function to parse a service item from markdown list
-function parseServiceItem(content) {
-	// Check if it contains sub-items (variants)
-	if (content.includes("<ul>")) {
-		// Split main content from variants
-		const parts = content.split("<ul>");
-		const mainPart = parts[0];
-		const variantsPart = `<ul>${parts[1]}`;
-		
-		// Parse main service information
-		const service = parseServiceMainInfo(mainPart);
-		
-		// Parse variants
-		const parser = new DOMParser();
-		const doc = parser.parseFromString(variantsPart, "text/html");
-		const variantItems = doc.querySelectorAll("li");
-		
-		service.variants = [];
-		variantItems.forEach(item => {
-			const variantInfo = parseServiceVariantInfo(item.textContent);
-			if (variantInfo) {
-				service.variants.push(variantInfo);
-			}
-		});
-		
-		return service;
-	} else {
-		// Simple service without variants
-		return parseServiceMainInfo(content);
-	}
-}
+const { class: className = "" } = Astro.props;
 
-// Parse main service information from text
-function parseServiceMainInfo(text) {
-	// Regular expression to match "**Name** - Description - Price zł" pattern
-	const nameMatch = text.match(/\*\*(.*?)\*\*/);
-	if (!nameMatch) return null;
-	
-	const name = nameMatch[1].trim();
-	let description = "";
-	let price = "";
-	
-	// Extract description and price
-	const parts = text.replace(/\*\*(.*?)\*\*/, "").split(" - ");
-	if (parts.length > 1) {
-		// Check if the last part contains price
-		const lastPart = parts[parts.length - 1].trim();
-		if (lastPart.includes("zł")) {
-			price = lastPart.replace(/\s*zł\s*$/, "").trim();
-			description = parts.slice(0, parts.length - 1).join(" - ").trim();
-		} else {
-			description = parts.join(" - ").trim();
-		}
-	}
-	
-	return {
-		name,
-		description: description || undefined,
-		price: price || undefined,
-	};
-}
+// Get pricing content from Astro Collections
+const pricingEntries = await getCollection("pricing");
+const pricing = pricingEntries.length > 0 ? pricingEntries[0] : null;
 
-// Parse variant information
-function parseServiceVariantInfo(text) {
-	const parts = text.split(" - ");
-	if (parts.length < 1) return null;
-	
-	const name = parts[0].trim();
-	let description = "";
-	let price = "";
-	
-	if (parts.length > 2) {
-		// Format: "Name - Description - Price zł"
-		price = parts[parts.length - 1].replace(/\s*zł\s*$/, "").trim();
-		description = parts.slice(1, parts.length - 1).join(" - ").trim();
-	} else if (parts.length === 2) {
-		// Format: "Name - Price zł" or "Name - Description"
-		const secondPart = parts[1].trim();
-		if (secondPart.includes("zł")) {
-			price = secondPart.replace(/\s*zł\s*$/, "").trim();
-		} else {
-			description = secondPart;
-		}
-	}
-	
-	return {
-		name,
-		description: description || undefined,
-		price: price || undefined
-	};
-}
-
-// Process pricing content if available
-const serviceCategories = pricingEntry?.body?.value 
-	? processPricingMarkdown(pricingEntry.body.value) 
-	: [];
+// Parse the markdown to HTML using marked
+const html = pricing?.body ? marked.parse(pricing.body) : "";
 ---
 
-<section id="pricing" class="mx-auto max-w-6xl scroll-mt-10 px-4 py-8 md:py-12">
-	<div class="mx-auto max-w-6xl text-center mb-12">
-		<h2 class="h2 text-pretty uppercase">{pricingEntry?.title || "Cennik Usług"}</h2>
-		<p class="mt-4 text-lg text-base-600 max-w-3xl mx-auto">
-			{pricingEntry?.description || "Pełna oferta zabiegów kosmetologicznych dla zdrowia i piękna Twojej skóry"}
-		</p>
-	</div>
+<section id="pricing" class={`mx-auto max-w-6xl scroll-mt-10 px-4 py-8 md:py-12 ${className}`}>
+  <div class="mx-auto max-w-6xl text-center mb-12">
+    <h2 class="h2 text-pretty uppercase">{pricing?.data?.title || "Cennik Usług"}</h2>
+    <p class="mt-4 text-lg text-base-600 max-w-3xl mx-auto">
+      {pricing?.data?.description || "Pełna oferta zabiegów kosmetologicznych dla zdrowia i piękna Twojej skóry"}
+    </p>
+  </div>
 
-	<div class="mx-auto space-y-12">
-		{serviceCategories.map((category) => (
-			<div class="bg-white rounded-lg shadow-sm border-primary-100 border overflow-hidden">
-				<div class="bg-primary-50 p-4 border-b border-primary-100">
-					<h3 class="text-2xl font-semibold text-center text-primary-700">{category.name}</h3>
-				</div>
-				
-				<div class="overflow-hidden">
-					<div class="divide-y divide-gray-200">
-						{category.services.map((service) => (
-							<div class="p-6 hover:bg-gray-50 transition-colors duration-200">
-								<div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-									<div>
-										<h4 class="text-xl font-medium text-primary-700">{service.name}</h4>
-										{service.description && 
-											<p class="text-gray-600 mt-1">{service.description}</p>
-										}
-									</div>
-									
-									{service.price && 
-										<div class="font-decorative text-base-800 text-3xl md:text-4xl">
-											{service.price} zł
-										</div>
-									}
-								</div>
-								
-								{service.variants && service.variants.length > 0 && (
-									<div class="mt-4 pl-4 border-l-2 border-primary-100">
-										<div class="grid md:grid-cols-2 gap-4">
-											{service.variants.map(variant => (
-												<div class="flex justify-between items-center bg-gray-50 p-3 rounded">
-													<div>
-														<p class="font-medium text-primary-600">{variant.name}</p>
-														{variant.description && 
-															<p class="text-sm text-gray-600">{variant.description}</p>
-														}
-													</div>
-													{variant.price && 
-														<div class="font-medium text-xl">
-															{variant.price} zł
-														</div>
-													}
-												</div>
-											))}
-										</div>
-									</div>
-								)}
-							</div>
-						))}
-					</div>
-				</div>
-			</div>
-		))}
-	</div>
+  <!-- Display markdown content as HTML -->
+  {html ? (
+    <div class="pricing-content" set:html={html} />
+  ) : (
+    <div class="bg-amber-50 border border-amber-200 rounded p-4 mb-8 text-center">
+      <p>Cennik w przygotowaniu. Prosimy o kontakt w celu uzyskania szczegółowych informacji.</p>
+    </div>
+  )}
 
-	<div class="mt-12 text-center">
-		<p class="text-base-600 mb-6">
-			Ceny mogą się różnić w zależności od indywidualnych potrzeb i stanu skóry. Oferujemy bezpłatne konsultacje, podczas których dobierzemy najlepszy zabieg do Twoich potrzeb.
-		</p>
-		<Button href="/#contact" variant="outline" class="px-8">Umów się na wizytę</Button>
-	</div>
+  <div class="mt-12 text-center">
+    <p class="text-base-600 mb-6">
+      Ceny mogą się różnić w zależności od indywidualnych potrzeb i stanu skóry. 
+      Oferujemy bezpłatne konsultacje, podczas których dobierzemy najlepszy zabieg do Twoich potrzeb.
+    </p>
+    <Button href="/#contact" variant="outline" class="px-8">Umów się na wizytę</Button>
+  </div>
 </section>
+
+<style>
+  .pricing-content {
+    margin-bottom: 2rem;
+  }
+
+  .pricing-content :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-primary-700);
+    text-align: center;
+    background-color: var(--color-primary-50);
+    padding: 1rem;
+    border: 1px solid var(--color-primary-100);
+    border-radius: 0.5rem 0.5rem 0 0;
+    margin-top: 3rem;
+    margin-bottom: 0;
+  }
+
+  .pricing-content :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .pricing-content :global(ul) {
+    background-color: white;
+    border: 1px solid var(--color-primary-100);
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    padding: 1rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+    list-style-type: none;
+  }
+
+  .pricing-content :global(li) {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--color-gray-100);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .pricing-content :global(li:last-child) {
+    border-bottom: none;
+  }
+
+  .pricing-content :global(strong) {
+    font-weight: 500;
+    color: var(--color-primary-700);
+    font-size: 1.125rem;
+  }
+
+  .pricing-content :global(ul ul) {
+    border: none;
+    margin-top: 0.5rem;
+    margin-left: 1.5rem;
+    padding: 0 0 0 1rem;
+    border-left: 2px solid var(--color-primary-100);
+  }
+
+  .pricing-content :global(ul ul li) {
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    background-color: var(--color-gray-50);
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  @media (min-width: 768px) {
+    .pricing-content :global(ul ul) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+  }
+</style>

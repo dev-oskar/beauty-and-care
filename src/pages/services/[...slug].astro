@@ -1,0 +1,29 @@
+---
+/**
+ * Redirect from old /services/[slug] path to new /zabiegi/[slug] path
+ */
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const services = await getCollection("zabiegi", (service) => !service.draft);
+  
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+}
+
+const { service } = Astro.props;
+const newUrl = `/zabiegi/${service.slug}`;
+---
+
+<meta http-equiv="refresh" content={`0;url=${newUrl}`} />
+
+<script define:vars={{ newUrl }}>
+  // JavaScript redirect as a fallback
+  window.location.href = newUrl;
+</script>
+
+<body>
+  <p>Redirecting to <a href={newUrl}>new location</a>...</p>
+</body>
