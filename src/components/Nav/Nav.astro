@@ -99,9 +99,17 @@ const { startStyle = "default", rest } = Astro.props as Props;
 		color: white;
 	}
 
+	#nav__container.initial .logo-text {
+		color: white;
+	}
+
 	#nav__container.scrolled {
 		/* @apply bg-base-50 py-0; */
 		background-color: var(--color-base-50);
 		padding-block: 0;
+	}
+
+	#nav__container.scrolled .logo-text {
+		color: var(--color-primary-700);
 	}
 </style>
