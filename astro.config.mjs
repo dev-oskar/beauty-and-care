@@ -15,7 +15,7 @@ export default defineConfig({
 		AutoImport({
 			imports: [
 				// https://github.com/delucis/astro-auto-import
-				"@components/Admonition/Admonition.astro",
+				// Add components here to auto-import them in MDX files
 			],
 		}),
 		mdx(),

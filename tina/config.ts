@@ -154,7 +154,6 @@ export default defineConfig({
 								name: "title",
 								label: "Tytuł sekcji",
 								description: "Np. 'O mnie', 'O salonie', 'Nasza misja'",
-								default: "O naszym salonie",
 							},
 							{
 								type: "string",
@@ -170,7 +169,6 @@ export default defineConfig({
 								name: "signature",
 								label: "Podpis",
 								description: "Podpis pod tekstem, np. 'Anna Kowalska' lub 'Zespół Beauty and Care'",
-								default: "Zespół Beauty and Care",
 							},
 						],
 					},

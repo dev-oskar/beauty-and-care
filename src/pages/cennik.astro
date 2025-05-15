@@ -4,34 +4,32 @@ import PricingTableCMS from "@components/Pricing/PricingTableCMS.astro";
 import Contact from "@components/Contact/Contact.astro";
 import { getCollection } from "astro:content";
 import siteData from "@config/siteData.json";
+import type { CollectionEntry } from "astro:content";
 
 // Get pricing data
 const pricingEntries = await getCollection("pricing", ({ data }) => {
-  return !data.draft;
+	return !data.draft;
 });
 
-const pricingEntry = pricingEntries.length > 0 ? pricingEntries[0] : null;
+const pricingEntry: CollectionEntry<"pricing"> | null =
+	pricingEntries.length > 0 ? pricingEntries[0] : null;
 ---
 
 <BaseLayout
-  title={pricingEntry?.title ? `${pricingEntry.title} - Beauty and Care` : "Cennik Usług - Beauty and Care"}
-  description={pricingEntry?.description || "Pełna oferta zabiegów kosmetologicznych z cennikiem - Beauty and Care"}
-  seoTitle={siteData.pages?.pricing?.seoTitle}
-  seoDescription={siteData.pages?.pricing?.seoDescription}
-  keywords={siteData.pages?.pricing?.keywords}
-  canonicalUrl={siteData.pages?.pricing?.canonicalUrl}
-  noindex={siteData.pages?.pricing?.noindex}
+	title={pricingEntry?.data.title
+		? `${pricingEntry.data.title} - Beauty and Care`
+		: "Cennik Usług - Beauty and Care"}
+	description={pricingEntry?.data.description ||
+		"Pełna oferta zabiegów kosmetologicznych z cennikiem - Beauty and Care"}
+	seoTitle={siteData.pages?.pricing?.seoTitle}
+	seoDescription={siteData.pages?.pricing?.seoDescription}
+	keywords={siteData.pages?.pricing?.keywords}
+	canonicalUrl={siteData.pages?.pricing?.canonicalUrl}
+	noindex={siteData.pages?.pricing?.noindex}
 >
-  <div class="site-container pt-24 md:pt-36">
-    <div class="mx-auto max-w-6xl text-center mb-12">
-      <h1 class="h2 text-pretty uppercase">{pricingEntry?.title || "Cennik Usług"}</h1>
-      <p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">
-        {pricingEntry?.description || "Pełna oferta zabiegów kosmetologicznych w naszym salonie. Zapoznaj się z listą usług i skontaktuj się z nami, aby umówić się na wizytę."}
-      </p>
-    </div>
+	<div class="site-container pt-24 md:pt-36">
+		<PricingTableCMS />
 
-    <PricingTableCMS />
-
-    <Contact class="mt-12" />
-  </div>
+		<Contact class="mt-12" />
+	</div>
 </BaseLayout>
