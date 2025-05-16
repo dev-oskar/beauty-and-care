@@ -6,7 +6,7 @@ title: Modelowanie sylwetki - Lipoliza laserowa
 description: >-
   Skuteczny, nieinwazyjny zabieg redukcji tkanki tłuszczowej i ujędrniania skóry
   przy pomocy zaawansowanej technologii laserowej.
-heroImage: /assets/images/src/lipoliza-laserowa.png
+heroImage: /assets/images/8 (1) (1).jpg
 tags:
   - lipoliza
   - modelowanie
