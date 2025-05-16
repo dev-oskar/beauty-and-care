@@ -1,12 +1,13 @@
 ---
-date: '2025-04-15T00:00:00.000Z'
+date: "2025-04-15T00:00:00.000Z"
 location: Beauty and Care
 order: 2
 title: Modelowanie sylwetki - Lipoliza laserowa
 description: >-
   Skuteczny, nieinwazyjny zabieg redukcji tkanki tłuszczowej i ujędrniania skóry
   przy pomocy zaawansowanej technologii laserowej.
-heroImage: ''
+heroImage: ""
+# heroImage: public/assets/images/OxyGlow.jpg działa
 tags:
   - lipoliza
   - modelowanie
@@ -52,21 +53,21 @@ Zabieg nie tylko redukuje zbędną tkankę tłuszczową, ale również stymuluje
 
 ### Dlaczego warto wybrać lipolizę laserową Vivien 1064 nm?
 
-* Skuteczna redukcja opornej tkanki tłuszczowej
-* Ujędrnienie i uelastycznienie skóry
-* Bezpieczna i nieinwazyjna procedura
-* Brak konieczności długiego okresu rekonwalescencji
-* Naturalne i stopniowe efekty wyszczuplenia sylwetki
+- Skuteczna redukcja opornej tkanki tłuszczowej
+- Ujędrnienie i uelastycznienie skóry
+- Bezpieczna i nieinwazyjna procedura
+- Brak konieczności długiego okresu rekonwalescencji
+- Naturalne i stopniowe efekty wyszczuplenia sylwetki
 
 #### Przeciwwskazania do zabiegu:
 
-* Ciąża i karmienie piersią:
-* Choroby nowotworowe w przeszłości
-* Skłonność do bliznowacenia:
-* Cukrzyca: Szczególnie jeśli jest to cukrzyca nieuregulowana
-* Infekcje skórne i aktywne stany zapalne
-* Zakrzepica żylna
-* Zaburzenia krzepnięcia krwi:
-* Stany zapalne, infekcje
-* Antybiotykoterapia ok 3-4 tygodnie przed zabiegiem
-* Przyjmowanie leków światłouczulających
+- Ciąża i karmienie piersią:
+- Choroby nowotworowe w przeszłości
+- Skłonność do bliznowacenia:
+- Cukrzyca: Szczególnie jeśli jest to cukrzyca nieuregulowana
+- Infekcje skórne i aktywne stany zapalne
+- Zakrzepica żylna
+- Zaburzenia krzepnięcia krwi:
+- Stany zapalne, infekcje
+- Antybiotykoterapia ok 3-4 tygodnie przed zabiegiem
+- Przyjmowanie leków światłouczulających

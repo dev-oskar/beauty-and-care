@@ -2,10 +2,10 @@
 title: Galeria zdjęć Beauty and Care
 description: "Zdjęcia z naszego salonu, pokazujące zabiegi oraz ich efekty."
 images:
-  - src: /public/assets/images/2.jpg
+  - src: 2.jpg
     caption: Właścicielka salonu - Katarzyna
     alt: Właścicielka salonu - Katarzyna
-  - src: /public/assets/images/1.jpg
+  - src: 1.jpg
     caption: Właścicielka salonu Beauty and Care Katarzyna
     alt: Właścicielka salonu Beauty and Care Katarzyna
   - src: 4.jpg

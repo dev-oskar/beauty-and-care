@@ -61,9 +61,6 @@ beauty-and-care/
 │   ├── config/         # Configuration
 │   │   ├── navData.json.ts  # Navigation structure
 │   │   └── siteData.json.ts # Site metadata & settings
-│   ├── data/           # Structured data
-│   │   ├── portfolios/ # Service data (renamed from portfolios)
-│   │   └── otherPages/ # Additional pages data
 │   ├── layouts/        # Page layouts
 │   ├── pages/          # Site pages
 │   │   ├── blog/       # Blog section
@@ -80,6 +77,7 @@ The site includes a comprehensive SEO layer with:
 ### Components
 
 - `src/components/Seo/Seo.astro` - General SEO component with:
+
   - Schema.org WebSite and LocalBusiness data
   - Meta tags, Open Graph, and Twitter Card support
   - Support for keywords, hreflang tags, and canonical URLs
@@ -92,6 +90,7 @@ The site includes a comprehensive SEO layer with:
 ### Tina CMS Integration
 
 SEO fields in Tina CMS include:
+
 - Custom titles and descriptions
 - Author information
 - Categories and tags
@@ -100,10 +99,11 @@ SEO fields in Tina CMS include:
 - noindex/nofollow controls
 
 Usage example:
+
 ```astro
-<BaseLayout 
+<BaseLayout
   type="blog"
-  title={postData.seoTitle || postData.title} 
+  title={postData.seoTitle || postData.title}
   description={postData.seoDescription || postData.excerpt}
   date={postData.date}
   authorName={postData.authorName}
@@ -111,7 +111,8 @@ Usage example:
   tags={postData.tags}
   canonicalUrl={postData.canonicalUrl}
   noindex={postData.noindex || false}
-  image={postData.featuredImage}>
+  image={postData.featuredImage}
+>
   <!-- Page content -->
 </BaseLayout>
 ```
@@ -121,6 +122,7 @@ Usage example:
 ### Tina CMS Setup
 
 1. Run the Tina CMS admin panel:
+
 ```bash
 npm run tina
 ```
@@ -177,4 +179,5 @@ This project is based on the Horizon template by [Cosmic Themes](https://cosmict
 ## Support
 
 For questions or support, please contact:
+
 - Email: kontakt@beautyandcare.pl
