@@ -30,16 +30,16 @@ about:
     klienta. W Beauty and Care dbamy o najwyższą jakość usług i komfort naszych
     klientów.
   signature: Zespół Beauty and Care
-  aboutImage: /assets/images/PXL_20250407_143954631.jpg
+  aboutImage: /2.jpg
 beforeAfter:
   title: Efekty zabiegów Beauty and Care
   description: >-
     Zobacz rezultaty naszych zabiegów - porównaj zdjęcia przed i po. Przekonaj
     się o skuteczności naszych metod.
   images:
-    - beforeImage: //OxyGlow.jpg
+    - beforeImage: /przed.jpg
       beforeCaption: Przed zabiegiem
-      afterImage: //Analiza%20sk%C3%B3ry.jpg
+      afterImage: /po.jpg
       afterCaption: Po zabiegu
       alt: Efekt zabiegu modelowania sylwetki
     - beforeImage: /assets/images/4.jpg

@@ -4,7 +4,7 @@ location: Beauty and Care
 order: 2
 heroImage: ''
 title: Modelowanie sylwetki - Lipoliza laserowa
-featuredImage: /assets/images/5ems body sculpt  (1).jpg
+featuredImage: ''
 description: >-
   Skuteczny, nieinwazyjny zabieg redukcji tkanki tłuszczowej i ujędrniania skóry
   przy pomocy zaawansowanej technologii laserowej.
