@@ -44,26 +44,30 @@ if (beforeAfterImages.length > 0) {
         
         <div class="grid grid-cols-1 gap-16 md:gap-24">
           {beforeAfterImages.length > 0 && (
-            <div class="flex flex-col md:flex-row gap-8 items-center">
+            <div class="flex flex-col md:flex-row gap-8 items-stretch">
               {/* Before Image */}
               <div class="md:w-1/2">
-                <div class="relative overflow-hidden rounded-lg shadow-xl">
+                <div class="relative overflow-hidden rounded-lg shadow-xl h-full">
                   {useRegularImgBefore ? (
-                    <img
-                      src={beforeAfterImages[0].beforeImage}
-                      alt={`Przed: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-                      width="600"
-                      height="450"
-                      class="w-full h-auto"
-                    />
+                    <div class="aspect-[4/3] h-full w-full">
+                      <img
+                        src={beforeAfterImages[0].beforeImage}
+                        alt={`Przed: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
+                        width="600"
+                        height="450"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
                   ) : (
-                    <Image
-                      src={beforeImageImport}
-                      alt={`Przed: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-                      width={600}
-                      height={450}
-                      class="w-full h-auto"
-                    />
+                    <div class="aspect-[4/3] h-full w-full">
+                      <Image
+                        src={beforeImageImport}
+                        alt={`Przed: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
+                        width={600}
+                        height={450}
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
                   )}
                   <div class="absolute top-0 left-0 bg-black bg-opacity-70 text-white px-4 py-2 text-sm font-semibold">
                     {beforeAfterImages[0].beforeCaption || "Przed"}
@@ -73,23 +77,27 @@ if (beforeAfterImages.length > 0) {
               
               {/* After Image */}
               <div class="md:w-1/2">
-                <div class="relative overflow-hidden rounded-lg shadow-xl">
+                <div class="relative overflow-hidden rounded-lg shadow-xl h-full">
                   {useRegularImgAfter ? (
-                    <img
-                      src={beforeAfterImages[0].afterImage}
-                      alt={`Po: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-                      width="600"
-                      height="450"
-                      class="w-full h-auto"
-                    />
+                    <div class="aspect-[4/3] h-full w-full">
+                      <img
+                        src={beforeAfterImages[0].afterImage}
+                        alt={`Po: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
+                        width="600"
+                        height="450"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
                   ) : (
-                    <Image
-                      src={afterImageImport}
-                      alt={`Po: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-                      width={600}
-                      height={450}
-                      class="w-full h-auto"
-                    />
+                    <div class="aspect-[4/3] h-full w-full">
+                      <Image
+                        src={afterImageImport}
+                        alt={`Po: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
+                        width={600}
+                        height={450}
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
                   )}
                   <div class="absolute top-0 left-0 bg-black bg-opacity-70 text-white px-4 py-2 text-sm font-semibold">
                     {beforeAfterImages[0].afterCaption || "Po"}
