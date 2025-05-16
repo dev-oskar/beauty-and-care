@@ -433,12 +433,6 @@ export default defineConfig({
 						},
 					},
 					{
-						type: "image",
-						name: "heroImage",
-						label: "Zdjęcie główne",
-						required: false,
-					},
-					{
 						type: "string",
 						name: "tags",
 						label: "Tagi",

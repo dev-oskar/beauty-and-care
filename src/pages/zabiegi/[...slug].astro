@@ -51,23 +51,7 @@ if (allProcedures.length > 0) {
 	) as typeof allProcedures;
 }
 
-const getPublicAssetPath = (image) => {
-	if (!image?.src) return "";
-
-	// Normalize the path by removing leading slash for consistent handling
-	const srcPath = image.src.startsWith("/") ? image.src.substring(1) : image.src;
-
-	// Check if path starts with 'assets' (after normalization)
-	if (srcPath.startsWith("assets")) {
-		return `public/${srcPath}`;
-	}
-
-	return "";
-};
-
-// Usage
-const heroImagePath = getPublicAssetPath(procedure.data.heroImage);
-console.log(heroImagePath);
+// Image processing code has been removed since heroImage property was removed
 ---
 
 <BaseLayout
@@ -78,27 +62,13 @@ console.log(heroImagePath);
 	canonicalUrl={procedure.data.canonicalUrl}
 	noindex={procedure.data.noindex}
 	keywords={procedure.data.keywords}
-	heroImage={procedure.data.heroImage}
 	tags={procedure.data.tags}
 >
 	<div class="site-container pt-24 md:pt-36">
 		<article class="mx-auto max-w-4xl pb-12">
 			<h1 class="h2 text-center text-pretty">{procedure.data.title}</h1>
 
-			<!-- Service image -->
-			{
-				procedure.data.heroImage && (
-					<div class="mt-8 overflow-hidden rounded-lg shadow-md">
-						<Image
-							src={heroImagePath}
-							alt={procedure.data.title}
-							width={1000}
-							height={563}
-							class="h-auto w-full"
-						/>
-					</div>
-				)
-			}
+			{/* Service image section removed */}
 
 			<!-- Price, date and location info -->
 			<div class="mt-6 flex flex-wrap justify-center gap-4">
@@ -199,17 +169,7 @@ console.log(heroImagePath);
 						{relatedProcedures.map((relatedZabieg) => (
 							<a href={`/zabiegi/${relatedZabieg.slug}`} class="group block">
 								<div class="border-base-200 flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
-									{relatedZabieg.data.heroImage && (
-										<div class="aspect-video overflow-hidden">
-											<Image
-												src={relatedZabieg.data.heroImage}
-												alt={relatedZabieg.data.title}
-												width={300}
-												height={169}
-												class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-											/>
-										</div>
-									)}
+									{/* Related service image removed */}
 									<div class="flex-grow p-4">
 										<h3 class="group-hover:text-primary-600 text-lg font-semibold transition-colors">
 											{relatedZabieg.data.title}

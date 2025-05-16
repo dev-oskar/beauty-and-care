@@ -62,17 +62,7 @@ zabiegi.sort((a, b) => {
 								{zabieg.data.title}
 							</h3>
 
-							{zabieg.data.heroImage && (
-								<div class="mb-4 aspect-video overflow-hidden rounded-md">
-									<Image
-										src={zabieg.data.heroImage}
-										alt={zabieg.data.title}
-										width={400}
-										height={225}
-										class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-									/>
-								</div>
-							)}
+							{/* Service image section removed */}
 
 							<div class="flex flex-wrap items-center justify-between">
 								{zabieg.data.date && (

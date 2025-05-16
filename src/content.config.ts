@@ -88,11 +88,10 @@ const posts = defineCollection({
 // Zabiegi collection (services)
 const zabiegi = defineCollection({
 	type: "content",
-	schema: ({ image }) =>
+	schema: () =>
 		z.object({
 			title: z.string(),
 			description: z.string(),
-			heroImage: image().optional(),
 			date: z.coerce.date().optional(),
 			location: z.string().optional(),
 			clients: z.array(z.string()).optional(),
