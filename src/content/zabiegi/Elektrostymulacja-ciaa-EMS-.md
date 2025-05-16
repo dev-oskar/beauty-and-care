@@ -20,7 +20,7 @@ keywords:
   - modelowanie ciała
   - ujędrnianie ciała
   - "odchudzanie "
-  - redukcja ntkanki tłuszczowej
+  - redukcja tkanki tłuszczowej
 ---
 
 Celem zabiegu jest wymuszenie intensywnej pracy mięśni, co prowadzi do ich wzmocnienia oraz szybkiej redukcji tkanki tłuszczowej. Dzięki EMS możliwe jest jednoczesne rozbudowanie masy mięśniowej oraz skuteczne modelowanie sylwetki w sposób nieinwazyjny i bezpieczny.
