@@ -8,6 +8,8 @@ import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import { formatDate } from "../../utils/dateUtils";
+import { getFilenameFromPath } from "../../utils/getImagePath";
+import { getImageByFilename } from "../../utils/imageUtils";
 
 // Define all possible service slugs for static generation
 export async function getStaticPaths() {
@@ -29,14 +31,20 @@ const { Content } = await procedure.render();
 
 // Process the image if available
 // Astro's Image component requires an import or a valid image object, not just a string path
-// We'll use a flag to check if we have a valid image path
 let hasFeaturedImage = false;
-let featuredImagePath = "";
+let featuredImageImport = null;
+let useRegularImg = true;
+
 if (procedure.data.featuredImage) {
 	console.log("Featured Image:", procedure.data.featuredImage);
-	// TinaCMS returns a string path to the image in the format "/assets/images/imagename.jpg"
 	hasFeaturedImage = true;
-	featuredImagePath = procedure.data.featuredImage;
+	
+	// Extract the filename and get the imported image
+	const filename = getFilenameFromPath(procedure.data.featuredImage);
+	featuredImageImport = getImageByFilename(filename);
+	
+	// Determine if we need to fall back to a regular img tag
+	useRegularImg = !featuredImageImport;
 }
 ---
 
@@ -58,11 +66,19 @@ if (procedure.data.featuredImage) {
 			{
 				hasFeaturedImage && (
 					<div class="mt-8 mb-6 overflow-hidden rounded-lg shadow-md">
-						<img 
-							src={featuredImagePath}
-							alt={procedure.data.title}
-							class="mx-auto h-auto max-h-[500px] w-full max-w-3xl object-cover"
-						/>
+						{useRegularImg ? (
+							<img 
+								src={procedure.data.featuredImage}
+								alt={procedure.data.title}
+								class="mx-auto h-auto max-h-[500px] w-full max-w-3xl object-cover"
+							/>
+						) : (
+							<Image 
+								src={featuredImageImport}
+								alt={procedure.data.title}
+								class="mx-auto h-auto max-h-[500px] w-full max-w-3xl object-cover"
+							/>
+						)}
 					</div>
 				)
 			}

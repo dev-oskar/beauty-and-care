@@ -7,13 +7,15 @@
 export function normalizeImagePath(src: string): string {
 	if (!src) return "";
 	
-	// If it starts with /assets/images/, adjust the path
+	// If it starts with /assets/images/, use the new path structure from src/assets/images
 	if (src.startsWith("/assets/images/")) {
-		return `/public${src}`;
+		// We need to dynamically import these images
+		const filename = getFilenameFromPath(src);
+		return `/src/assets/images/${filename}`;
 	} 
 	// If it doesn't include a path separator, assume it's in the images directory
 	else if (!src.includes("/")) {
-		return `/public/assets/images/${src}`;
+		return `/src/assets/images/${src}`;
 	}
 	
 	// Return as is if it's already a valid path
