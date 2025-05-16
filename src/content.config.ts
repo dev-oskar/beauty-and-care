@@ -1,5 +1,4 @@
 import { defineCollection, reference, z } from "astro:content";
-// import { glob } from "astro/loaders";
 
 // Site settings collection
 const settings = defineCollection({

@@ -2,10 +2,9 @@
 import { getCollection } from "astro:content";
 import Button from "@components/Button/Button.astro";
 import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 import { getSiteSettings } from "@/utils/getSiteSettings";
-
-// Dynamic imports for images
-const imageModules = import.meta.glob('/public/assets/images/*.{png,jpg,jpeg,gif,webp}');
+import { normalizeImagePath, getFilenameFromPath } from "@/utils/getImagePath";
 
 // Get gallery entries from collection
 const galleries = await getCollection("gallery");
@@ -15,98 +14,86 @@ const featuredGallery = galleries.length > 0 ? galleries[0] : null;
 
 // Get site settings with about content
 const siteSettings = await getSiteSettings();
-const aboutContent = siteSettings?.about?.content || "Nasz salon specjalizuje się w innowacyjnych zabiegach kosmetycznych z wykorzystaniem najnowszych technologii. Oferujemy kompleksowe usługi z zakresu liftingu bez skalpela, terapii bioelektrycznej oraz modelowania sylwetki. Każdy zabieg przeprowadzany jest przez certyfikowanych specjalistów, którzy indywidualnie dopasowują metody do potrzeb i oczekiwań klienta.";
+const aboutContent = siteSettings?.about?.content || 
+  "Nasz salon specjalizuje się w innowacyjnych zabiegach kosmetycznych z wykorzystaniem najnowszych technologii. Oferujemy kompleksowe usługi z zakresu liftingu bez skalpela, terapii bioelektrycznej oraz modelowania sylwetki. Każdy zabieg przeprowadzany jest przez certyfikowanych specjalistów, którzy indywidualnie dopasowują metody do potrzeb i oczekiwań klienta.";
 const aboutTitle = siteSettings?.about?.title || "O naszym salonie";
 const aboutSignature = siteSettings?.about?.signature || "Zespół Beauty and Care";
 
-// Get the first image for the showcase
-let firstImageSrc = "";
-// Use correct typing for the image module function
-let firstImageModule: (() => Promise<any>) | undefined = undefined;
-
-// Helper function to get the correct image path
-const getImagePath = (src: string): string => {
-  if (src.startsWith('/assets/images/')) {
-    // Use the path as is since images are now in public/assets/images/
-    return `/public${src}`;
-  }
-  return `/public/assets/images/${src}`;
-};
-
-// Helper to extract just the filename
-const getJustFilename = (path: string): string => {
-  if (path.includes('/')) {
-    const parts = path.split('/');
-    return parts[parts.length - 1];
-  }
-  return path;
-};
+// Process the first image if available
+let processedImage;
+let fallbackImagePath = "";
 
 if (featuredGallery && featuredGallery.data.images && featuredGallery.data.images.length > 0) {
-  // Get full source from first image
-  firstImageSrc = featuredGallery.data.images[0].src;
-  
-  // Get correct module path based on source format
-  const imagePath = getImagePath(firstImageSrc);
-  
-  // Check if the image exists in our asset imports
-  if (imageModules[imagePath]) {
-    firstImageModule = imageModules[imagePath];
-  }
+	// Get the first image for the showcase
+	const firstImageSrc = featuredGallery.data.images[0].src;
+	fallbackImagePath = `/images/${getFilenameFromPath(firstImageSrc)}`;
+	
+	try {
+		// Process the image with getImage
+		processedImage = await getImage({
+			src: await normalizeImagePath(firstImageSrc),
+			width: 600,
+			height: 450,
+			format: "webp",
+			quality: 80,
+		});
+	} catch (error) {
+		console.error("Error processing featured gallery image:", error);
+	}
 }
 ---
 
 {featuredGallery && (
-  <section class="site-container py-16 md:py-24 overflow-hidden">
-    <div class="mx-auto max-w-6xl">
-      <div class="flex flex-col md:flex-row items-center gap-10">
-        <!-- Images -->
-        <div class="md:w-1/2 relative">
-          <div class="relative z-10 overflow-hidden rounded-lg shadow-xl">
-            {firstImageModule !== undefined ? (
-              <Image 
-                src={firstImageModule()} 
-                alt={featuredGallery.data.title} 
-                width={600} 
-                height={450}
-                class="w-full h-auto transform transition-transform duration-700 hover:scale-105"
-              />
-            ) : (
-              <img 
-                src={`/images/${getJustFilename(firstImageSrc)}`} 
-                alt={featuredGallery.data.title} 
-                width="600" 
-                height="450"
-                class="w-full h-auto transform transition-transform duration-700 hover:scale-105"
-              />
-            )}
-          </div>
-        </div>
-        
-        <!-- Content -->
-        <div class="md:w-1/2">
-          <div class="bg-gray-50 p-8 rounded-lg">
-            <span class="text-sm uppercase tracking-wider text-gray-600 font-semibold">Nasza Galeria</span>
-            <h2 class="text-3xl font-bold mt-2 mb-4">{featuredGallery.data.title}</h2>
-            <p class="text-gray-700 mb-6">{featuredGallery.data.description}</p>
-            
-            <div class="flex flex-wrap gap-4">
-              <Button href="/galeria" variant="primary">
-                Zobacz galerię
-              </Button>
-            </div>
-            
-            <!-- About Me section -->
-            <div class="mt-8 border-t pt-6">
-              <h3 class="text-xl font-semibold mb-3">{aboutTitle}</h3>
-              <p class="text-gray-700 mb-3">
-                {aboutContent}
-              </p>
-              <p class="text-right italic text-gray-600">- {aboutSignature}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+	<section class="site-container py-16 md:py-24 overflow-hidden">
+		<div class="mx-auto max-w-6xl">
+			<div class="flex flex-col md:flex-row items-center gap-10">
+				<!-- Images -->
+				<div class="md:w-1/2 relative">
+					<div class="relative z-10 overflow-hidden rounded-lg shadow-xl">
+						{processedImage ? (
+							<img 
+								src={processedImage.src} 
+								width={processedImage.attributes.width}
+								height={processedImage.attributes.height}
+								alt={featuredGallery.data.title}
+								class="w-full h-auto transform transition-transform duration-700 hover:scale-105"
+							/>
+						) : (
+							<img 
+								src={fallbackImagePath} 
+								alt={featuredGallery.data.title}
+								width="600"
+								height="450"
+								class="w-full h-auto transform transition-transform duration-700 hover:scale-105"
+							/>
+						)}
+					</div>
+				</div>
+				
+				<!-- Content -->
+				<div class="md:w-1/2">
+					<div class="bg-gray-50 p-8 rounded-lg">
+						<span class="text-sm uppercase tracking-wider text-gray-600 font-semibold">Nasza Galeria</span>
+						<h2 class="text-3xl font-bold mt-2 mb-4">{featuredGallery.data.title}</h2>
+						<p class="text-gray-700 mb-6">{featuredGallery.data.description}</p>
+						
+						<div class="flex flex-wrap gap-4">
+							<Button href="/galeria" variant="primary">
+								Zobacz galerię
+							</Button>
+						</div>
+						
+						<!-- About Me section -->
+						<div class="mt-8 border-t pt-6">
+							<h3 class="text-xl font-semibold mb-3">{aboutTitle}</h3>
+							<p class="text-gray-700 mb-3">
+								{aboutContent}
+							</p>
+							<p class="text-right italic text-gray-600">- {aboutSignature}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
 )}

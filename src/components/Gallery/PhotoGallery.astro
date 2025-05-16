@@ -3,16 +3,16 @@ import GalleryItem from "./GalleryItem.astro";
 import Lightbox from "./Lightbox.astro";
 
 interface GalleryImage {
-  src: string | any;
-  caption?: string;
-  alt?: string;
-  galleryTitle?: string;
-  galleryDescription?: string;
+	src: string;
+	caption?: string;
+	alt?: string;
+	galleryTitle?: string;
+	galleryDescription?: string;
 }
 
 interface Props {
-  images: GalleryImage[];
-  totalCount?: number;
+	images: GalleryImage[];
+	totalCount?: number;
 }
 
 const { images, totalCount } = Astro.props;
@@ -22,79 +22,82 @@ const galleryId = `gallery-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
 <div class="photo-gallery" id={galleryId}>
-  {/* Total count display */}
-  {totalCount && (
-    <div class="text-center mb-6">
-      <p class="text-gray-600">
-        <span class="font-medium">{totalCount}</span> {totalCount === 1 ? 'zdjęcie' : totalCount < 5 ? 'zdjęcia' : 'zdjęć'} w galerii
-      </p>
-    </div>
-  )}
+	{totalCount !== undefined && (
+		<div class="text-center mb-6">
+			<p class="text-gray-600">
+				<span class="font-medium">{totalCount}</span> {
+					totalCount === 1 
+						? 'zdjęcie' 
+						: totalCount < 5 ? 'zdjęcia' : 'zdjęć'
+				} w galerii
+			</p>
+		</div>
+	)}
 
-  {/* Gallery grid */}
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gallery-container">
-    {images.map((image, index) => (
-      <GalleryItem image={image} index={index} />
-    ))}
-  </div>
+	{/* Gallery grid */}
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gallery-container">
+		{images.map((image, index) => (
+			<GalleryItem image={image} index={index} />
+		))}
+	</div>
 </div>
 
 <!-- Lightbox component -->
 <Lightbox galleryId={galleryId} />
 
 <script>
-  // Add lazy loading observer for performance
-  document.addEventListener('DOMContentLoaded', function() {
-    // Only run if IntersectionObserver is supported
-    if ('IntersectionObserver' in window) {
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      
-      const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const item = entry.target;
-            item.classList.add('is-visible');
-            
-            // Stop observing after animation is complete
-            setTimeout(() => {
-              observer.unobserve(item);
-            }, 500);
-          }
-        });
-      }, {
-        rootMargin: '200px 0px', // Load images 200px before they come into view
-        threshold: 0.1
-      });
-      
-      // Observe each gallery item
-      galleryItems.forEach(item => {
-        // Add initial opacity class
-        item.classList.add('opacity-0', 'transition-opacity', 'duration-500');
-        lazyLoadObserver.observe(item);
-      });
-      
-      // Add CSS rule for visible elements
-      const style = document.createElement('style');
-      style.textContent = '.gallery-item.is-visible { opacity: 1 !important; }';
-      document.head.appendChild(style);
-    } else {
-      // Fallback for browsers that don't support IntersectionObserver
-      document.querySelectorAll('.gallery-item').forEach(item => {
-        item.classList.add('opacity-100');
-      });
-    }
-  });
+	// Add lazy loading observer for performance
+	document.addEventListener('DOMContentLoaded', function() {
+		// Only run if IntersectionObserver is supported
+		if ('IntersectionObserver' in window) {
+			const galleryItems = document.querySelectorAll('.gallery-item');
+			
+			const lazyLoadObserver = new IntersectionObserver((entries, observer) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const item = entry.target;
+						item.classList.add('is-visible');
+						
+						// Stop observing after animation is complete
+						setTimeout(() => {
+							observer.unobserve(item);
+						}, 500);
+					}
+				});
+			}, {
+				rootMargin: '200px 0px', // Load images 200px before they come into view
+				threshold: 0.1
+			});
+			
+			// Observe each gallery item
+			galleryItems.forEach(item => {
+				// Add initial opacity class
+				item.classList.add('opacity-0', 'transition-opacity', 'duration-500');
+				lazyLoadObserver.observe(item);
+			});
+			
+			// Add CSS rule for visible elements
+			const style = document.createElement('style');
+			style.textContent = '.gallery-item.is-visible { opacity: 1 !important; }';
+			document.head.appendChild(style);
+		} else {
+			// Fallback for browsers that don't support IntersectionObserver
+			document.querySelectorAll('.gallery-item').forEach(item => {
+				item.classList.add('opacity-100');
+			});
+		}
+	});
 </script>
 
 <style>
-  /* Ensure grid items have consistent height */
-  .gallery-container {
-    contain: layout;
-  }
-  
-  @media (max-width: 640px) {
-    .gallery-container {
-      gap: 1rem;
-    }
-  }
+	/* Ensure grid items have consistent height */
+	.gallery-container {
+		contain: layout;
+	}
+	
+	@media (max-width: 640px) {
+		.gallery-container {
+			gap: 1rem;
+		}
+	}
 </style>

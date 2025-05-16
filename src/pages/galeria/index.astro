@@ -2,21 +2,31 @@
 import BaseLayout from "@layouts/BaseLayout.astro";
 import PhotoGalleryGrid from "@components/Gallery/PhotoGalleryGrid.astro";
 import Contact from "@components/Contact/Contact.astro";
-import siteData from "@config/siteData.json";
+import { getSiteSettings } from "@/utils/getSiteSettings";
+
+// Get site settings for SEO
+const siteSettings = await getSiteSettings();
+const gallerySeo = siteSettings?.pages?.gallery || {};
+
+const title = gallerySeo.seoTitle || "Galeria | Beauty and Care";
+const description = gallerySeo.seoDescription || "Galeria zabiegów kosmetycznych i efektów naszej pracy w salonie Beauty and Care. Zobacz przykłady naszych usług i ich rezultaty.";
+const keywords = gallerySeo.keywords;
+const canonicalUrl = gallerySeo.canonicalUrl;
+const noindex = gallerySeo.noindex;
 ---
 
 <BaseLayout
-  title="Galeria | Beauty and Care"
-  description="Galeria zabiegów kosmetycznych i efektów naszej pracy w salonie Beauty and Care. Zobacz przykłady naszych usług i ich rezultaty."
-  seoTitle={siteData.pages?.gallery?.seoTitle}
-  seoDescription={siteData.pages?.gallery?.seoDescription}
-  keywords={siteData.pages?.gallery?.keywords}
-  canonicalUrl={siteData.pages?.gallery?.canonicalUrl}
-  noindex={siteData.pages?.gallery?.noindex}
+	title={title}
+	description={description}
+	seoTitle={title}
+	seoDescription={description}
+	keywords={keywords}
+	canonicalUrl={canonicalUrl}
+	noindex={noindex}
 >
-  <div class="site-container pt-24 md:pt-36">
-    <PhotoGalleryGrid />
-  </div>
+	<div class="site-container pt-24 md:pt-36">
+		<PhotoGalleryGrid />
+	</div>
 
-  <Contact class="mt-16" />
+	<Contact class="mt-16" />
 </BaseLayout>
