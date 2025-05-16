@@ -7,7 +7,6 @@ import SiteLogo from "@components/SiteLogo/SiteLogo.astro";
 
 // site settings
 import { getSiteSettings } from "../../utils/getSiteSettings";
-import siteData from "@config/siteData.json";
 
 const today = new Date();
 const siteSettings = await getSiteSettings();
@@ -46,35 +45,43 @@ const siteSettings = await getSiteSettings();
 
 		<!-- socials -->
 		<div class="text-primary-500 mt-8 flex justify-center gap-4">
-			{siteSettings.social.facebook && (
-				<a href={siteSettings.social.facebook} target="_blank" rel="noopener noreferrer">
-					<Icon name="socials/mdi-facebook" class="size-6 transition hover:opacity-80" />
-					<span class="sr-only">Facebook</span>
-				</a>
-			)}
-			{siteSettings.social.instagram && (
-				<a href={siteSettings.social.instagram} target="_blank" rel="noopener noreferrer">
-					<Icon name="socials/basil-instagram-solid" class="size-6 transition hover:opacity-80" />
-					<span class="sr-only">Instagram</span>
-				</a>
-			)}
-			{siteSettings.social.twitter && (
-				<a href={siteSettings.social.twitter} target="_blank" rel="noopener noreferrer">
-					<Icon name="socials/mdi-twitter" class="size-6 transition hover:opacity-80" />
-					<span class="sr-only">Twitter</span>
-				</a>
-			)}
-			{siteSettings.social.youtube && (
-				<a href={siteSettings.social.youtube} target="_blank" rel="noopener noreferrer">
-					<Icon name="socials/mdi-youtube" class="size-6 transition hover:opacity-80" />
-					<span class="sr-only">YouTube</span>
-				</a>
-			)}
+			{
+				siteSettings.social.facebook && (
+					<a href={siteSettings.social.facebook} target="_blank" rel="noopener noreferrer">
+						<Icon name="socials/mdi-facebook" class="size-6 transition hover:opacity-80" />
+						<span class="sr-only">Facebook</span>
+					</a>
+				)
+			}
+			{
+				siteSettings.social.instagram && (
+					<a href={siteSettings.social.instagram} target="_blank" rel="noopener noreferrer">
+						<Icon name="socials/basil-instagram-solid" class="size-6 transition hover:opacity-80" />
+						<span class="sr-only">Instagram</span>
+					</a>
+				)
+			}
+			{
+				siteSettings.social.twitter && (
+					<a href={siteSettings.social.twitter} target="_blank" rel="noopener noreferrer">
+						<Icon name="socials/mdi-twitter" class="size-6 transition hover:opacity-80" />
+						<span class="sr-only">Twitter</span>
+					</a>
+				)
+			}
+			{
+				siteSettings.social.youtube && (
+					<a href={siteSettings.social.youtube} target="_blank" rel="noopener noreferrer">
+						<Icon name="socials/mdi-youtube" class="size-6 transition hover:opacity-80" />
+						<span class="sr-only">YouTube</span>
+					</a>
+				)
+			}
 		</div>
 
 		<!-- copyright -->
 		<div class="mt-4 mb-2 text-center text-sm opacity-80">
-			&copy; {today.getFullYear()} Beauty and Care - 
+			&copy; {today.getFullYear()} Beauty and Care -
 			<a
 				href="https://cosmicthemes.com"
 				class="hover:text-primary-600 transition"
