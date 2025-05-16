@@ -3,7 +3,7 @@ date: '2025-04-10T00:00:00.000Z'
 location: Beauty and Care
 order: 3
 title: Karboksyterapia - Terapia dwutlenkiem węgla
-featuredImage: /assets/images/kosmetologia.png
+featuredImage: /background-hero-new.jpg
 description: >-
   Naturalny zabieg odmładzający z wykorzystaniem dwutlenku węgla, skutecznie
   redukujący cellulit, rozstępy i poprawiający krążenie.

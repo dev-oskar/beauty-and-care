@@ -1,5 +1,6 @@
 ---
-title: "Elektrostymulacja ciała EMS "
+title: 'Elektrostymulacja ciała EMS '
+featuredImage: /ems-body-sculpt.jpg
 description: >-
   Elektrostymulacja ciała EMS to nowoczesna metoda oparta na zaawansowanej
   elektrostymulacji mięśni i nerwów.
@@ -10,15 +11,15 @@ tags:
   - Elektrostymulacja ciała
 clients:
   - Przygotowanie do intensywnych treningów
-  - "Słabe mięśnie brzucha "
-  - "Opadające, płaskie pośladki  "
-  - "Wiotkość brzucha i talii  "
-seoTitle: "Elektrostymulacja ciała EMS "
+  - 'Słabe mięśnie brzucha '
+  - 'Opadające, płaskie pośladki  '
+  - 'Wiotkość brzucha i talii  '
+seoTitle: 'Elektrostymulacja ciała EMS '
 seoDescription: Zabiegi EMS prowadzą do wzmocnienia oraz szybkiej redukcji tkanki tłuszczowej.
 keywords:
   - modelowanie ciała
   - ujędrnianie ciała
-  - "odchudzanie "
+  - 'odchudzanie '
   - redukcja tkanki tłuszczowej
 ---
 
