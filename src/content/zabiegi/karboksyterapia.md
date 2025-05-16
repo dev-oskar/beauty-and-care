@@ -1,7 +1,6 @@
 ---
 title: Karboksyterapia - Terapia dwutlenkiem węgla
 description: Naturalny zabieg odmładzający z wykorzystaniem dwutlenku węgla, skutecznie redukujący cellulit, rozstępy i poprawiający krążenie.
-heroImage: /src/assets/images/1.jpg
 date: 2025-04-10
 location: Beauty and Care
 clients:
@@ -49,6 +48,7 @@ Dzięki temu skóra staje się lepiej odżywiona, bardziej elastyczna i młodsza
 Zależnie od obszaru zabiegowego, karboksyterapia przynosi następujące efekty:
 
 ### Twarz:
+
 - Redukcja drobnych zmarszczek
 - Poprawa napięcia i elastyczności skóry
 - Rozjaśnienie cieni pod oczami
@@ -56,6 +56,7 @@ Zależnie od obszaru zabiegowego, karboksyterapia przynosi następujące efekty:
 - Poprawa owalu twarzy
 
 ### Ciało:
+
 - Znacząca redukcja cellulitu
 - Zmniejszenie rozstępów
 - Redukcja tkanki tłuszczowej
@@ -89,6 +90,7 @@ Podczas zabiegu można odczuwać lekkie pieczenie, rozpieranie lub mrowienie, kt
 ## Dla kogo polecamy karboksyterapię?
 
 Zabieg jest polecany dla osób, które:
+
 - Zmagają się z cellulitem
 - Mają rozstępy lub blizny
 - Obserwują oznaki starzenia skóry
@@ -99,6 +101,7 @@ Zabieg jest polecany dla osób, które:
 ## Przeciwwskazania
 
 Karboksyterapii nie wykonujemy u osób:
+
 - W ciąży i karmiących piersią
 - Z niewyrównaną cukrzycą
 - Z chorobami nowotworowymi
@@ -112,6 +115,7 @@ Karboksyterapii nie wykonujemy u osób:
 ## Zalecana seria zabiegów
 
 Dla osiągnięcia optymalnych rezultatów zalecamy serię 6-12 zabiegów wykonywanych z częstotliwością:
+
 - Twarz: 1-2 zabiegi tygodniowo
 - Ciało: 1 zabieg tygodniowo
 

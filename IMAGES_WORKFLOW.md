@@ -4,7 +4,7 @@ This guide explains how to manage images in your Beauty and Care website using T
 
 ## How Image Management Works
 
-1. **Where Images Are Stored**: All images are stored in the `/src/assets/images/` directory
+1. **Where Images Are Stored**: All images are stored in the `/public/assets/images/` directory
 2. **How They're Referenced**: The gallery configuration in `src/content/gallery/main-gallery.md` references these images by filename
 
 ## Adding New Images to the Gallery
@@ -14,7 +14,7 @@ This guide explains how to manage images in your Beauty and Care website using T
 1. Log into the Tina CMS admin panel at `/admin`
 2. Click on "Media" in the sidebar to access the media manager
 3. Click "Upload" to add new images
-4. The images will be automatically stored in the correct location (`src/assets/images/`)
+4. The images will be automatically stored in the correct location (`public/assets/images/`)
 
 ### Step 2: Add Images to Gallery
 
@@ -35,7 +35,7 @@ After making changes:
 
 If your images don't appear in the gallery:
 
-1. **Check Image Path**: Make sure images are stored in `src/assets/images/`
+1. **Check Image Path**: Make sure images are stored in `public/assets/images/`
 2. **Check Image References**: In the gallery configuration, images should be referenced by filename only (e.g., "my-image.jpg"), not full path
 3. **Verify Image Format**: Use supported image formats (JPG, PNG, WebP, GIF)
 4. **Rebuild the Site**: Make sure to rebuild the site after adding new images
