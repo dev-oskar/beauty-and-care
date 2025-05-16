@@ -8,7 +8,7 @@ const siteSettings = await getSiteSettings();
 const aboutContent = siteSettings?.about?.content;
 const aboutTitle = siteSettings?.about?.title;
 const aboutSignature = siteSettings?.about?.signature;
-const aboutImage = siteSettings?.about?.aboutImage;
+const aboutImage = siteSettings?.about?.aboutImage || "";
 ---
 
 <section class="site-container overflow-hidden py-16 md:py-24">
@@ -17,19 +17,17 @@ const aboutImage = siteSettings?.about?.aboutImage;
 			<!-- Featured Image -->
 			<div class="relative md:w-1/2">
 				<div class="relative z-10 overflow-hidden rounded-lg shadow-xl">
-					{aboutImage ? (
-						<Image
-							src={aboutImage}
-							alt="Galeria zabiegów"
-							width="600"
-							height="450"
-							class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
-						/>
-					) : (
-						<div class="bg-gray-200 w-full h-[450px] flex items-center justify-center">
-							<p>Image not available</p>
-						</div>
-					)}
+					{
+						(
+							<Image
+								src={aboutImage}
+								alt="Galeria zabiegów"
+								width="600"
+								height="450"
+								class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
+							/>
+						)
+					}
 				</div>
 			</div>
 

@@ -44,7 +44,6 @@ const gallery = defineCollection({
 		z.object({
 			title: z.string(),
 			description: z.string().optional(),
-			coverImage: image().optional(),
 			images: z
 				.array(
 					z.object({
