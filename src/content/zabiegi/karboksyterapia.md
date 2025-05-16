@@ -1,24 +1,29 @@
 ---
-title: Karboksyterapia - Terapia dwutlenkiem węgla
-description: Naturalny zabieg odmładzający z wykorzystaniem dwutlenku węgla, skutecznie redukujący cellulit, rozstępy i poprawiający krążenie.
-date: 2025-04-10
+date: '2025-04-10T00:00:00.000Z'
 location: Beauty and Care
-clients:
-  - Osoby z cellulitem
-  - Osoby z rozstępami
-  - Skóra z oznakami starzenia
-  - Miejscowe depozyty tkanki tłuszczowej
-  - Problemy z krążeniem
+order: 3
+title: Karboksyterapia - Terapia dwutlenkiem węgla
+featuredImage: /assets/images/kosmetologia.png
+description: >-
+  Naturalny zabieg odmładzający z wykorzystaniem dwutlenku węgla, skutecznie
+  redukujący cellulit, rozstępy i poprawiający krążenie.
 tags:
   - karboksyterapia
   - cellulit
   - rozstępy
   - odmładzanie
   - co2
-order: 3
 priceRange: 200-600 zł
+clients:
+  - Osoby z cellulitem
+  - Osoby z rozstępami
+  - Skóra z oznakami starzenia
+  - Miejscowe depozyty tkanki tłuszczowej
+  - Problemy z krążeniem
 seoTitle: Karboksyterapia - Terapia dwutlenkiem węgla | Beauty and Care
-seoDescription: Innowacyjna terapia dwutlenkiem węgla redukująca cellulit, rozstępy i zmarszczki. Naturalne odmładzanie i poprawa krążenia w Beauty and Care.
+seoDescription: >-
+  Innowacyjna terapia dwutlenkiem węgla redukująca cellulit, rozstępy i
+  zmarszczki. Naturalne odmładzanie i poprawa krążenia w Beauty and Care.
 keywords:
   - karboksyterapia
   - dwutlenek węgla
@@ -49,31 +54,31 @@ Zależnie od obszaru zabiegowego, karboksyterapia przynosi następujące efekty:
 
 ### Twarz:
 
-- Redukcja drobnych zmarszczek
-- Poprawa napięcia i elastyczności skóry
-- Rozjaśnienie cieni pod oczami
-- Zmniejszenie podwójnego podbródka
-- Poprawa owalu twarzy
+* Redukcja drobnych zmarszczek
+* Poprawa napięcia i elastyczności skóry
+* Rozjaśnienie cieni pod oczami
+* Zmniejszenie podwójnego podbródka
+* Poprawa owalu twarzy
 
 ### Ciało:
 
-- Znacząca redukcja cellulitu
-- Zmniejszenie rozstępów
-- Redukcja tkanki tłuszczowej
-- Poprawa struktury i jędrności skóry
-- Regeneracja blizn
+* Znacząca redukcja cellulitu
+* Zmniejszenie rozstępów
+* Redukcja tkanki tłuszczowej
+* Poprawa struktury i jędrności skóry
+* Regeneracja blizn
 
 ## Obszary zabiegowe
 
 Karboksyterapię można stosować na wielu obszarach ciała, w tym:
 
-- Twarz (okolice oczu, policzki, podbródek)
-- Szyja i dekolt
-- Brzuch
-- Pośladki
-- Uda (wewnętrzne i zewnętrzne)
-- Ramiona
-- Skóra głowy (przy problemach z wypadaniem włosów)
+* Twarz (okolice oczu, policzki, podbródek)
+* Szyja i dekolt
+* Brzuch
+* Pośladki
+* Uda (wewnętrzne i zewnętrzne)
+* Ramiona
+* Skóra głowy (przy problemach z wypadaniem włosów)
 
 ## Przebieg zabiegu
 
@@ -91,32 +96,32 @@ Podczas zabiegu można odczuwać lekkie pieczenie, rozpieranie lub mrowienie, kt
 
 Zabieg jest polecany dla osób, które:
 
-- Zmagają się z cellulitem
-- Mają rozstępy lub blizny
-- Obserwują oznaki starzenia skóry
-- Mają problemy z lokalnym nagromadzeniem tkanki tłuszczowej
-- Cierpią na łysienie lub przerzedzenie włosów
-- Mają problemy z krążeniem
+* Zmagają się z cellulitem
+* Mają rozstępy lub blizny
+* Obserwują oznaki starzenia skóry
+* Mają problemy z lokalnym nagromadzeniem tkanki tłuszczowej
+* Cierpią na łysienie lub przerzedzenie włosów
+* Mają problemy z krążeniem
 
 ## Przeciwwskazania
 
 Karboksyterapii nie wykonujemy u osób:
 
-- W ciąży i karmiących piersią
-- Z niewyrównaną cukrzycą
-- Z chorobami nowotworowymi
-- Z ostrymi infekcjami
-- Z chorobami układu oddechowego
-- Z niewydolnością krążeniowo-oddechową
-- Z chorobami psychicznymi
-- Z epilepsją
-- Z gorączką
+* W ciąży i karmiących piersią
+* Z niewyrównaną cukrzycą
+* Z chorobami nowotworowymi
+* Z ostrymi infekcjami
+* Z chorobami układu oddechowego
+* Z niewydolnością krążeniowo-oddechową
+* Z chorobami psychicznymi
+* Z epilepsją
+* Z gorączką
 
 ## Zalecana seria zabiegów
 
 Dla osiągnięcia optymalnych rezultatów zalecamy serię 6-12 zabiegów wykonywanych z częstotliwością:
 
-- Twarz: 1-2 zabiegi tygodniowo
-- Ciało: 1 zabieg tygodniowo
+* Twarz: 1-2 zabiegi tygodniowo
+* Ciało: 1 zabieg tygodniowo
 
 Efekty są widoczne już po pierwszym zabiegu, ale najlepsze rezultaty uzyskuje się po pełnej serii. Dla podtrzymania efektu zalecamy zabiegi przypominające co 3-6 miesięcy.
