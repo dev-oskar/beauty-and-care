@@ -27,6 +27,17 @@ export interface SiteSettings {
 		signature?: string;
 		aboutImage?: string;
 	};
+	beforeAfter?: {
+		title?: string;
+		description?: string;
+		images?: Array<{
+			beforeImage: string;
+			beforeCaption?: string;
+			afterImage: string;
+			afterCaption?: string;
+			alt?: string;
+		}>;
+	};
 }
 
 // Default site settings (fallback if CMS data not available)
@@ -58,6 +69,27 @@ export const defaultSiteSettings: SiteSettings = {
 		signature: "Zespół Beauty and Care",
 		aboutImage: "/assets/images/2.jpg",
 	},
+	beforeAfter: {
+		title: "Przed i po",
+		description:
+			"Zobacz efekty naszych zabiegów na zdjęciach przed i po. Nasze innowacyjne metody przynoszą widoczne rezultaty już po pierwszej wizycie.",
+		images: [
+			{
+				beforeImage: "/assets/images/1.jpg",
+				beforeCaption: "Przed zabiegiem",
+				afterImage: "/assets/images/2.jpg",
+				afterCaption: "Po zabiegu",
+				alt: "Efekty zabiegu liftingu bez skalpela",
+			},
+			{
+				beforeImage: "/assets/images/3.jpg",
+				beforeCaption: "Przed zabiegiem",
+				afterImage: "/assets/images/4.jpg",
+				afterCaption: "Po zabiegu",
+				alt: "Efekty zabiegu modelowania sylwetki",
+			},
+		],
+	},
 };
 
 // Get site settings from collection
@@ -74,13 +106,15 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
 		// Get the first settings entry (we should only have one)
 		const settingsEntry = settingsCollection[0];
-		// Return the data
+
+		// Return the data including beforeAfter
 		return {
 			title: settingsEntry.data.title,
 			business: settingsEntry.data.business,
 			openingHours: settingsEntry.data.openingHours,
 			social: settingsEntry.data.social,
 			about: settingsEntry.data.about,
+			beforeAfter: settingsEntry.data.beforeAfter,
 		};
 	} catch (error) {
 		console.error("Error loading site settings:", error);

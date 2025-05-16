@@ -9,16 +9,16 @@ business:
   email: kontakt@beautyandcare.pl
 openingHours:
   - days: Poniedziałek - Piątek
-    hours: "10:00 - 20:00"
+    hours: '10:00 - 20:00'
   - days: Sobota
-    hours: "10:00 - 16:30"
+    hours: '10:00 - 16:30'
   - days: Niedziela
     hours: Zamknięte
 social:
-  facebook: "https://www.facebook.com/profile.php?id=61573434628290"
-  instagram: "https://instagram.com/beautyandcarepl"
-  twitter: ""
-  youtube: ""
+  facebook: 'https://www.facebook.com/profile.php?id=61573434628290'
+  instagram: 'https://instagram.com/beautyandcarepl'
+  twitter: ''
+  youtube: ''
 about:
   title: O naszym salonie
   content: >-
@@ -31,4 +31,21 @@ about:
     klientów.
   signature: Zespół Beauty and Care
   aboutImage: /assets/images/PXL_20250407_143954631.jpg
+beforeAfter:
+  title: Efekty zabiegów Beauty and Care
+  description: >-
+    Zobacz rezultaty naszych zabiegów - porównaj zdjęcia przed i po. Przekonaj
+    się o skuteczności naszych metod.
+  images:
+    - beforeImage: /assets/images/OxyGlow.jpg
+      beforeCaption: Przed zabiegiem
+      afterImage: /assets/images/Analiza skóry.jpg
+      afterCaption: Po zabiegu
+      alt: Efekt zabiegu modelowania sylwetki
+    - beforeImage: /assets/images/4.jpg
+      beforeCaption: Przed
+      afterImage: /assets/images/9.jpg
+      afterCaption: Po
+      alt: Efekt zabiegu na twarz
 ---
+

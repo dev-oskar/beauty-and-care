@@ -177,6 +177,69 @@ export default defineConfig({
 							},
 						],
 					},
+					{
+						type: "object",
+						name: "beforeAfter",
+						label: "Przed i po",
+						description: "Sekcja 'Przed i po' wyświetlana na stronie głównej",
+						fields: [
+							{
+								type: "string",
+								name: "title",
+								label: "Tytuł sekcji",
+								description: "Np. 'Efekty zabiegów', 'Zobacz efekty'",
+							},
+							{
+								type: "string",
+								name: "description",
+								label: "Opis sekcji",
+								ui: {
+									component: "textarea",
+								},
+							},
+							{
+								type: "object",
+								name: "images",
+								label: "Zdjęcia przed i po zabiegu",
+								list: true,
+								ui: {
+									itemProps: (item) => {
+										return { label: item?.beforeImage || "Zdjęcie" };
+									},
+									description: "Zdjęcia przed i po zabiegu. Dodaj zdjęcia w parze (przed i po).",
+								},
+								fields: [
+									{
+										type: "image",
+										name: "beforeImage",
+										label: "Zdjęcie przed zabiegiem",
+										required: true,
+									},
+									{
+										type: "string",
+										name: "beforeCaption",
+										label: "Podpis pod zdjęciem przed zabiegiem",
+									},
+									{
+										type: "image",
+										name: "afterImage",
+										label: "Zdjęcie po zabiegu",
+										required: true,
+									},
+									{
+										type: "string",
+										name: "afterCaption",
+										label: "Podpis pod zdjęciem po zabiegu",
+									},
+									{
+										type: "string",
+										name: "alt",
+										label: "Tekst alternatywny zdjęcia (SEO)",
+									},
+								],
+							},
+						],
+					},
 				],
 			},
 			{
