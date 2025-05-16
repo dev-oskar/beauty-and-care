@@ -1,24 +1,28 @@
 ---
-title: OXY GLOW - Infuzja tlenowa
-description: Innowacyjny zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko w skórę, zapewniając natychmiastowe efekty nawilżenia i odmłodzenia.
 heroImage: public/assets/images/OxyGlow.jpg
-date: 2025-04-20
+date: '2025-04-20T00:00:00.000Z'
 location: Beauty and Care
-clients:
-  - Skóra sucha i odwodniona
-  - Skóra z pierwszymi oznakami starzenia
-  - Skóra zmęczona i z utratą blasku
-  - Przygotowanie skóry przed ważnymi wydarzeniami
+order: 1
+title: OXY GLOW - Infuzja tlenowa Test
+description: >-
+  Innowacyjny zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko
+  w skórę, zapewniając natychmiastowe efekty nawilżenia i odmłodzenia.
 tags:
   - tlen
   - infuzja
   - nawilżenie
   - anti-aging
   - blask
-order: 1
 priceRange: 350-450 zł
+clients:
+  - Skóra sucha i odwodniona
+  - Skóra z pierwszymi oznakami starzenia
+  - Skóra zmęczona i z utratą blasku
+  - Przygotowanie skóry przed ważnymi wydarzeniami
 seoTitle: OXY GLOW - Infuzja tlenowa | Beauty and Care
-seoDescription: Zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko w skórę, dając natychmiastowy efekt nawilżenia, odmłodzenia i blasku.
+seoDescription: >-
+  Zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko w skórę,
+  dając natychmiastowy efekt nawilżenia, odmłodzenia i blasku.
 keywords:
   - infuzja tlenowa
   - OXY GLOW
@@ -46,11 +50,11 @@ Proces ten:
 
 Po zabiegu OXY GLOW możesz oczekiwać:
 
-- **Natychmiastowego nawilżenia** - skóra staje się jędrna i pełna blasku
-- **Redukcji drobnych zmarszczek** - zwłaszcza tych spowodowanych odwodnieniem
-- **Poprawy kolorytu skóry** - ujednolicenie i rozświetlenie
-- **Zwiększonej elastyczności** - skóra staje się bardziej sprężysta
-- **Efektu liftingu** - widoczne napięcie i poprawa owalu twarzy
+* **Natychmiastowego nawilżenia** - skóra staje się jędrna i pełna blasku
+* **Redukcji drobnych zmarszczek** - zwłaszcza tych spowodowanych odwodnieniem
+* **Poprawy kolorytu skóry** - ujednolicenie i rozświetlenie
+* **Zwiększonej elastyczności** - skóra staje się bardziej sprężysta
+* **Efektu liftingu** - widoczne napięcie i poprawa owalu twarzy
 
 Efekty są widoczne od razu po zabiegu, co czyni go idealnym rozwiązaniem przed ważnymi wydarzeniami.
 
@@ -68,20 +72,20 @@ Zabieg OXY GLOW trwa około 45-60 minut i składa się z następujących etapów
 
 Zabieg jest szczególnie polecany dla:
 
-- Osób z cerą suchą i odwodnioną
-- Skóry z pierwszymi oznakami starzenia
-- Skóry zmęczonej, pozbawionej blasku
-- Osób przygotowujących się do ważnych wydarzeń (tzw. zabieg bankietowy)
+* Osób z cerą suchą i odwodnioną
+* Skóry z pierwszymi oznakami starzenia
+* Skóry zmęczonej, pozbawionej blasku
+* Osób przygotowujących się do ważnych wydarzeń (tzw. zabieg bankietowy)
 
 ## Przeciwwskazania
 
 Zabiegu nie wykonujemy u osób z:
 
-- Aktywnym trądzikiem
-- Stanami zapalnymi skóry
-- Infekcjami skórnymi
-- Rozszerzonymi i popękanymi naczynkami krwionośnymi
-- W trakcie kuracji izotretynoiną (min. 6 miesięcy po zakończeniu leczenia)
+* Aktywnym trądzikiem
+* Stanami zapalnymi skóry
+* Infekcjami skórnymi
+* Rozszerzonymi i popękanymi naczynkami krwionośnymi
+* W trakcie kuracji izotretynoiną (min. 6 miesięcy po zakończeniu leczenia)
 
 ## Zalecana seria zabiegów
 
