@@ -431,6 +431,12 @@ export default defineConfig({
 						required: true,
 					},
 					{
+						type: "image",
+						name: "featuredImage",
+						label: "Zdjęcie wyróżniające zabieg",
+						description: "Zdjęcie wyświetlane w podglądzie zabiegu",
+					},
+					{
 						type: "string",
 						name: "description",
 						label: "Krótki opis",
