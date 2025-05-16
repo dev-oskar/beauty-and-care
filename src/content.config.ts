@@ -19,7 +19,7 @@ const settings = defineCollection({
 				z.object({
 					days: z.string(),
 					hours: z.string(),
-				})
+				}),
 			),
 			social: z.object({
 				facebook: z.string().optional(),
@@ -27,11 +27,13 @@ const settings = defineCollection({
 				twitter: z.string().optional(),
 				youtube: z.string().optional(),
 			}),
-			about: z.object({
-				title: z.string().optional(),
-				content: z.string().optional(),
-				signature: z.string().optional(),
-			}).optional(),
+			about: z
+				.object({
+					title: z.string().optional(),
+					content: z.string().optional(),
+					signature: z.string().optional(),
+				})
+				.optional(),
 		}),
 });
 
@@ -55,23 +57,6 @@ const gallery = defineCollection({
 				.optional(),
 			order: z.number().optional(),
 			featured: z.boolean().optional(),
-			// SEO fields
-			seoTitle: z.string().optional(),
-			seoDescription: z.string().optional(),
-			canonicalUrl: z.string().optional(),
-			noindex: z.boolean().optional(),
-			keywords: z.array(z.string()).optional(),
-			draft: z.boolean().optional(),
-		}),
-});
-
-// other pages
-const otherPages = defineCollection({
-	type: "content",
-	schema: () =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
 			// SEO fields
 			seoTitle: z.string().optional(),
 			seoDescription: z.string().optional(),
@@ -138,7 +123,6 @@ const pricing = defineCollection({
 });
 
 export const collections = {
-	otherPages,
 	posts,
 	zabiegi,
 	gallery,

@@ -1,7 +1,7 @@
 ---
 title: OXY GLOW - Infuzja tlenowa
 description: Innowacyjny zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko w skórę, zapewniając natychmiastowe efekty nawilżenia i odmłodzenia.
-heroImage: /public/assets/images/OxyGlow.jpg
+heroImage: public/assets/images/OxyGlow.jpg
 date: 2025-04-20
 location: Beauty and Care
 clients:
