@@ -4,8 +4,8 @@ import { Image } from "astro:assets";
 // Dynamic imports to support any image added through CMS
 import { getImage } from "astro:assets";
 
-// Import all images from src/assets/images dynamically
-const imageModules = import.meta.glob('/src/assets/images/*.{png,jpg,jpeg,gif,webp}');
+// Import all images from public/assets/images dynamically
+const imageModules = import.meta.glob('/public/assets/images/*.{png,jpg,jpeg,gif,webp}');
 
 interface Props {
   image: {
@@ -21,18 +21,18 @@ interface Props {
 const { image, index } = Astro.props;
 const imageCaption = image.caption || image.galleryTitle || "";
 
-// Function to get image from src/assets/images/
+// Function to get image from public/assets/images/
 const getImagePath = (filename: string): string | null => {
   if (!filename) return null;
 
   // Check if the filename already includes /assets/images/
   if (filename.startsWith('/assets/images/')) {
-    // Convert from /assets/images/file.jpg to /src/assets/images/file.jpg
-    return `/src${filename}`;
+    // Convert from /assets/images/file.jpg to /public/assets/images/file.jpg
+    return `/public${filename}`;
   }
   
   // If it's just a filename, add the full path
-  return `/src/assets/images/${filename}`;
+  return `/public/assets/images/${filename}`;
 };
 
 // Extract just the filename for fallback path

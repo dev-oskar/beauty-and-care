@@ -17,8 +17,8 @@ export default defineConfig({
 	// Configure media manager to only show images in the assets/images folder
 	media: {
 		tina: {
-			mediaRoot: "assets/images/",
-			publicFolder: "src",
+			mediaRoot: "/assets/images/",
+			publicFolder: "public",
 		},
 	},
 	// Simplified schema with single gallery collection
@@ -32,7 +32,6 @@ export default defineConfig({
 				match: {
 					include: "site-settings",
 				},
-				document: "site-settings",
 				ui: {
 					// Only allow one site settings file
 					allowedActions: {

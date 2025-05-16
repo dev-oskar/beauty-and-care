@@ -7,7 +7,7 @@ import { getImage } from "astro:assets";
 
 // Import all images from the images directory
 // This creates a record where the keys are the image paths and the values are the imported images
-const imageModules = import.meta.glob("/src/assets/images/**/*.{jpeg,jpg,png,gif,webp}");
+const imageModules = import.meta.glob("/public/assets/images/**/*.{jpeg,jpg,png,gif,webp}");
 
 /**
  * Resolves an image path to an actual image import
@@ -17,17 +17,17 @@ const imageModules = import.meta.glob("/src/assets/images/**/*.{jpeg,jpg,png,gif
  * @returns The imported image object
  */
 export async function resolveImage(imagePath: string) {
-  // Normalize the path to ensure it starts with /src/assets/
+  // Normalize the path to ensure it starts with /public/assets/
   let normalizedPath = imagePath;
 
   // If the path is a relative path, prepend the assets directory
   if (!normalizedPath.startsWith("/")) {
-    normalizedPath = `/src/assets/${normalizedPath}`;
+    normalizedPath = `/public/assets/${normalizedPath}`;
   }
 
-  // If the path already starts with /src/assets, make sure it's properly formatted
-  if (!normalizedPath.startsWith("/src/assets/")) {
-    normalizedPath = `/src/assets/${normalizedPath.replace(/^\/*(src\/)*assets\/*/g, "")}`;
+  // If the path already starts with /assets or /public/assets, make sure it's properly formatted
+  if (!normalizedPath.startsWith("/public/assets/")) {
+    normalizedPath = `/public/assets/${normalizedPath.replace(/^\/*(public\/)*assets\/*/g, "")}`;
   }
 
   // Find the matching image module

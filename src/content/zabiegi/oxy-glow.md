@@ -1,7 +1,7 @@
 ---
 title: OXY GLOW - Infuzja tlenowa
 description: Innowacyjny zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko w skórę, zapewniając natychmiastowe efekty nawilżenia i odmłodzenia.
-heroImage: /src/assets/images/OxyGlow.jpg
+heroImage: /public/assets/images/OxyGlow.jpg
 date: 2025-04-20
 location: Beauty and Care
 clients:
@@ -36,6 +36,7 @@ OXY GLOW to zaawansowany zabieg kosmetologiczny wykorzystujący technologię inf
 Zabieg wykorzystuje specjalny aplikator, który pod wysokim ciśnieniem (około 2,5 bara) wtłacza tlen wraz z aktywnymi składnikami bezpośrednio w głębsze warstwy skóry. Tlen działa jako nośnik, pozwalając substancjom aktywnym dotrzeć tam, gdzie są najbardziej potrzebne.
 
 Proces ten:
+
 1. Zwiększa przenikanie składników aktywnych
 2. Stymuluje produkcję kolagenu i elastyny
 3. Poprawia metabolizm komórkowy
@@ -66,6 +67,7 @@ Zabieg OXY GLOW trwa około 45-60 minut i składa się z następujących etapów
 ## Dla kogo polecamy zabieg OXY GLOW?
 
 Zabieg jest szczególnie polecany dla:
+
 - Osób z cerą suchą i odwodnioną
 - Skóry z pierwszymi oznakami starzenia
 - Skóry zmęczonej, pozbawionej blasku
@@ -74,6 +76,7 @@ Zabieg jest szczególnie polecany dla:
 ## Przeciwwskazania
 
 Zabiegu nie wykonujemy u osób z:
+
 - Aktywnym trądzikiem
 - Stanami zapalnymi skóry
 - Infekcjami skórnymi
