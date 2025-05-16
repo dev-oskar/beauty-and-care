@@ -22,7 +22,7 @@ zabiegi.sort((a, b) => {
 	}
 	if (a.data.order !== undefined) return -1;
 	if (b.data.order !== undefined) return 1;
-	
+
 	// Then by date
 	const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
 	const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
@@ -45,75 +45,76 @@ zabiegi.sort((a, b) => {
 		<div class="mx-auto max-w-6xl text-center">
 			<h1 class="h2 text-pretty uppercase">Zaawansowane zabiegi kosmetyczne</h1>
 			<p class="mx-auto mt-4 max-w-2xl text-lg text-gray-600 md:text-xl">
-				Nasza oferta obejmuje szeroki zakres specjalistycznych zabiegów kosmetycznych i pielęgnacyjnych.
+				Nasza oferta obejmuje szeroki zakres specjalistycznych zabiegów kosmetycznych i
+				pielęgnacyjnych.
 			</p>
 		</div>
 
 		{/* Zabiegi grid */}
 		<div class="mt-16">
 			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-				{zabiegi.map((zabieg) => (
-					<a
-						href={`/zabiegi/${zabieg.slug}`}
-						class="group border-base-200 flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md"
-					>
-						<div class="bg-primary-50 p-6">
-							<h3 class="h3 group-hover:text-primary-600 mb-2 text-pretty transition-colors">
-								{zabieg.data.title}
-							</h3>
+				{
+					zabiegi.map((zabieg) => (
+						<a
+							href={`/zabiegi/${zabieg.slug}`}
+							class="group border-base-200 flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md"
+						>
+							<div class="bg-primary-50 p-6">
+								<h3 class="h3 group-hover:text-primary-600 mb-2 text-pretty transition-colors">
+									{zabieg.data.title}
+								</h3>
 
-							{/* Service image section removed */}
-
-							<div class="flex flex-wrap items-center justify-between">
-								{zabieg.data.date && (
-									<p class="text-primary-500 text-sm font-medium">
-										{formatDate(zabieg.data.date)}
-									</p>
-								)}
-								{zabieg.data.priceRange && (
-									<span class="bg-primary-100 text-primary-700 rounded-full px-3 py-1 text-sm font-medium">
-										{zabieg.data.priceRange}
-									</span>
-								)}
-							</div>
-						</div>
-
-						<div class="flex flex-grow flex-col justify-between p-6">
-							<p class="mb-4 text-base text-gray-600">{zabieg.data.description}</p>
-
-							{zabieg.data.clients && zabieg.data.clients.length > 0 && (
-								<div class="mb-4">
-									<p class="mb-1 text-sm font-medium text-gray-700">Polecane dla:</p>
-									<ul class="ml-2 list-inside list-disc text-sm text-gray-600">
-										{zabieg.data.clients.map((client) => (
-											<li>{client}</li>
-										))}
-									</ul>
+								<div class="flex flex-wrap items-center justify-between">
+									{zabieg.data.date && (
+										<p class="text-primary-500 text-sm font-medium">
+											{formatDate(zabieg.data.date)}
+										</p>
+									)}
+									{zabieg.data.priceRange && (
+										<span class="bg-primary-100 text-primary-700 rounded-full px-3 py-1 text-sm font-medium">
+											{zabieg.data.priceRange}
+										</span>
+									)}
 								</div>
-							)}
-
-							<div class="mt-auto pt-2">
-								<span class="text-primary-600 hover:text-primary-700 inline-flex items-center font-medium">
-									Szczegóły zabiegu
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										class="ml-1 h-5 w-5"
-										fill="none"
-										viewBox="0 0 24 24"
-										stroke="currentColor"
-									>
-										<path
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="M14 5l7 7m0 0l-7 7m7-7H3"
-										/>
-									</svg>
-								</span>
 							</div>
-						</div>
-					</a>
-				))}
+
+							<div class="flex flex-grow flex-col justify-between p-6">
+								<p class="mb-4 text-base text-gray-600">{zabieg.data.description}</p>
+
+								{zabieg.data.clients && zabieg.data.clients.length > 0 && (
+									<div class="mb-4">
+										<p class="mb-1 text-sm font-medium text-gray-700">Polecane dla:</p>
+										<ul class="ml-2 list-inside list-disc text-sm text-gray-600">
+											{zabieg.data.clients.map((client) => (
+												<li>{client}</li>
+											))}
+										</ul>
+									</div>
+								)}
+
+								<div class="mt-auto pt-2">
+									<span class="text-primary-600 hover:text-primary-700 inline-flex items-center font-medium">
+										Szczegóły zabiegu
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											class="ml-1 h-5 w-5"
+											fill="none"
+											viewBox="0 0 24 24"
+											stroke="currentColor"
+										>
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												stroke-width="2"
+												d="M14 5l7 7m0 0l-7 7m7-7H3"
+											/>
+										</svg>
+									</span>
+								</div>
+							</div>
+						</a>
+					))
+				}
 			</div>
 		</div>
 	</div>

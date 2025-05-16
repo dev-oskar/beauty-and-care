@@ -1,12 +1,12 @@
 ---
-heroImage: public/assets/images/OxyGlow.jpg
 date: '2025-04-20T00:00:00.000Z'
 location: Beauty and Care
 order: 1
 title: OXY GLOW - Infuzja tlenowa Test
+featuredImage: /assets/images/lipoliza-laserowa.png
 description: >-
   Innowacyjny zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko
-  w skórę, zapewniając natychmiastowe efekty nawilżenia i odmłodzenia.
+  w skórę, zapewniając natychmiastowe efekty nawilżenia i odmłodzenia. Test.
 tags:
   - tlen
   - infuzja

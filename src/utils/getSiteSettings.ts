@@ -74,9 +74,6 @@ export async function getSiteSettings(): Promise<SiteSettings> {
 
 		// Get the first settings entry (we should only have one)
 		const settingsEntry = settingsCollection[0];
-
-		console.log("Site settings loaded:", settingsEntry);
-
 		// Return the data
 		return {
 			title: settingsEntry.data.title,

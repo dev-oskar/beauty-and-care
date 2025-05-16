@@ -3,7 +3,6 @@ title: "Elektrostymulacja ciała EMS "
 description: >-
   Elektrostymulacja ciała EMS to nowoczesna metoda oparta na zaawansowanej
   elektrostymulacji mięśni i nerwów.
-heroImage: /public/assets/images/5ems body sculpt  (1).jpg
 tags:
   - skuteczne modelowanie sylwetki
   - redukcja tkanki tłuszczowej
