@@ -37,9 +37,9 @@ beforeAfter:
     Zobacz rezultaty naszych zabiegów - porównaj zdjęcia przed i po. Przekonaj
     się o skuteczności naszych metod.
   images:
-    - beforeImage: /przed.jpg
+    - beforeImage: //po.jpg
       beforeCaption: Przed zabiegiem
-      afterImage: /po.jpg
+      afterImage: //background-new.jpg
       afterCaption: Po zabiegu
       alt: Efekt zabiegu modelowania sylwetki
     - beforeImage: /assets/images/4.jpg
