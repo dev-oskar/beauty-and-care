@@ -15,7 +15,8 @@ tags:
   - laser
 priceRange: 400-800 zł
 clients:
-  - Osoby z miejscowo zlokalizowaną tkanką tłuszczową
+  - Osoby szukające nieinwazyjnej alternatywy dla liposukcji
+  - Osoby z miejscowo zlokalizowaną tkanką tłuszczową oporną na ćwiczenia
   - Osoby z problemem cellulitu
   - Skóra wymagająca ujędrnienia po odchudzaniu
   - Osoby chcące poprawić kontur ciała
