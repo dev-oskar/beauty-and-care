@@ -2,17 +2,28 @@
 import { getCollection } from "astro:content";
 import PhotoGallery from "./PhotoGallery.astro";
 
+// Define the type for the gallery images based on the schema from content.config.ts
+interface GalleryImage {
+	src: string;
+	caption?: string;
+	alt?: string;
+	category?: string;
+	galleryTitle?: string;
+	galleryDescription?: string;
+}
+
 // Get the single gallery that contains all images
 const galleries = await getCollection("gallery");
 
 // Get the images from the gallery
-let allImages = [];
+let allImages: GalleryImage[] = [];
 if (galleries.length > 0) {
-  // Use the first gallery found (should be main-gallery.md)
-  const gallery = galleries[0];
-  if (gallery.data.images) {
-    allImages = gallery.data.images;
-  }
+	// Use the first gallery found (should be main-gallery.md)
+	const gallery = galleries[0];
+	if (gallery.data.images) {
+		// Cast to the expected GalleryImage type
+		allImages = gallery.data.images as GalleryImage[];
+	}
 }
 
 // Total count for informational purposes
@@ -20,15 +31,15 @@ const totalImages = allImages.length;
 ---
 
 <div class="mx-auto max-w-6xl">
-  <div class="text-center mb-8">
-    <h1 class="h2 text-pretty uppercase">Galeria zdjęć</h1>
-    <p class="mt-4 text-xl text-gray-600">
-      Zobacz nasze najlepsze prace i przekonaj się o skuteczności zabiegów
-    </p>
-  </div>
-  
-  <PhotoGallery 
-    images={allImages} 
-    totalCount={totalImages} 
-  />
+	<div class="text-center mb-8">
+		<h1 class="h2 text-pretty uppercase">Galeria zdjęć</h1>
+		<p class="mt-4 text-xl text-gray-600">
+			Zobacz nasze najlepsze prace i przekonaj się o skuteczności zabiegów
+		</p>
+	</div>
+	
+	<PhotoGallery 
+		images={allImages} 
+		totalCount={totalImages} 
+	/>
 </div>

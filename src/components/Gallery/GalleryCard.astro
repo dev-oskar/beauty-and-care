@@ -1,37 +1,71 @@
 ---
 import { Image } from "astro:assets";
+import { getImage } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { normalizeImagePath, getFilenameFromPath } from "@/utils/getImagePath";
 
 interface Props {
-  gallery: CollectionEntry<"gallery">;
+	gallery: CollectionEntry<"gallery">;
 }
 
 const { gallery } = Astro.props;
 const { title, description, coverImage } = gallery.data;
+
+// Process the cover image
+let processedImage;
+let fallbackImagePath = "";
+
+if (coverImage) {
+	try {
+		// Handle string or imported image
+		fallbackImagePath = `/images/${getFilenameFromPath(coverImage.toString())}`;
+		
+		// Process the image with getImage
+		processedImage = await getImage({
+			src: normalizeImagePath(coverImage.toString()),
+			width: 400,
+			height: 300,
+			format: "webp",
+			quality: 80
+		});
+	} catch (error) {
+		console.error(`Error processing gallery card image: ${error}`);
+	}
+}
 ---
 
 <a href={`/galeria/${gallery.slug}`} class="group">
-  <div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md h-full flex flex-col">
-    <div class="aspect-[4/3] overflow-hidden">
-      <Image
-        src={coverImage}
-        alt={title}
-        width={400}
-        height={300}
-        class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-    </div>
-    <div class="p-5 flex-grow flex flex-col">
-      <h3 class="text-xl font-semibold group-hover:text-primary-500 transition-colors mb-2">{title}</h3>
-      {description && (
-        <p class="text-gray-600 mb-4 flex-grow">{description}</p>
-      )}
-      <div class="flex items-center text-primary-500 mt-auto">
-        <span class="text-sm font-medium">Zobacz galerię</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-        </svg>
-      </div>
-    </div>
-  </div>
+	<div class="border border-gray-200 rounded-lg overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md h-full flex flex-col">
+		<div class="aspect-[4/3] overflow-hidden">
+			{processedImage ? (
+				<img
+					src={processedImage.src}
+					width={processedImage.attributes.width}
+					height={processedImage.attributes.height}
+					alt={title}
+					class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+				/>
+			) : (
+				<img
+					src={fallbackImagePath}
+					alt={title}
+					width="400"
+					height="300"
+					class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+				/>
+			)}
+		</div>
+		<div class="p-5 flex-grow flex flex-col">
+			<h3 class="text-xl font-semibold group-hover:text-primary-500 transition-colors mb-2">{title}</h3>
+			{description && (
+				<p class="text-gray-600 mb-4 flex-grow">{description}</p>
+			)}
+			<div class="flex items-center text-primary-500 mt-auto">
+				<span class="text-sm font-medium">Zobacz galerię</span>
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+				</svg>
+			</div>
+		</div>
+	</div>
 </a>

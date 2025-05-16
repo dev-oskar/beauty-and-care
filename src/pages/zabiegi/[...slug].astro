@@ -11,165 +11,219 @@ import { formatDate } from "../../utils/dateUtils";
 
 // Define all possible service slugs for static generation
 export async function getStaticPaths() {
-  // Get all non-draft zabiegi (services)
-  const services = await getCollection("zabiegi", (service) => !service.data.draft);
-  
-  // Create paths for each service
-  return services.map((service) => ({
-    params: { slug: service.slug },
-    props: { service },
-  }));
+	// Get all non-draft zabiegi (services)
+	const procedures = await getCollection("zabiegi", (procedure) => !procedure.data.draft);
+
+	// Create paths for each service
+	return procedures.map((procedure) => ({
+		params: { slug: procedure.slug },
+		props: { procedure: procedure },
+	}));
 }
 
 // Get the service from props
-const { service } = Astro.props;
+const { procedure: procedure } = Astro.props;
 
 // Render the service content
-const { Content } = await service.render();
+const { Content } = await procedure.render();
 
 // formatDate imported from utils/dateUtils
 
-// Get random related zabiegi
-let relatedZabiegi: import("astro:content").CollectionEntry<"zabiegi">[] = [];
-const allZabiegi = await getCollection("zabiegi", (s) => !s.data.draft && s.slug !== service.slug);
+// Get random related zabiegi which are not drafts
+let relatedProcedures: import("astro:content").CollectionEntry<"zabiegi">[] = [];
+const allProcedures = await getCollection(
+	"zabiegi",
+	(s) => !s.data.draft && s.slug !== procedure.slug,
+);
 
 // Get up to 3 random zabiegi
-if (allZabiegi.length > 0) {
-  // Shuffle the array using Fisher-Yates algorithm
-  for (let i = allZabiegi.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [allZabiegi[i], allZabiegi[j]] = [allZabiegi[j], allZabiegi[i]];
-  }
-  
-  // Get first 3 (or fewer if there aren't enough)
-  relatedZabiegi = allZabiegi.slice(0, Math.min(3, allZabiegi.length)) as typeof allZabiegi;
+if (allProcedures.length > 0) {
+	// Shuffle the array using Fisher-Yates algorithm
+	for (let i = allProcedures.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		[allProcedures[i], allProcedures[j]] = [allProcedures[j], allProcedures[i]];
+	}
+
+	// Get first 3 (or fewer if there aren't enough)
+	relatedProcedures = allProcedures.slice(
+		0,
+		Math.min(3, allProcedures.length),
+	) as typeof allProcedures;
 }
+
+const getPublicAssetPath = (image) => {
+	if (!image?.src) return "";
+
+	// Normalize the path by removing leading slash for consistent handling
+	const srcPath = image.src.startsWith("/") ? image.src.substring(1) : image.src;
+
+	// Check if path starts with 'assets' (after normalization)
+	if (srcPath.startsWith("assets")) {
+		return `public/${srcPath}`;
+	}
+
+	return "";
+};
+
+// Usage
+const heroImagePath = getPublicAssetPath(procedure.data.heroImage);
+console.log(heroImagePath);
 ---
 
 <BaseLayout
-  title={service.data.title}
-  description={service.data.description}
-  seoTitle={service.data.seoTitle}
-  seoDescription={service.data.seoDescription}
-  canonicalUrl={service.data.canonicalUrl}
-  noindex={service.data.noindex}
-  keywords={service.data.keywords}
-  heroImage={service.data.heroImage}
-  tags={service.data.tags}
+	title={procedure.data.title}
+	description={procedure.data.description}
+	seoTitle={procedure.data.seoTitle}
+	seoDescription={procedure.data.seoDescription}
+	canonicalUrl={procedure.data.canonicalUrl}
+	noindex={procedure.data.noindex}
+	keywords={procedure.data.keywords}
+	heroImage={procedure.data.heroImage}
+	tags={procedure.data.tags}
 >
-  <div class="site-container pt-24 md:pt-36">
-    <article class="mx-auto max-w-4xl pb-12">
-      <h1 class="h2 text-center text-pretty">{service.data.title}</h1>
+	<div class="site-container pt-24 md:pt-36">
+		<article class="mx-auto max-w-4xl pb-12">
+			<h1 class="h2 text-center text-pretty">{procedure.data.title}</h1>
 
-      <!-- Service image -->
-      {service.data.heroImage && (
-        <div class="mt-8 overflow-hidden rounded-lg shadow-md">
-          <Image
-            src={service.data.heroImage}
-            alt={service.data.title}
-            width={1000}
-            height={563}
-            class="w-full h-auto"
-          />
-        </div>
-      )}
+			<!-- Service image -->
+			{
+				procedure.data.heroImage && (
+					<div class="mt-8 overflow-hidden rounded-lg shadow-md">
+						<Image
+							src={heroImagePath}
+							alt={procedure.data.title}
+							width={1000}
+							height={563}
+							class="h-auto w-full"
+						/>
+					</div>
+				)
+			}
 
-      <!-- Price, date and location info -->
-      <div class="mt-6 flex flex-wrap justify-center gap-4">
-        {service.data.priceRange && (
-          <div class="flex items-center px-4 py-2 bg-primary-50 rounded-lg shadow-sm">
-            <span class="text-primary-800 font-semibold">Cena: {service.data.priceRange}</span>
-          </div>
-        )}
-        
-        {service.data.location && (
-          <div class="flex items-center px-4 py-2 bg-primary-50 rounded-lg shadow-sm">
-            <span class="text-primary-800">Salon: {service.data.location}</span>
-          </div>
-        )}
-        
-        {service.data.date && (
-          <div class="flex items-center px-4 py-2 bg-primary-50 rounded-lg shadow-sm">
-            <span class="text-gray-600 text-sm">Aktualizacja: {formatDate(service.data.date)}</span>
-          </div>
-        )}
-      </div>
+			<!-- Price, date and location info -->
+			<div class="mt-6 flex flex-wrap justify-center gap-4">
+				{
+					procedure.data.priceRange && (
+						<div class="bg-primary-50 flex items-center rounded-lg px-4 py-2 shadow-sm">
+							<span class="text-primary-800 font-semibold">Cena: {procedure.data.priceRange}</span>
+						</div>
+					)
+				}
 
-      <!-- Tags -->
-      {service.data.tags && service.data.tags.length > 0 && (
-        <div class="mt-6 flex flex-col items-center gap-2">
-          <div class="flex flex-wrap justify-center gap-1">
-            {service.data.tags.map((tag) => (
-              <span class="bg-gray-100 text-gray-700 rounded-full px-2 py-0.5 text-xs">
-                #{tag}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
+				{
+					procedure.data.location && (
+						<div class="bg-primary-50 flex items-center rounded-lg px-4 py-2 shadow-sm">
+							<span class="text-primary-800">Salon: {procedure.data.location}</span>
+						</div>
+					)
+				}
 
-      <!-- For whom section -->
-      {service.data.clients && service.data.clients.length > 0 && (
-        <div class="mt-8 p-6 bg-gray-50 rounded-lg">
-          <h2 class="text-xl font-semibold text-center mb-4">Dla kogo jest ten zabieg?</h2>
-          <ul class="grid gap-2 md:grid-cols-2">
-            {service.data.clients.map((client) => (
-              <li class="flex items-center">
-                <span class="text-primary-500 mr-2">✓</span>
-                <span>{client}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+				{
+					procedure.data.date && (
+						<div class="bg-primary-50 flex items-center rounded-lg px-4 py-2 shadow-sm">
+							<span class="text-sm text-gray-600">
+								Aktualizacja: {formatDate(procedure.data.date)}
+							</span>
+						</div>
+					)
+				}
+			</div>
 
-      <!-- Main content -->
-      <div class="prose prose-lg mx-auto mt-12 max-w-3xl">
-        <Content />
-      </div>
+			<!-- Tags -->
+			{
+				procedure.data.tags && procedure.data.tags.length > 0 && (
+					<div class="mt-6 flex flex-col items-center gap-2">
+						<div class="flex flex-wrap justify-center gap-1">
+							{procedure.data.tags.map((tag) => (
+								<span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700">
+									#{tag}
+								</span>
+							))}
+						</div>
+					</div>
+				)
+			}
 
-      <!-- Back button -->
-      <div class="mt-12 flex justify-center">
-        <a 
-          href="/zabiegi" 
-          class="text-primary-600 hover:text-primary-700 inline-flex items-center font-medium"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-          Wszystkie zabiegi
-        </a>
-      </div>
-    </article>
+			<!-- For whom section -->
+			{
+				procedure.data.clients && procedure.data.clients.length > 0 && (
+					<div class="mt-8 rounded-lg bg-gray-50 p-6">
+						<h2 class="mb-4 text-center text-xl font-semibold">Dla kogo jest ten zabieg?</h2>
+						<ul class="grid gap-2 md:grid-cols-2">
+							{procedure.data.clients.map((client) => (
+								<li class="flex items-center">
+									<span class="text-primary-500 mr-2">✓</span>
+									<span>{client}</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				)
+			}
 
-    <!-- Related zabiegi -->
-    {relatedZabiegi.length > 0 && (
-      <section class="mx-auto max-w-5xl mb-12">
-        <h2 class="h3 text-center mb-8">Inne zabiegi</h2>
-        <div class="grid gap-6 md:grid-cols-3">
-          {relatedZabiegi.map((relatedZabieg) => (
-            <a href={`/zabiegi/${relatedZabieg.slug}`} class="group block">
-              <div class="border-base-200 overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md h-full flex flex-col">
-                {relatedZabieg.data.heroImage && (
-                  <div class="aspect-video overflow-hidden">
-                    <Image
-                      src={relatedZabieg.data.heroImage}
-                      alt={relatedZabieg.data.title}
-                      width={300}
-                      height={169}
-                      class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
-                    />
-                  </div>
-                )}
-                <div class="p-4 flex-grow">
-                  <h3 class="text-lg font-semibold group-hover:text-primary-600 transition-colors">{relatedZabieg.data.title}</h3>
-                  <p class="text-sm text-gray-600 mt-2 line-clamp-2">{relatedZabieg.data.description}</p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </section>
-    )}
-  </div>
+			<!-- Main content -->
+			<div class="prose prose-lg mx-auto mt-12 max-w-3xl">
+				<Content />
+			</div>
+
+			<!-- Back button -->
+			<div class="mt-12 flex justify-center">
+				<a
+					href="/zabiegi"
+					class="text-primary-600 hover:text-primary-700 inline-flex items-center font-medium"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						class="mr-1 h-5 w-5 rotate-180"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+					</svg>
+					Wszystkie zabiegi
+				</a>
+			</div>
+		</article>
+
+		<!-- Related zabiegi -->
+		{
+			relatedProcedures.length > 0 && (
+				<section class="mx-auto mb-12 max-w-5xl">
+					<h2 class="h3 mb-8 text-center">Inne zabiegi</h2>
+					<div class="grid gap-6 md:grid-cols-3">
+						{relatedProcedures.map((relatedZabieg) => (
+							<a href={`/zabiegi/${relatedZabieg.slug}`} class="group block">
+								<div class="border-base-200 flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
+									{relatedZabieg.data.heroImage && (
+										<div class="aspect-video overflow-hidden">
+											<Image
+												src={relatedZabieg.data.heroImage}
+												alt={relatedZabieg.data.title}
+												width={300}
+												height={169}
+												class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+											/>
+										</div>
+									)}
+									<div class="flex-grow p-4">
+										<h3 class="group-hover:text-primary-600 text-lg font-semibold transition-colors">
+											{relatedZabieg.data.title}
+										</h3>
+										<p class="mt-2 line-clamp-2 text-sm text-gray-600">
+											{relatedZabieg.data.description}
+										</p>
+									</div>
+								</div>
+							</a>
+						))}
+					</div>
+				</section>
+			)
+		}
+	</div>
 </BaseLayout>
