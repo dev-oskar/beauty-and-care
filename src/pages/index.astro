@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 // layout
 import BaseLayout from "@layouts/BaseLayout.astro";
 
@@ -12,7 +10,6 @@ import FeaturedGallery from "@components/Gallery/FeaturedGallery.astro";
 import PricingTableCMS from "@components/Pricing/PricingTableCMS.astro";
 import About from "@components/About/About.astro";
 import Contact from "@components/Contact/Contact.astro";
-import Button from "@components/Button/Button.astro";
 
 // data
 import siteData from "@config/siteData.json";
@@ -26,7 +23,8 @@ import siteData from "@config/siteData.json";
 	keywords={siteData.pages?.home?.keywords}
 	canonicalUrl={siteData.pages?.home?.canonicalUrl}
 	noindex={siteData.pages?.home?.noindex}
-	navStartStyle="white">
+	navStartStyle="white"
+>
 	<Hero />
 	<ServiceIcons />
 	<FeaturedServices />

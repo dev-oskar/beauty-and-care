@@ -1,5 +1,5 @@
 ---
-import { getImage } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 
 interface Props {
 	image: {
@@ -17,7 +17,7 @@ const imageCaption = image.caption || image.galleryTitle || "";
 const imageAlt = image.alt || imageCaption || "Gallery image";
 
 // Function to normalize image path and handle different formats
-const normalizeImagePath = async (src: string) => {
+const normalizeImagePath = (src: string) => {
 	// Handle both relative and absolute paths
 	let normalizedPath = src;
 
@@ -30,25 +30,8 @@ const normalizeImagePath = async (src: string) => {
 		normalizedPath = `/public/assets/images/${src}`;
 	}
 
-	// Try to import the image dynamically
-	try {
-		// Use dynamic import to get the image
-		const imageModule = await import(`/public/assets/images/${src.split("/").pop()}`);
-		return imageModule.default;
-	} catch (error) {
-		// Fallback to regular path for server-side image handling
-		return normalizedPath;
-	}
+	return normalizedPath;
 };
-
-// Process the image
-const processedImage = await getImage({
-	src: await normalizeImagePath(image.src),
-	width: 600,
-	height: 600,
-	format: "webp",
-	quality: 80,
-});
 ---
 
 <div
@@ -56,12 +39,12 @@ const processedImage = await getImage({
 	data-index={index}
 >
 	<div class="group relative aspect-square cursor-pointer overflow-hidden">
-		<img
-			src={processedImage.src}
-			width={processedImage.attributes.width}
-			height={processedImage.attributes.height}
+		<Image
+			src={normalizeImagePath(image.src)}
+			width={600}
+			height={600}
 			alt={imageAlt}
-			loading="lazy"
+			loading={index >= 2 ? "lazy" : "eager"}
 			class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
 		/>
 		<div
