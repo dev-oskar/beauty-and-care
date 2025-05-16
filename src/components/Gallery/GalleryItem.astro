@@ -1,5 +1,7 @@
 ---
-import { Image, getImage } from "astro:assets";
+import { Image } from "astro:assets";
+import { getFilenameFromPath } from "../../utils/getImagePath";
+import { getImageByFilename } from "../../utils/imageUtils";
 
 interface Props {
 	image: {
@@ -15,6 +17,14 @@ interface Props {
 const { image, index } = Astro.props;
 const imageCaption = image.caption || image.galleryTitle || "";
 const imageAlt = image.alt || imageCaption || "Gallery image";
+
+// Extract the filename from the src path
+const filename = getFilenameFromPath(image.src);
+// Get the imported image
+const imageImport = getImageByFilename(filename);
+
+// Fallback to regular img tag if we can't get the image
+const useRegularImg = !imageImport;
 ---
 
 <div
@@ -22,14 +32,23 @@ const imageAlt = image.alt || imageCaption || "Gallery image";
 	data-index={index}
 >
 	<div class="group relative aspect-square cursor-pointer overflow-hidden">
-		<Image
-			src={image.src}
-			width={600}
-			height={600}
-			alt={imageAlt}
-			loading={index >= 2 ? "lazy" : "eager"}
-			class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-		/>
+		{useRegularImg ? (
+			<img
+				src={image.src}
+				alt={imageAlt}
+				loading={index >= 2 ? "lazy" : "eager"}
+				class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+			/>
+		) : (
+			<Image
+				src={imageImport}
+				width={600}
+				height={600}
+				alt={imageAlt}
+				loading={index >= 2 ? "lazy" : "eager"}
+				class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+			/>
+		)}
 		<div
 			class="absolute inset-0 flex items-center justify-center bg-black opacity-0 transition-all duration-300 group-hover:opacity-30"
 		>

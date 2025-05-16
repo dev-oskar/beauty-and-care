@@ -37,9 +37,9 @@ beforeAfter:
     Zobacz rezultaty naszych zabiegów - porównaj zdjęcia przed i po. Przekonaj
     się o skuteczności naszych metod.
   images:
-    - beforeImage: /assets/images/OxyGlow.jpg
+    - beforeImage: /PXL_20250407_143954631.jpg
       beforeCaption: Przed zabiegiem
-      afterImage: /assets/images/Analiza skóry.jpg
+      afterImage: /5ems body sculpt  (1).jpg
       afterCaption: Po zabiegu
       alt: Efekt zabiegu modelowania sylwetki
     - beforeImage: /assets/images/4.jpg

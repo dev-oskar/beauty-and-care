@@ -6,11 +6,11 @@
 
 // components
 import Button from "@components/Button/Button.astro";
+import { Image } from "astro:assets";
 
-// Import directly from actual file path to avoid any import issues
-// Using relative path to import since absolute imports are causing problems
-import heroImagePath from "/public/assets/images/background-hero-new.jpg";
-import logoMain from "/public/assets/images/logo-main.png";
+// Import images from src/assets/images for proper optimization
+import heroBackground from "../../assets/images/background-hero-new.jpg";
+import logoMain from "../../assets/images/logo_new_white.png";
 ---
 
 <section id="hero" class="relative z-10 flex min-h-[100lvh] w-full">
@@ -19,25 +19,25 @@ import logoMain from "/public/assets/images/logo-main.png";
 		<div class="absolute inset-0 bg-black/10"></div>
 
 		<!-- Desktop image -->
-		<img
-			src={heroImagePath.src}
+		<Image
+			src={heroBackground}
 			class="hidden h-auto min-h-full w-full object-cover object-bottom sm:block"
 			alt="Beauty and Care"
 			aria-hidden="true"
 			loading="eager"
-			height="1400"
-			width="1800"
+			height={1400}
+			width={1800}
 		/>
 
 		<!-- Mobile image - same source for simplicity -->
-		<img
-			src={heroImagePath.src}
+		<Image
+			src={heroBackground}
 			class="h-auto min-h-full w-full object-cover sm:hidden"
 			alt="Beauty and Care"
 			aria-hidden="true"
 			loading="eager"
-			height="1400"
-			width="1200"
+			height={1400}
+			width={1200}
 		/>
 	</div>
 
@@ -48,7 +48,12 @@ import logoMain from "/public/assets/images/logo-main.png";
 			<h1
 				class="font-heading-1 flex justify-center text-pretty drop-shadow-[0_2px_2px_rgba(0,0,0,0.4)] md:justify-start"
 			>
-				<img src={logoMain.src} alt="Beauty and Care" class="h-auto w-[480px] md:w-[640px]" />
+				<Image
+					loading={"eager"}
+					src={logoMain}
+					alt="Beauty and Care"
+					class="h-auto w-[480px] md:w-[640px]"
+				/>
 			</h1>
 			<p
 				class="mt-8 text-lg tracking-widest text-pretty drop-shadow-[0_1px_1px_rgba(0,0,0,0.2)] md:max-w-[550px] md:text-2xl"

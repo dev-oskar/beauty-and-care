@@ -14,11 +14,11 @@ export default defineConfig({
 		outputFolder: "admin",
 		publicFolder: "public",
 	},
-	// Configure media manager to only show images in the assets/images folder
+	// Configure media manager to use the src/assets/images folder
 	media: {
 		tina: {
-			mediaRoot: "/assets/images/",
-			publicFolder: "public",
+			mediaRoot: "/",
+			publicFolder: "src/assets/images",
 		},
 	},
 	// Simplified schema with single gallery collection
