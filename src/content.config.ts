@@ -34,6 +34,23 @@ const settings = defineCollection({
 					aboutImage: z.string().optional(),
 				})
 				.optional(),
+			beforeAfter: z
+				.object({
+					title: z.string().optional(),
+					description: z.string().optional(),
+					images: z
+						.array(
+							z.object({
+								beforeImage: z.string(),
+								beforeCaption: z.string().optional(),
+								afterImage: z.string(),
+								afterCaption: z.string().optional(),
+								alt: z.string().optional(),
+							})
+						)
+						.optional(),
+				})
+				.optional(),
 		}),
 });
 
