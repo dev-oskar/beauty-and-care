@@ -1,7 +1,10 @@
 ---
 title: Galeria zdjęć Beauty and Care
-description: "Zdjęcia z naszego salonu, pokazujące zabiegi oraz ich efekty."
+description: 'Zdjęcia z naszego salonu, pokazujące zabiegi oraz ich efekty.'
 images:
+  - src: /assets/images/logo-min.png
+    caption: Test
+    alt: Test
   - src: /assets/images/2.jpg
     caption: Właścicielka salonu - Katarzyna
     alt: Właścicielka salonu - Katarzyna
@@ -42,3 +45,4 @@ images:
     caption: Redukcja cellulitu - rezultaty
     alt: Efekty po zabiegach antycellulitowych
 ---
+

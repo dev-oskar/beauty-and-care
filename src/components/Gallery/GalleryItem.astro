@@ -15,23 +15,6 @@ interface Props {
 const { image, index } = Astro.props;
 const imageCaption = image.caption || image.galleryTitle || "";
 const imageAlt = image.alt || imageCaption || "Gallery image";
-
-// Function to normalize image path and handle different formats
-const normalizeImagePath = (src: string) => {
-	// Handle both relative and absolute paths
-	let normalizedPath = src;
-
-	// If it starts with /assets/images/, adjust the path
-	if (src.startsWith("/assets/images/")) {
-		normalizedPath = `/public${src}`;
-	}
-	// If it doesn't include a path, assume it's in the images directory
-	else if (!src.includes("/")) {
-		normalizedPath = `/public/assets/images/${src}`;
-	}
-
-	return normalizedPath;
-};
 ---
 
 <div
@@ -40,7 +23,7 @@ const normalizeImagePath = (src: string) => {
 >
 	<div class="group relative aspect-square cursor-pointer overflow-hidden">
 		<Image
-			src={normalizeImagePath(image.src)}
+			src={image.src}
 			width={600}
 			height={600}
 			alt={imageAlt}
