@@ -169,6 +169,12 @@ export default defineConfig({
 								label: "Podpis",
 								description: "Podpis pod tekstem, np. 'Anna Kowalska' lub 'Zespół Beauty and Care'",
 							},
+							{
+								type: "image",
+								name: "aboutImage",
+								label: "Zdjęcie",
+								description: "Zdjęcie do sekcji 'O mnie/O nas'",
+							},
 						],
 					},
 				],

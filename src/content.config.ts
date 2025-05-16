@@ -31,6 +31,7 @@ const settings = defineCollection({
 					title: z.string().optional(),
 					content: z.string().optional(),
 					signature: z.string().optional(),
+					aboutImage: z.string().optional(),
 				})
 				.optional(),
 		}),

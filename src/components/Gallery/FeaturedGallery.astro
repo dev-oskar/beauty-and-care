@@ -1,112 +1,64 @@
 ---
-import { getCollection } from "astro:content";
 import Button from "@components/Button/Button.astro";
-import { Image } from "astro:assets";
 import { getSiteSettings } from "@/utils/getSiteSettings";
-
-// Dynamic imports for images
-const imageModules = import.meta.glob('/src/assets/images/*.{png,jpg,jpeg,gif,webp}');
-
-// Get gallery entries from collection
-const galleries = await getCollection("gallery");
-
-// Just take the first one as the featured gallery
-const featuredGallery = galleries.length > 0 ? galleries[0] : null;
+import Image from "astro/components/Image.astro";
 
 // Get site settings with about content
 const siteSettings = await getSiteSettings();
-const aboutContent = siteSettings?.about?.content || "Nasz salon specjalizuje się w innowacyjnych zabiegach kosmetycznych z wykorzystaniem najnowszych technologii. Oferujemy kompleksowe usługi z zakresu liftingu bez skalpela, terapii bioelektrycznej oraz modelowania sylwetki. Każdy zabieg przeprowadzany jest przez certyfikowanych specjalistów, którzy indywidualnie dopasowują metody do potrzeb i oczekiwań klienta.";
-const aboutTitle = siteSettings?.about?.title || "O naszym salonie";
-const aboutSignature = siteSettings?.about?.signature || "Zespół Beauty and Care";
-
-// Get the first image for the showcase
-let firstImageSrc = "";
-// Use correct typing for the image module function
-let firstImageModule: (() => Promise<any>) | undefined = undefined;
-
-// Helper function to get the correct image path
-const getImagePath = (src: string): string => {
-  if (src.startsWith('/assets/images/')) {
-    // Convert from /assets/images/file.jpg to /src/assets/images/file.jpg
-    return `/src${src}`;
-  }
-  return `/src/assets/images/${src}`;
-};
-
-// Helper to extract just the filename
-const getJustFilename = (path: string): string => {
-  if (path.includes('/')) {
-    const parts = path.split('/');
-    return parts[parts.length - 1];
-  }
-  return path;
-};
-
-if (featuredGallery && featuredGallery.data.images && featuredGallery.data.images.length > 0) {
-  // Get full source from first image
-  firstImageSrc = featuredGallery.data.images[0].src;
-  
-  // Get correct module path based on source format
-  const imagePath = getImagePath(firstImageSrc);
-  
-  // Check if the image exists in our asset imports
-  if (imageModules[imagePath]) {
-    firstImageModule = imageModules[imagePath];
-  }
-}
+const aboutContent = siteSettings?.about?.content;
+const aboutTitle = siteSettings?.about?.title;
+const aboutSignature = siteSettings?.about?.signature;
+const aboutImage = siteSettings?.about?.aboutImage;
 ---
 
-{featuredGallery && (
-  <section class="site-container py-16 md:py-24 overflow-hidden">
-    <div class="mx-auto max-w-6xl">
-      <div class="flex flex-col md:flex-row items-center gap-10">
-        <!-- Images -->
-        <div class="md:w-1/2 relative">
-          <div class="relative z-10 overflow-hidden rounded-lg shadow-xl">
-            {firstImageModule !== undefined ? (
-              <Image 
-                src={firstImageModule()} 
-                alt={featuredGallery.data.title} 
-                width={600} 
-                height={450}
-                class="w-full h-auto transform transition-transform duration-700 hover:scale-105"
-              />
-            ) : (
-              <img 
-                src={`/images/${getJustFilename(firstImageSrc)}`} 
-                alt={featuredGallery.data.title} 
-                width="600" 
-                height="450"
-                class="w-full h-auto transform transition-transform duration-700 hover:scale-105"
-              />
-            )}
-          </div>
-        </div>
-        
-        <!-- Content -->
-        <div class="md:w-1/2">
-          <div class="bg-gray-50 p-8 rounded-lg">
-            <span class="text-sm uppercase tracking-wider text-gray-600 font-semibold">Nasza Galeria</span>
-            <h2 class="text-3xl font-bold mt-2 mb-4">{featuredGallery.data.title}</h2>
-            <p class="text-gray-700 mb-6">{featuredGallery.data.description}</p>
-            
-            <div class="flex flex-wrap gap-4">
-              <Button href="/galeria" variant="primary">
-                Zobacz galerię
-              </Button>
-            </div>
-            
-            <!-- About Me section -->
-            <div class="mt-8 border-t pt-6">
-              <h3 class="text-xl font-semibold mb-3">{aboutTitle}</h3>
-              <p class="text-gray-700 mb-3">
-                {aboutContent}
-              </p>
-              <p class="text-right italic text-gray-600">- {aboutSignature}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-)}
+<section class="site-container overflow-hidden py-16 md:py-24">
+	<div class="mx-auto max-w-6xl">
+		<div class="flex flex-col items-center gap-10 md:flex-row">
+			<!-- Featured Image -->
+			<div class="relative md:w-1/2">
+				<div class="relative z-10 overflow-hidden rounded-lg shadow-xl">
+					{aboutImage ? (
+						<Image
+							src={aboutImage}
+							alt="Galeria zabiegów"
+							width="600"
+							height="450"
+							class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
+						/>
+					) : (
+						<div class="bg-gray-200 w-full h-[450px] flex items-center justify-center">
+							<p>Image not available</p>
+						</div>
+					)}
+				</div>
+			</div>
+
+			<!-- Content -->
+			<div class="md:w-1/2">
+				<div class="rounded-lg bg-gray-50 p-8">
+					<span class="text-sm font-semibold tracking-wider text-gray-600 uppercase"
+						>Nasza Galeria</span
+					>
+					<h2 class="mt-2 mb-4 text-3xl font-bold">Galeria Beauty and Care</h2>
+					<p class="mb-6 text-gray-700">
+						Zobacz nasz salon i efekty naszych zabiegów. Zapraszamy do zapoznania się z pełną
+						galerią.
+					</p>
+
+					<div class="flex flex-wrap gap-4">
+						<Button href="/galeria" variant="primary"> Zobacz galerię </Button>
+					</div>
+
+					<!-- About Me section -->
+					<div class="mt-8 border-t pt-6">
+						<h3 class="mb-3 text-xl font-semibold">{aboutTitle}</h3>
+						<p class="mb-3 text-gray-700">
+							{aboutContent}
+						</p>
+						<p class="text-right text-gray-600 italic">- {aboutSignature}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
