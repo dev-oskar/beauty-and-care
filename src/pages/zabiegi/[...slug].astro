@@ -27,31 +27,17 @@ const { procedure: procedure } = Astro.props;
 // Render the service content
 const { Content } = await procedure.render();
 
-// formatDate imported from utils/dateUtils
-
-// Get random related zabiegi which are not drafts
-let relatedProcedures: import("astro:content").CollectionEntry<"zabiegi">[] = [];
-const allProcedures = await getCollection(
-	"zabiegi",
-	(s) => !s.data.draft && s.slug !== procedure.slug,
-);
-
-// Get up to 3 random zabiegi
-if (allProcedures.length > 0) {
-	// Shuffle the array using Fisher-Yates algorithm
-	for (let i = allProcedures.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1));
-		[allProcedures[i], allProcedures[j]] = [allProcedures[j], allProcedures[i]];
-	}
-
-	// Get first 3 (or fewer if there aren't enough)
-	relatedProcedures = allProcedures.slice(
-		0,
-		Math.min(3, allProcedures.length),
-	) as typeof allProcedures;
+// Process the image if available
+// Astro's Image component requires an import or a valid image object, not just a string path
+// We'll use a flag to check if we have a valid image path
+let hasFeaturedImage = false;
+let featuredImagePath = "";
+if (procedure.data.featuredImage) {
+	console.log("Featured Image:", procedure.data.featuredImage);
+	// TinaCMS returns a string path to the image in the format "/assets/images/imagename.jpg"
+	hasFeaturedImage = true;
+	featuredImagePath = procedure.data.featuredImage;
 }
-
-// Image processing code has been removed since heroImage property was removed
 ---
 
 <BaseLayout
@@ -68,7 +54,18 @@ if (allProcedures.length > 0) {
 		<article class="mx-auto max-w-4xl pb-12">
 			<h1 class="h2 text-center text-pretty">{procedure.data.title}</h1>
 
-			{/* Service image section removed */}
+			{/* Featured image section */}
+			{
+				hasFeaturedImage && (
+					<div class="mt-8 mb-6 overflow-hidden rounded-lg shadow-md">
+						<img 
+							src={featuredImagePath}
+							alt={procedure.data.title}
+							class="mx-auto h-auto max-h-[500px] w-full max-w-3xl object-cover"
+						/>
+					</div>
+				)
+			}
 
 			<!-- Price, date and location info -->
 			<div class="mt-6 flex flex-wrap justify-center gap-4">
@@ -159,31 +156,5 @@ if (allProcedures.length > 0) {
 				</a>
 			</div>
 		</article>
-
-		<!-- Related zabiegi -->
-		{
-			relatedProcedures.length > 0 && (
-				<section class="mx-auto mb-12 max-w-5xl">
-					<h2 class="h3 mb-8 text-center">Inne zabiegi</h2>
-					<div class="grid gap-6 md:grid-cols-3">
-						{relatedProcedures.map((relatedZabieg) => (
-							<a href={`/zabiegi/${relatedZabieg.slug}`} class="group block">
-								<div class="border-base-200 flex h-full flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 hover:shadow-md">
-									{/* Related service image removed */}
-									<div class="flex-grow p-4">
-										<h3 class="group-hover:text-primary-600 text-lg font-semibold transition-colors">
-											{relatedZabieg.data.title}
-										</h3>
-										<p class="mt-2 line-clamp-2 text-sm text-gray-600">
-											{relatedZabieg.data.description}
-										</p>
-									</div>
-								</div>
-							</a>
-						))}
-					</div>
-				</section>
-			)
-		}
 	</div>
 </BaseLayout>

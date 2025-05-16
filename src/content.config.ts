@@ -98,6 +98,7 @@ const zabiegi = defineCollection({
 			tags: z.array(z.string()).optional(),
 			order: z.number().optional(),
 			priceRange: z.string().optional(),
+			featuredImage: z.string().optional(),
 			// SEO fields
 			seoTitle: z.string().optional(),
 			seoDescription: z.string().optional(),
