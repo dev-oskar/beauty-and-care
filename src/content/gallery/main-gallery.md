@@ -1,33 +1,32 @@
 ---
 title: Galeria zdjęć Beauty and Care
-description: 'Zdjęcia z naszego salonu, pokazujące zabiegi oraz ich efekty.'
+description: "Zdjęcia z naszego salonu, pokazujące zabiegi oraz ich efekty."
 images:
-  - src: /assets/images/2.jpg
+  - src: //2.jpg
     caption: Właścicielka salonu - Katarzyna
     alt: Właścicielka salonu - Katarzyna
-  - src: /assets/images/1.jpg
+  - src: //1.jpg
     caption: Właścicielka salonu Beauty and Care Katarzyna
     alt: Właścicielka salonu Beauty and Care Katarzyna
-  - src: /assets/images/8.jpg
+  - src: //8.jpg
     caption: Zabiegi na twarz
     alt: Zabieg pielęgnacyjny na twarz
-  - src: /assets/images/9.jpg
+  - src: //9.jpg
     caption: Mezoterapia igłowa
     alt: Procedura mezoterapii igłowej
-  - src: /assets/images/PXL_20250407_143954631.jpg
+  - src: //PXL_20250407_143954631.jpg
     caption: Masaż endermologiczny
     alt: Procedura masażu endermologicznego
-  - src: /assets/images/background-new.jpg
+  - src: //background-new.jpg
     caption: Usuwanie przebarwień test
     alt: Zabieg usuwania przebarwień na twarzy
-  - src: /assets/images/8.jpg
+  - src: //8.jpg
     caption: Rezultat zabiegu liposukcji laserowej
     alt: Efekt po serii zabiegów liposukcji laserowej
-  - src: /assets/images/9.jpg
+  - src: //9.jpg
     caption: Efekty zabiegów na twarz - redukcja zmarszczek
     alt: Efekt po serii zabiegów przeciwzmarszczkowych
-  - src: /assets/images/PXL_20250407_143954631.jpg
+  - src: //PXL_20250407_143954631.jpg
     caption: Redukcja cellulitu - rezultaty
     alt: Efekty po zabiegach antycellulitowych
 ---
-
