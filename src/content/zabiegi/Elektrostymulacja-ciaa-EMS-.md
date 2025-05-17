@@ -1,5 +1,6 @@
 ---
 title: 'Elektrostymulacja ciała EMS '
+featuredImage: //5ems%20body%20sculpt%20%20(1).jpg
 description: >-
   Elektrostymulacja ciała EMS to nowoczesna metoda oparta na zaawansowanej
   elektrostymulacji mięśni i nerwów. Celem zabiegu jest wymuszenie intensywnej
@@ -36,39 +37,39 @@ Wykorzystuje one skupione pole elektromagnetyczne, które przenika przez skórę
 
 Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apoptozy – zaprogramowanej śmierci komórek tłuszczowych – prowadzi do ich stopniowego wydalania z organizmu. Jeden zabieg EMS można porównać do wykonania 20 000 brzuszków lub przysiadów, co czyni tę metodę niezwykle efektywną i wygodną.
 
-**Wskazania do zabiegu elektrostymulacji  EMS **
+\*\*Wskazania do zabiegu elektrostymulacji  EMS \*\*
 
-\- Wiotkość brzucha i talii  
+\- Wiotkość brzucha i talii
 
-\- Opadające, płaskie pośladki  
+\- Opadające, płaskie pośladki
 
-\- Słabe mięśnie brzucha  
+\- Słabe mięśnie brzucha
 
-\- Niewielkie złogi tłuszczu w rejonie talii, brzucha i pośladków  
+\- Niewielkie złogi tłuszczu w rejonie talii, brzucha i pośladków
 
-\- Rozstęp mięśni prostych brzucha po porodzie  
+\- Rozstęp mięśni prostych brzucha po porodzie
 
-\- Nierówności skóry po liposukcji  
+\- Nierówności skóry po liposukcji
 
-\- Osłabienie mięśni związane z wiekiem  
+\- Osłabienie mięśni związane z wiekiem
 
 \- Przygotowanie do intensywnych treningów
 
-**Przeciwwskazania do zabiegu: **
+\*\*Przeciwwskazania do zabiegu: \*\*
 
-\- Ciąża i karmienie piersią  
+\- Ciąża i karmienie piersią
 
-\- Obecność rozrusznika serca lub innych elektronicznych implantów  
+\- Obecność rozrusznika serca lub innych elektronicznych implantów
 
-\- Wkładki domaciczne (spirale miedziane)  
+\- Wkładki domaciczne (spirale miedziane)
 
-\- Metalowe implanty w okolicy zabiegowej  
+\- Metalowe implanty w okolicy zabiegowej
 
-\- Kolczyki lub biżuteria w miejscach objętych zabiegiem  
+\- Kolczyki lub biżuteria w miejscach objętych zabiegiem
 
-\- Choroby nowotworowe  
+\- Choroby nowotworowe
 
-\- Zaburzenia psychiczne  
+\- Zaburzenia psychiczne
 
 \- Krwawienia (np. miesiączka)
 
@@ -78,32 +79,30 @@ Rekomendowana seria to 6–10 zabiegów wykonywanych dwa razy w tygodniu. Każda
 
 **Efekty:**
 
- 
+\- 96% zadowolonych pacjentów
 
-\- 96% zadowolonych pacjentów  
+\- 92% wzrost poziomu apoptazy w komórkach tłuszczowych w ciągu 8 godzin od zabiegu
 
-\- 92% wzrost poziomu apoptazy w komórkach tłuszczowych w ciągu 8 godzin od zabiegu  
+\- 80% pacjentów z widocznym efektem liftingu pośladków
 
-\- 80% pacjentów z widocznym efektem liftingu pośladków  
+\- Redukcja tkanki tłuszczowej o 19% w zaledwie 30 minut
 
-\- Redukcja tkanki tłuszczowej o 19% w zaledwie 30 minut  
+\- Wzrost masy mięśniowej brzucha o 16%
 
-\- Wzrost masy mięśniowej brzucha o 16%  
-
-\- Redukcja rozstępu mięśni prostych brzucha o 11%  
+\- Redukcja rozstępu mięśni prostych brzucha o 11%
 
 \- Średnio 4 cm mniej w obwodzie talii
 
-**Dlaczego warto wybrać EMS? **
+\*\*Dlaczego warto wybrać EMS? \*\*
 
-\- Szybkie i widoczne efekty  
+\- Szybkie i widoczne efekty
 
-\- Modelowanie sylwetki bez wysiłku  
+\- Modelowanie sylwetki bez wysiłku
 
-\- Skuteczne wzmacnianie i budowanie mięśni  
+\- Skuteczne wzmacnianie i budowanie mięśni
 
-\- Redukcja lokalnej tkanki tłuszczowej  
+\- Redukcja lokalnej tkanki tłuszczowej
 
-\- Poprawa jędrności i napięcia skóry  
+\- Poprawa jędrności i napięcia skóry
 
 \- Bezbolesny, nieinwazyjny zabieg bez okresu rekonwalescencji
