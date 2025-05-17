@@ -21,6 +21,7 @@ export default defineConfig({
 			publicFolder: "src/assets/images",
 		},
 	},
+	
 	// Simplified schema with single gallery collection
 	schema: {
 		collections: [
@@ -298,6 +299,24 @@ export default defineConfig({
 					allowedActions: {
 						create: false,
 						delete: false,
+					},
+					// Process image paths before saving
+					beforeSubmit: async ({ values }: BeforeSubmitProps): Promise<GalleryValues> => {
+						if (values?.images && Array.isArray(values.images)) {
+							// Process gallery images
+							const fixedImages = values.images.map((img: GalleryImage) => {
+								if (img.src && typeof img.src === 'string') {
+									// Extract just the filename from paths with "//" prefix
+									const filename = img.src.replace(/^\/+/, '').split('/').pop();
+									return { ...img, src: filename };
+								}
+								return img;
+							});
+							
+							return { ...values, images: fixedImages };
+						}
+						
+						return values;
 					},
 				},
 				fields: [
