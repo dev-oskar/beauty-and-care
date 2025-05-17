@@ -46,7 +46,7 @@ Sesja trwa o**d 30 do 90 minut,** w zależności od ilości tkanki tłuszczowej 
 
 Zaleca się wykonanie serii **od 3 do 5 zabiegów w odstępach co 3–5 tygodni.** Przed i po sesji wskazane jest picie dużej ilości wody, aby wspomóc naturalne procesy metaboliczne organizmu. Dla osiągnięcia najlepszych rezultatów rekomenduje się połączenie lipolizy laserowej z rozsądną aktywnością fizyczną, zbilansowaną dietą oraz dodatkowymi zabiegami, takimi jak Terapia bioelektryczna czy elektrostymulacja mięśni EMS.
 
-### Efekty:  
+**Efekty:  **
 
 Pierwsze zauważalne rezultaty pojawiają się już po kilku tygodniach od rozpoczęcia terapii, a pełen efekt wysmuklenia i napięcia skóry rozwija się stopniowo w ciągu kilku miesięcy.
 
