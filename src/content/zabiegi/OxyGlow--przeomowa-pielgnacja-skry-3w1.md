@@ -24,6 +24,11 @@ seoDescription: >-
   OXY GLOW to innowacyjny zabieg na twarz, który w jednej sesji złuszcza skórę,
   dotlenia ją i intensywnie odżywia. Efekty są widoczne natychmiast po zabiegu.
 keywords:
+  - rozświetlenie skóry
+  - salon kosmetyczny Rzeszów
+  - odmładzanie twarzy
+  - rewitalizacja skóry
+  - odżywianie skóry
   - zabiegi na twarz
 ---
 
