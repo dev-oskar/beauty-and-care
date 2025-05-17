@@ -1,5 +1,5 @@
 ---
-title: Biolift RF 448kHz – modelowanie sylwetki i odmładzania skóry
+title: Biolift RF 448kHz – modelowanie sylwetki i odmładzanie skóry
 featuredImage: //Terapia bioelektryczna 448kHz 1 (1).jpg
 description: >
   Biolift RF 448kHz to zaawansowany zabieg wykorzystujący falę radiową o
