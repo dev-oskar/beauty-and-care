@@ -6,6 +6,7 @@
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import RichTextContent from "@components/RichTextContent/RichTextContent.astro";
 import { formatDate } from "../../utils/dateUtils";
 
 // Define all possible blog post slugs for static generation
@@ -24,7 +25,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 
 // Render the post content
-const { Content } = await post.render();
+// const { Content } = await post.render();
 
 // formatDate imported from utils/dateUtils
 
@@ -114,7 +115,9 @@ if (allPosts.length > 0) {
 
 			<!-- Main content -->
 			<div class="prose prose-lg mx-auto mt-12 max-w-3xl">
-				<Content />
+				<!-- <Content /> -->
+				<!-- Main content -->
+				<RichTextContent content={post} />
 			</div>
 
 			<!-- Back button -->

@@ -18,7 +18,15 @@ export default defineConfig({
 				// Add components here to auto-import them in MDX files
 			],
 		}),
-		mdx(),
+		mdx({
+			gfm: true, // GitHub Flavored Markdown
+			remarkPlugins: [],
+			rehypePlugins: [],
+			remarkRehype: {
+				// Ensures more precise HTML output from Markdown
+				allowDangerousHtml: true
+			}
+		}),
 		icon({
 			// I include only the icons I use. This is because if you use SSR, ALL icons will be included (no bueno)
 			// https://www.astroicon.dev/reference/configuration#include
