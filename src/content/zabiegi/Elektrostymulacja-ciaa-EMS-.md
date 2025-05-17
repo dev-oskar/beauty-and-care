@@ -39,21 +39,14 @@ Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apo
 
 ### **Wskazania do zabiegu elektrostymulacji  EMS**
 
-\- Wiotkość brzucha i talii
-
-\- Opadające, płaskie pośladki
-
-\- Słabe mięśnie brzucha
-
-\- Niewielkie złogi tłuszczu w rejonie talii, brzucha i pośladków
-
-\- Rozstęp mięśni prostych brzucha po porodzie
-
-\- Nierówności skóry po liposukcji
-
-\- Osłabienie mięśni związane z wiekiem
-
-\- Przygotowanie do intensywnych treningów
+* \- Wiotkość brzucha i talii
+* \- Opadające, płaskie pośladki
+* \- Słabe mięśnie brzucha
+* \- Niewielkie złogi tłuszczu w rejonie talii, brzucha i pośladków
+* \- Rozstęp mięśni prostych brzucha po porodzie
+* \- Nierówności skóry po liposukcji
+* \- Osłabienie mięśni związane z wiekiem
+* \- Przygotowanie do intensywnych treningów
 
 ### **Przeciwwskazania do zabiegu:**
 
