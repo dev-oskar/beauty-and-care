@@ -25,7 +25,7 @@ keywords:
 
 Celem zabiegu jest wymuszenie intensywnej pracy mięśni, co prowadzi do ich wzmocnienia oraz szybkiej redukcji tkanki tłuszczowej. Dzięki EMS możliwe jest jednoczesne rozbudowanie masy mięśniowej oraz skuteczne modelowanie sylwetki w sposób nieinwazyjny i bezpieczny.
 
-## Jak działa urządzenie EMS?
+## **Jak działa urządzenie EMS?**
 
 Wykorzystuje one skupione pole elektromagnetyczne, które przenika przez skórę i tkankę tłuszczową, docierając bezpośrednio do mięśni. Urządzenie generuje supermaksymalne skurcze mięśni – nieosiągalne podczas standardowego wysiłku fizycznego. W trakcie jednej sesji dochodzi nawet do 30 tysięcy intensywnych skurczów! Efektem jest wyszczuplenie talii, wyrzeźbienie brzucha oraz lifting i ujędrnienie pośladków.
 
@@ -33,9 +33,11 @@ Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apo
 
 **Wskazania do zabiegu elektrostymulacji EMS**
 
-* \- Wiotkość brzucha i talii
-* \- Opadające, płaskie pośladki
-* \- Słabe mięśnie brzucha
+\- Wiotkość brzucha i talii
+
+\- Opadające, płaskie pośladki
+
+\- Słabe mięśnie brzucha
 
 \- Niewielkie złogi tłuszczu w rejonie talii, brzucha i pośladków
 
@@ -47,7 +49,7 @@ Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apo
 
 \- Przygotowanie do intensywnych treningów
 
-Przeciwwskazania do zabiegu:
+### **Przeciwwskazania do zabiegu:**
 
 \- Ciąża i karmienie piersią
 
@@ -65,11 +67,11 @@ Przeciwwskazania do zabiegu:
 
 \- Krwawienia (np. miesiączka)
 
-Przebieg terapii:
+### **Przebieg terapii:**
 
 Rekomendowana seria to 6–10 zabiegów wykonywanych dwa razy w tygodniu. Każda sesja trwa około 30 minut i odbywa się z wykorzystaniem dwóch głowic urządzenia.
 
-Efekty:
+### Efekty:
 
 \- 96% zadowolonych pacjentów
 
@@ -85,7 +87,7 @@ Efekty:
 
 \- Średnio 4 cm mniej w obwodzie talii
 
-Dlaczego warto wybrać EMS?
+### **Dlaczego warto wybrać EMS?**
 
 \- Szybkie i widoczne efekty
 
