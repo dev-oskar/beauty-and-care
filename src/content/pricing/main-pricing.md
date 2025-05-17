@@ -8,15 +8,19 @@ categories:
   - Nieinwazyjny lifting twarzy
 ---
 
-## Kosmetologia
+## Zabiegi na ciało
 
-* **Lifting bez skalpela** - Terapia bioelektryczna 448 kHZ - 450 zł
-* **Efekt Bohra** - Zabieg na różne problemy skórne
-  * REVIVE - Zabieg odnawiający - 350 zł
-  * HYDRATE - Zabieg nawilżający - 350 zł
-  * BALANCE - Zabieg regulujący - 350 zł
-  * ILLUMINATE - Zabieg rozświetlający - 350 zł
-  * TEST - Test - 200 zł
+1. Lipoliza laserowa - od 600 zł
+2. **Lifting bez skalpela** - terapia bioelektryczna 448 kHZ - od 280 zł
+3. Elektrostymulacja mięśni EMS - od 150 zł
+
+**Efekt Bohra** - Zabieg na różne problemy skórne
+
+* REVIVE - Zabieg odnawiający - 350 zł
+* HYDRATE - Zabieg nawilżający - 350 zł
+* BALANCE - Zabieg regulujący - 350 zł
+* ILLUMINATE - Zabieg rozświetlający - 350 zł
+* TEST - Test - 200 zł
 * **Peeling kwasowy Larens Professional** - 299 zł
 * **Oczyszczanie wodorowe**
   * 3-etapowe - 250 zł
