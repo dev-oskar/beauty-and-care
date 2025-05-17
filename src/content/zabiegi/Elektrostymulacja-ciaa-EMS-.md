@@ -71,7 +71,7 @@ Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apo
 
 Rekomendowana seria to 6–10 zabiegów wykonywanych dwa razy w tygodniu. Każda sesja trwa około 30 minut i odbywa się z wykorzystaniem dwóch głowic urządzenia.
 
-### Efekty:
+### **Efekty:**
 
 \- 96% zadowolonych pacjentów
 
