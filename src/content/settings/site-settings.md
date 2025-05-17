@@ -30,21 +30,21 @@ about:
     klienta. W Beauty and Care dbamy o najwyższą jakość usług i komfort naszych
     klientów.
   signature: Zespół Beauty and Care
-  aboutImage: /2.jpg
+  aboutImage: Laser-Vivien-1064.jpg
 beforeAfter:
   title: Efekty zabiegów Beauty and Care
   description: >-
     Zobacz rezultaty naszych zabiegów - porównaj zdjęcia przed i po. Przekonaj
     się o skuteczności naszych metod.
   images:
-    - beforeImage: //OxyGlow.jpg
+    - beforeImage: /logo-min.png
       beforeCaption: Przed zabiegiem
-      afterImage: //background-new.jpg
+      afterImage: background-new.jpg
       afterCaption: Po zabiegu
       alt: Efekt zabiegu modelowania sylwetki
-    - beforeImage: /assets/images/4.jpg
+    - beforeImage: 4.jpg
       beforeCaption: Przed
-      afterImage: /assets/images/9.jpg
+      afterImage: 9.jpg
       afterCaption: Po
       alt: Efekt zabiegu na twarz
 ---

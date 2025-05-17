@@ -78,7 +78,7 @@ export default defineConfig({
 			publicFolder: "src/assets/images",
 		},
 	},
-	
+
 	// Simplified schema with single gallery collection
 	schema: {
 		collections: [
@@ -232,6 +232,17 @@ export default defineConfig({
 								name: "aboutImage",
 								label: "Zdjęcie",
 								description: "Zdjęcie do sekcji 'O mnie/O nas'",
+								ui: {
+									parse(value) {
+										if (!value || typeof value !== "string") return null;
+
+										// Extract just the filename with extension from a potential path
+										const baseName = value.split(/[\/\\]/).pop();
+
+										// Return the extracted filename
+										return baseName;
+									},
+								},
 							},
 						],
 					},
@@ -272,6 +283,17 @@ export default defineConfig({
 										name: "beforeImage",
 										label: "Zdjęcie przed zabiegiem",
 										required: true,
+										ui: {
+											parse(value) {
+												if (!value || typeof value !== "string") return null;
+
+												// Extract just the filename with extension from a potential path
+												const baseName = value.split(/[\/\\]/).pop();
+
+												// Return the extracted filename
+												return baseName;
+											},
+										},
 									},
 									{
 										type: "string",
@@ -283,6 +305,17 @@ export default defineConfig({
 										name: "afterImage",
 										label: "Zdjęcie po zabiegu",
 										required: true,
+										ui: {
+											parse(value) {
+												if (!value || typeof value !== "string") return null;
+
+												// Extract just the filename with extension from a potential path
+												const baseName = value.split(/[\/\\]/).pop();
+
+												// Return the extracted filename
+												return baseName;
+											},
+										},
 									},
 									{
 										type: "string",
@@ -358,24 +391,6 @@ export default defineConfig({
 						create: false,
 						delete: false,
 						createNestedFolder: false,
-					},
-					// Process image paths before saving
-					beforeSubmit: async ({ values }: BeforeSubmitProps): Promise<GalleryValues> => {
-						if (values?.images && Array.isArray(values.images)) {
-							// Process gallery images
-							const fixedImages = values.images.map((img: GalleryImage) => {
-								if (img.src && typeof img.src === 'string') {
-									// Extract just the filename from paths with "//" prefix
-									const filename = img.src.replace(/^\/+/, '').split('/').pop();
-									return { ...img, src: filename };
-								}
-								return img;
-							});
-							
-							return { ...values, images: fixedImages };
-						}
-						
-						return values;
 					},
 				},
 				fields: [
@@ -545,6 +560,17 @@ export default defineConfig({
 						label: "Zdjęcie wyróżniające",
 						description:
 							"Zdjęcie wyświetlane w podglądzie artykułu i przy udostępnianiu w mediach społecznościowych",
+						ui: {
+							parse(value) {
+								if (!value || typeof value !== "string") return null;
+
+								// Extract just the filename with extension from a potential path
+								const baseName = value.split(/[\/\\]/).pop();
+
+								// Return the extracted filename
+								return baseName;
+							},
+						},
 					},
 					// SEO fields for posts
 					{
@@ -607,6 +633,17 @@ export default defineConfig({
 						name: "featuredImage",
 						label: "Zdjęcie wyróżniające zabieg",
 						description: "Zdjęcie wyświetlane w podglądzie zabiegu",
+						ui: {
+							parse(value) {
+								if (!value || typeof value !== "string") return null;
+
+								// Extract just the filename with extension from a potential path
+								const baseName = value.split(/[\/\\]/).pop();
+
+								// Return the extracted filename
+								return baseName;
+							},
+						},
 					},
 					{
 						type: "string",
