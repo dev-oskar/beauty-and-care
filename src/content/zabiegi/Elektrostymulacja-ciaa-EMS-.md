@@ -73,7 +73,7 @@ Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apo
 
 \- Krwawienia (np. miesiączka)
 
-**Przebieg terapii:**
+### **Przebieg terapii:**
 
 Rekomendowana seria to 6–10 zabiegów wykonywanych dwa razy w tygodniu. Każda sesja trwa około 30 minut i odbywa się z wykorzystaniem dwóch głowic urządzenia.
 
@@ -115,6 +115,6 @@ Test skreślone
 
 1. Lista
 
-* lista 2 
+* lista 2
 
 GILFIGIPIK
