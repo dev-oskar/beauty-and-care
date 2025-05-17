@@ -25,16 +25,19 @@ const imageImport = getImageByFilename(filename);
 
 // Fallback to regular img tag if we can't get the image
 const useRegularImg = !imageImport;
+// Store the original source for the lightbox
+const originalSrc = useRegularImg ? `/src/assets/images/${filename}` : undefined;
 ---
 
 <div
 	class="gallery-item overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-lg"
 	data-index={index}
+	data-original-src={originalSrc}
 >
 	<div class="group relative aspect-square cursor-pointer overflow-hidden">
 		{useRegularImg ? (
 			<img
-				src={image.src}
+				src={`/src/assets/images/${filename}`}
 				alt={imageAlt}
 				loading={index >= 2 ? "lazy" : "eager"}
 				class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
