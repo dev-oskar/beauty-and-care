@@ -4,6 +4,63 @@ import { defineConfig } from "tinacms";
 const branch =
 	process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "master";
 
+/**
+ * Converts a string with Polish characters to a URL-friendly slug
+ * @param filename The filename to convert
+ * @returns A slug with Polish characters replaced
+ */
+export const polishToSlug = (filename: string): string => {
+	// Define Polish character mappings
+	const polishChars: Record<string, string> = {
+		ą: "a",
+		ć: "c",
+		ę: "e",
+		ł: "l",
+		ń: "n",
+		ó: "o",
+		ś: "s",
+		ź: "z",
+		ż: "z",
+		Ą: "A",
+		Ć: "C",
+		Ę: "E",
+		Ł: "L",
+		Ń: "N",
+		Ó: "O",
+		Ś: "S",
+		Ź: "Z",
+		Ż: "Z",
+	};
+
+	// Replace Polish characters
+	let slug = filename;
+	Object.entries(polishChars).forEach(([polish, latin]) => {
+		slug = slug.replace(new RegExp(polish, "g"), latin);
+	});
+
+	// Remove file extension
+	const extensionIndex = slug.lastIndexOf(".");
+	if (extensionIndex !== -1) {
+		slug = slug.substring(0, extensionIndex);
+	}
+
+	// Convert to lowercase, replace spaces and non-alphanumeric characters
+	return slug
+		.toLowerCase()
+		.replace(/\s+/g, "-")
+		.replace(/[^a-z0-9-]/g, "")
+		.replace(/-+/g, "-")
+		.replace(/^-|-$/g, "");
+};
+
+// Example for TinaCMS usage:
+const customSlugify = (values: { title?: string; topic?: string }): string => {
+	const title = values?.title ? polishToSlug(values.title) : "";
+	const topic = values?.topic ? polishToSlug(values?.topic) : "no-topic";
+
+	return `${topic}-${title}`;
+};
+
 export default defineConfig({
 	branch,
 
@@ -252,6 +309,7 @@ export default defineConfig({
 					allowedActions: {
 						create: false,
 						delete: false,
+						createNestedFolder: false,
 					},
 				},
 				fields: [
@@ -298,6 +356,7 @@ export default defineConfig({
 					allowedActions: {
 						create: false,
 						delete: false,
+						createNestedFolder: false,
 					},
 				},
 				fields: [
@@ -333,6 +392,17 @@ export default defineConfig({
 								name: "src",
 								label: "Zdjęcie",
 								required: true,
+								ui: {
+									parse(value) {
+										if (!value || typeof value !== "string") return null;
+
+										// Extract just the filename with extension from a potential path
+										const baseName = value.split(/[\/\\]/).pop();
+
+										// Return the extracted filename
+										return baseName;
+									},
+								},
 							},
 							{
 								type: "string",
@@ -392,6 +462,16 @@ export default defineConfig({
 				name: "posts",
 				label: "Posty na bloga",
 				path: "src/content/posts",
+				ui: {
+					allowedActions: {
+						createNestedFolder: false,
+					},
+					filename: {
+						slugify: (values) => {
+							return polishToSlug(values.title);
+						},
+					},
+				},
 				fields: [
 					{
 						type: "string",
@@ -485,6 +565,16 @@ export default defineConfig({
 				name: "zabiegi",
 				label: "Zabiegi",
 				path: "src/content/zabiegi",
+				ui: {
+					allowedActions: {
+						createNestedFolder: false,
+					},
+					filename: {
+						slugify: (values) => {
+							return polishToSlug(values?.title || "zabieg");
+						},
+					},
+				},
 				fields: [
 					{
 						type: "string",

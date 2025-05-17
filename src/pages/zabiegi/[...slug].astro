@@ -38,11 +38,11 @@ let useRegularImg = true;
 if (procedure.data.featuredImage) {
 	console.log("Featured Image:", procedure.data.featuredImage);
 	hasFeaturedImage = true;
-	
+
 	// Extract the filename and get the imported image
 	const filename = getFilenameFromPath(procedure.data.featuredImage);
 	featuredImageImport = getImageByFilename(filename);
-	
+
 	// Determine if we need to fall back to a regular img tag
 	useRegularImg = !featuredImageImport;
 }
@@ -67,13 +67,13 @@ if (procedure.data.featuredImage) {
 				hasFeaturedImage && (
 					<div class="mt-8 mb-6 overflow-hidden rounded-lg shadow-md">
 						{useRegularImg ? (
-							<img 
+							<img
 								src={procedure.data.featuredImage}
 								alt={procedure.data.title}
 								class="mx-auto h-auto max-h-[500px] w-full max-w-3xl object-cover"
 							/>
 						) : (
-							<Image 
+							<Image
 								src={featuredImageImport}
 								alt={procedure.data.title}
 								class="mx-auto h-auto max-h-[500px] w-full max-w-3xl object-cover"

@@ -24,8 +24,8 @@ export default defineConfig({
 			rehypePlugins: [],
 			remarkRehype: {
 				// Ensures more precise HTML output from Markdown
-				allowDangerousHtml: true
-			}
+				allowDangerousHtml: true,
+			},
 		}),
 		icon({
 			// I include only the icons I use. This is because if you use SSR, ALL icons will be included (no bueno)
@@ -51,7 +51,7 @@ export default defineConfig({
 			HTML: true,
 			JavaScript: true,
 			CSS: true,
-			Image: false, // astro:assets handles this. Enabling this can dramatically increase build times
+			Image: true, // astro:assets handles this. Enabling this can dramatically increase build times
 			SVG: false, // astro-icon handles this
 		}),
 	],
