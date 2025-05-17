@@ -31,7 +31,7 @@ Wykorzystuje one skupione pole elektromagnetyczne, które przenika przez skórę
 
 Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apoptozy – zaprogramowanej śmierci komórek tłuszczowych – prowadzi do ich stopniowego wydalania z organizmu. Jeden zabieg EMS można porównać do wykonania 20 000 brzuszków lub przysiadów, co czyni tę metodę niezwykle efektywną i wygodną.
 
-Wskazania do zabiegu elektrostymulacji EMS
+**Wskazania do zabiegu elektrostymulacji EMS**
 
 \- Wiotkość brzucha i talii
 
