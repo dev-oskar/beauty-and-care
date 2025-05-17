@@ -1,0 +1,18 @@
+---
+/**
+ * RichTextContent.astro
+ * Handles consistent rendering of markdown content from TinaCMS rich-text editor
+ * Used for Zabiegi, blog posts, and other content sections with rich text
+ */
+
+interface Props {
+  content: any;
+}
+
+const { content } = Astro.props;
+const { Content } = await content.render();
+---
+
+<div class="prose prose-lg mx-auto mt-12 max-w-3xl markdown-content">
+  <Content />
+</div>

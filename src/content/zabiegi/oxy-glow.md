@@ -3,7 +3,7 @@ date: '2025-04-20T00:00:00.000Z'
 location: Beauty and Care
 order: 1
 title: OXY GLOW - Infuzja tlenowa Test
-featuredImage: /assets/images/lipoliza-laserowa.png
+featuredImage: /lipoliza-laserowa.png
 description: >-
   Innowacyjny zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko
   w skórę, zapewniając natychmiastowe efekty nawilżenia i odmłodzenia. Test.
@@ -70,9 +70,9 @@ Zabieg OXY GLOW trwa około 45-60 minut i składa się z następujących etapów
 
 ## Dla kogo polecamy zabieg OXY GLOW?
 
-Test Oskar Pietrucha
+*Test Oskar Pietrucha*
 
-Test Oskar Pietrucha
+~~Test Oskar Pietrucha~~
 
 * Test Oskar Pietrucha
 
