@@ -1,6 +1,6 @@
 ---
 title: Lipoliza laserowa - redukcja tkanki tłuszczowej
-featuredImage: //8%20(1)%20(1).jpg
+featuredImage: ''
 description: >
   Lipoliza laserowa Laserem Vivien 1064 nm to nowoczesny, nieinwazyjny zabieg
   modelujący sylwetkę, który skutecznie redukuje oporną tkankę tłuszczową, a
