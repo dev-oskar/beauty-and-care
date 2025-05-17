@@ -27,6 +27,14 @@ seoTitle: 'Elektrostymulacja ciała EMS '
 seoDescription: >-
   Celem zabiegu jest wymuszenie intensywnej pracy mięśni, co prowadzi do ich
   wzmocnienia oraz szybkiej redukcji tkanki tłuszczowej.
+keywords:
+  - redukcja obwodu ciała
+  - modelowanie sylwetki
+  - salon modelowania sylwetki Rzeszów
+  - Beautyandcare Rzeszów
+  - rewitalizacja skóry
+  - ujędrnianie ciała
+  - elektrostymulacja mięśni EMS
 ---
 
 Celem zabiegu jest wymuszenie intensywnej pracy mięśni, co prowadzi do ich wzmocnienia oraz szybkiej redukcji tkanki tłuszczowej. Dzięki EMS możliwe jest jednoczesne rozbudowanie masy mięśniowej oraz skuteczne modelowanie sylwetki w sposób nieinwazyjny i bezpieczny.
