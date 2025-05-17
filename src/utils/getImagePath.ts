@@ -31,14 +31,17 @@ export function normalizeImagePath(src: string): string {
 export function getFilenameFromPath(path: string): string {
 	if (!path) return "";
 	
+	// Remove leading slashes (handle cases like //filename.jpg)
+	const cleanPath = path.replace(/^\/+/, "");
+	
 	// If it's a full path, extract just the filename
-	if (path.includes("/")) {
-		const parts = path.split("/");
+	if (cleanPath.includes("/")) {
+		const parts = cleanPath.split("/");
 		return parts[parts.length - 1];
 	}
 	
 	// Otherwise return as is
-	return path;
+	return cleanPath;
 }
 
 /**
