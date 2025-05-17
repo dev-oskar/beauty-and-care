@@ -1,6 +1,6 @@
 ---
 title: 'Elektrostymulacja ciała EMS '
-featuredImage: //EMS (1).jpg
+featuredImage: 351%20(1).jpg
 description: >-
   Elektrostymulacja ciała EMS to nowoczesna metoda oparta na zaawansowanej
   elektrostymulacji mięśni i nerwów. Celem zabiegu jest wymuszenie intensywnej
@@ -69,7 +69,7 @@ Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apo
 
 ### **Przebieg terapii:**
 
-Rekomendowana seria to **6–10 zabiegów** wykonywanych dwa razy w tygodniu. Każda sesja trwa około **30 minut **i odbywa się z wykorzystaniem dwóch głowic urządzenia.
+Rekomendowana seria to **6–10 zabiegów** wykonywanych dwa razy w tygodniu. Każda sesja trwa około \*\*30 minut \*\*i odbywa się z wykorzystaniem dwóch głowic urządzenia.
 
 ### **Efekty:**
 
