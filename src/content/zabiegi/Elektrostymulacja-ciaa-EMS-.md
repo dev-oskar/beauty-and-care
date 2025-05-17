@@ -1,6 +1,6 @@
 ---
 title: 'Elektrostymulacja ciała EMS '
-featuredImage: ''
+featuredImage: //EMS (1).jpg
 description: >-
   Elektrostymulacja ciała EMS to nowoczesna metoda oparta na zaawansowanej
   elektrostymulacji mięśni i nerwów. Celem zabiegu jest wymuszenie intensywnej
