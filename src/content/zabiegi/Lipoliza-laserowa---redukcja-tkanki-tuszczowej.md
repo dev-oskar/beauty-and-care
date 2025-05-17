@@ -72,4 +72,5 @@ Zabieg nie tylko redukuje zbędną tkankę tłuszczową, ale również stymuluje
 * Stany zapalne, infekcje
 * Antybiotykoterapia ok 3-4 tygodnie przed zabiegiem
 * Przyjmowanie leków światłouczulających
-*
+
+                                                  JEDNORAZOWO MOŻNA WYKONYWAĆ ZABIEG NA MAKSYMALNIE 3 PARTIACH CIAŁA!
