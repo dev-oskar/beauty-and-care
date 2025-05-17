@@ -37,7 +37,7 @@ Wykorzystuje one skupione pole elektromagnetyczne, które przenika przez skórę
 
 Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apoptozy – zaprogramowanej śmierci komórek tłuszczowych – prowadzi do ich stopniowego wydalania z organizmu. Jeden zabieg EMS można porównać do wykonania 20 000 brzuszków lub przysiadów, co czyni tę metodę niezwykle efektywną i wygodną.
 
-\*\*Wskazania do zabiegu elektrostymulacji  EMS \*\*
+**Wskazania do zabiegu elektrostymulacji  EMS**
 
 \- Wiotkość brzucha i talii
 
@@ -55,7 +55,7 @@ Dzięki intensywnej pracy mięśni uwalniane są kwasy tłuszczowe, a proces apo
 
 \- Przygotowanie do intensywnych treningów
 
-\*\*Przeciwwskazania do zabiegu: \*\*
+**Przeciwwskazania do zabiegu:**
 
 \- Ciąża i karmienie piersią
 
@@ -93,7 +93,7 @@ Rekomendowana seria to 6–10 zabiegów wykonywanych dwa razy w tygodniu. Każda
 
 \- Średnio 4 cm mniej w obwodzie talii
 
-\*\*Dlaczego warto wybrać EMS? \*\*
+**Dlaczego warto wybrać EMS?**
 
 \- Szybkie i widoczne efekty
 
@@ -106,3 +106,15 @@ Rekomendowana seria to 6–10 zabiegów wykonywanych dwa razy w tygodniu. Każda
 \- Poprawa jędrności i napięcia skóry
 
 \- Bezbolesny, nieinwazyjny zabieg bez okresu rekonwalescencji
+
+#### Test O P 2025
+
+Test kursywa
+
+Test skreślone
+
+1. Lista
+
+* lista 2 
+
+GILFIGIPIK
