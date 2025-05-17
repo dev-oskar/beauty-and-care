@@ -2,24 +2,23 @@
 date: '2025-04-20T00:00:00.000Z'
 location: Beauty and Care
 order: 1
-title: OXY GLOW - Infuzja tlenowa Test
-featuredImage: /assets/images/lipoliza-laserowa.png
-description: >-
-  Innowacyjny zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko
-  w skórę, zapewniając natychmiastowe efekty nawilżenia i odmłodzenia. Test.
+title: OxyGlow – przełomowa pielęgnacja skóry 3w1
+featuredImage: ''
+description: >
+  OxyGlow to innowacyjny zabieg na twarz, który w jednej sesji złuszcza skórę,
+  dotlenia ją i intensywnie odżywia. Efekty są widoczne natychmiast, dlatego
+  OxyGlow często nazywany jest "zabiegiem bankietowym" – idealnym przed wielkim
+  wyjściem.
 tags:
-  - tlen
-  - infuzja
   - nawilżenie
   - anti-aging
-  - blask
-priceRange: 350-450 zł
+priceRange: 250-300 zł
 clients:
   - Skóra sucha i odwodniona
   - Skóra z pierwszymi oznakami starzenia
   - Skóra zmęczona i z utratą blasku
   - Przygotowanie skóry przed ważnymi wydarzeniami
-seoTitle: OXY GLOW - Infuzja tlenowa | Beauty and Care
+seoTitle: OxyGlow – przełomowa pielęgnacja skóry 3w1
 seoDescription: >-
   Zabieg infuzji tlenowej, który dostarcza składniki aktywne głęboko w skórę,
   dając natychmiastowy efekt nawilżenia, odmłodzenia i blasku.
@@ -31,70 +30,119 @@ keywords:
   - Beauty and Care
 ---
 
-# Innowacyjna terapia tlenowa OXY GLOW
+### Technologia zastosowana w OxyGlow
 
-OXY GLOW to zaawansowany zabieg kosmetologiczny wykorzystujący technologię infuzji tlenowej, która pozwala na dostarczenie cennych składników aktywnych w głąb skóry. Tlen pod wysokim ciśnieniem wprowadza serum bogate w kwas hialuronowy, witaminy, minerały i antyoksydanty, zapewniając natychmiastowe i długotrwałe efekty.
+OxyGlow inspiruje się naturalnymi gorącymi źródłami – jego unikalne działanie wywołuje tzw. efekt Bohra, który stymuluje organizm do dostarczenia większej ilości tlenu do skóry. Dzięki temu cera staje się bardziej promienna, gładka i zdrowa.
 
-## Jak działa zabieg OXY GLOW?
+Zabieg jednocześnie:
 
-Zabieg wykorzystuje specjalny aplikator, który pod wysokim ciśnieniem (około 2,5 bara) wtłacza tlen wraz z aktywnymi składnikami bezpośrednio w głębsze warstwy skóry. Tlen działa jako nośnik, pozwalając substancjom aktywnym dotrzeć tam, gdzie są najbardziej potrzebne.
+* Złuszcza martwy naskórek,
 
-Proces ten:
 
-1. Zwiększa przenikanie składników aktywnych
-2. Stymuluje produkcję kolagenu i elastyny
-3. Poprawia metabolizm komórkowy
-4. Wspomaga naturalną regenerację skóry
+* Stymuluje dotlenienie tkanek,
 
-## Efekty zabiegu
 
-Po zabiegu OXY GLOW możesz oczekiwać:
+* Wzmacnia absorpcję składników odżywczych.
 
-* **Natychmiastowego nawilżenia** - skóra staje się jędrna i pełna blasku
-* **Redukcji drobnych zmarszczek** - zwłaszcza tych spowodowanych odwodnieniem
-* **Poprawy kolorytu skóry** - ujednolicenie i rozświetlenie
-* **Zwiększonej elastyczności** - skóra staje się bardziej sprężysta
-* **Efektu liftingu** - widoczne napięcie i poprawa owalu twarzy
 
-Efekty są widoczne od razu po zabiegu, co czyni go idealnym rozwiązaniem przed ważnymi wydarzeniami.
 
-## Przebieg zabiegu
+Warianty OxyGlow – idealne dopasowanie do potrzeb skóry:
 
-Zabieg OXY GLOW trwa około 45-60 minut i składa się z następujących etapów:
 
-1. **Oczyszczanie** - dokładne oczyszczenie skóry i przygotowanie jej do zabiegu
-2. **Złuszczanie** - delikatne usunięcie martwego naskórka dla lepszej penetracji składników
-3. **Infuzja tlenowa** - aplikacja serum z wykorzystaniem tlenu pod ciśnieniem
-4. **Maska** - nałożenie odpowiedniej maski potęgującej efekty zabiegu
-5. **Pielęgnacja końcowa** - nałożenie kremu ochronnego i serum
 
-## Dla kogo polecamy zabieg OXY GLOW?
 
-Test Oskar Pietrucha
+#### ⭐ OxyGlow Balance – intensywne odmłodzenie
 
-Test Oskar Pietrucha
+* Redukcja zmarszczek
 
-* Test Oskar Pietrucha
 
-### Test Oskar Pietrucha
+* Poprawa jędrności i gęstości skóry
 
-Zabieg jest szczególnie polecany dla:
 
-* Osób z cerą suchą i odwodnioną
-* Skóry z pierwszymi oznakami starzenia
-* Skóry zmęczonej, pozbawionej blasku
-* Osób przygotowujących się do ważnych wydarzeń (tzw. zabieg bankietowy)
+* Zwężenie porów
 
-## Przeciwwskazania
 
-Zabiegu nie wykonujemy u osób z:
+* Promienna, młodsza cera
 
-* Aktywnym trądzikiem
-* Stanami zapalnymi skóry
-* Infekcjami skórnymi
-* Rozszerzonymi i popękanymi naczynkami krwionośnymi
-* W trakcie kuracji izotretynoiną (min. 6 miesięcy po zakończeniu leczenia)
 
-## Zalecana seria zabiegów
 
-Dla osiągnięcia najlepszych i długotrwałych efektów zalecamy serię 4-6 zabiegów wykonywanych co 7-10 dni. Następnie zabiegi podtrzymujące co 4-6 tygodni.
+#### ⭐ OxyGlow Illuminate – rozświetlenie i wyrównanie kolorytu
+
+* Rozjaśnienie skóry
+
+
+* Głębokie nawilżenie
+
+
+* Wyrównanie kolorytu cery
+
+
+* Odnowienie i odżywienie struktury skóry
+
+
+
+#### ⭐ OxyGlow Hydrate – intensywne nawilżenie
+
+* Głębokie nawodnienie skóry na poziomie komórkowym
+
+
+* Wzmocnienie naturalnej bariery ochronnej skóry
+
+
+* Skóra staje się miękka, sprężysta i promienna
+
+
+* Idealne rozwiązanie dla skóry suchej, odwodnionej lub po intensywnym opalaniu
+
+
+
+#### ⭐ OxyGlow Detox – oczyszczenie i odświeżenie
+
+* Dogłębne oczyszczenie skóry z toksyn i zanieczyszczeń
+
+
+* Redukcja niedoskonałości i zanieczyszczeń
+
+
+* Ożywienie zmęczonej, szarej cery
+
+
+* Przywrócenie równowagi i świeżości skóry
+
+
+
+### Przebieg zabiegu OxyGlow
+
+Zabieg OxyGlow opiera się na synergii specjalnej kapsułki Capsugen i żelu bogatego w składniki aktywne. Wytwarzane bąbelki CO₂ delikatnie pękają na powierzchni skóry, powodując efekt Bohra i dostarczając skórze większej ilości tlenu oraz substancji odżywczych.
+
+Efekty natychmiastowe:
+
+* Gładkość
+
+
+* Napięcie
+
+
+* Odżywienie
+
+
+* Promienny blask
+
+
+
+### Dlaczego warto wybrać OxyGlow?
+
+🌸 3w1: złuszczanie, dotlenienie i odżywienie
+ 🌸 Efekty widoczne od razu po zabiegu
+ 🌸 Intensywne nawilżenie lub oczyszczenie w zależności od wybranego wariantu
+ 🌸 Odpowiedni dla każdego typu cery
+ 🌸 Bezinwazyjność i bezpieczeństwo
+ 🌸 Idealny zarówno przed ważnym wydarzeniem, jak i jako element regularnej pielęgnacji
+ 🌸 Potwierdzona skuteczność kliniczna
+ 🌸 Brak okresu rekonwalescencji – od razu możesz wrócić do codziennych zajęć
+
+Możliwe efekty uboczne
+
+Bezpośrednio po zabiegu może pojawić się dyskretny rumień lub lekkie napięcie skóry, które ustępuje po kilku godzinach. Zaleca się stosowanie nawilżającego kremu w celu wzmocnienia i przedłużenia efektów terapii.
+
+
