@@ -1,5 +1,9 @@
 ---
 title: OxyGlow – przełomowa pielęgnacja skóry 3w1
+featuredImage: //OxyGlow1 (1).jpg
+description: >-
+  OxyGlow to innowacyjny zabieg na twarz, który w jednej sesji złuszcza skórę,
+  dotlenia ją i intensywnie odżywia. Efekty są widoczne natychmiast po zabiegu.
 tags:
   - zabieg bankietowy
   - zabiegi anty aging
@@ -23,7 +27,7 @@ keywords:
   - zabiegi na twarz
 ---
 
-OxyGlow często nazywany jest **"zabiegiem bankietowym" **– idealnym przed wielkim wyjściem.
+OxyGlow często nazywany jest "zabiegiem bankietowym" – idealnym przed wielkim wyjściem.
 
 ## Technologia zastosowana w OxyGlow
 
@@ -79,13 +83,13 @@ Zabieg OxyGlow opiera się na synergii specjalnej kapsułki Capsugen i żelu bog
 ### Dlaczego warto wybrać OxyGlow?
 
 * 3w1: złuszczanie, dotlenienie i odżywienie
-*  Efekty widoczne od razu po zabiegu
-*  Intensywne nawilżenie lub oczyszczenie w zależności od wybranego wariantu
-*  Odpowiedni dla każdego typu cery
-*  Bezinwazyjność i bezpieczeństwo
-*  Idealny zarówno przed ważnym wydarzeniem, jak i jako element regularnej pielęgnacji
-*  Potwierdzona skuteczność kliniczna
-*  Brak okresu rekonwalescencji – od razu możesz wrócić do codziennych zajęć
+* Efekty widoczne od razu po zabiegu
+* Intensywne nawilżenie lub oczyszczenie w zależności od wybranego wariantu
+* Odpowiedni dla każdego typu cery
+* Bezinwazyjność i bezpieczeństwo
+* Idealny zarówno przed ważnym wydarzeniem, jak i jako element regularnej pielęgnacji
+* Potwierdzona skuteczność kliniczna
+* Brak okresu rekonwalescencji – od razu możesz wrócić do codziennych zajęć
 
 #### Możliwe efekty uboczne
 
