@@ -85,7 +85,22 @@ const { galleryId } = Astro.props;
 			
 			lightbox.classList.remove('hidden');
 			lightbox.classList.add('flex');
-			lightboxImg.src = src;
+			
+			// Find the current item
+			const currentItem = visibleItems.find(item => 
+				parseInt(item.getAttribute('data-index') || '0') === index
+			);
+			
+			// Check if we have an original source stored on the element
+			let imageSource = src;
+			if (currentItem) {
+				const originalSrc = currentItem.getAttribute('data-original-src');
+				if (originalSrc) {
+					imageSource = originalSrc;
+				}
+			}
+			
+			lightboxImg.src = imageSource;
 			lightboxCaption.textContent = caption;
 			
 			// Find the position of this item in the visibleItems array
@@ -137,7 +152,14 @@ const { galleryId } = Astro.props;
 			
 			const caption = prevItem.querySelector('p')?.textContent || '';
 			
-			lightboxImg.src = imgElement.src;
+			// Check if we have an original source stored on the element
+			let imageSource = imgElement.src;
+			const originalSrc = prevItem.getAttribute('data-original-src');
+			if (originalSrc) {
+				imageSource = originalSrc;
+			}
+			
+			lightboxImg.src = imageSource;
 			lightboxCaption.textContent = caption;
 			updateCounter();
 		});
@@ -155,7 +177,14 @@ const { galleryId } = Astro.props;
 			
 			const caption = nextItem.querySelector('p')?.textContent || '';
 			
-			lightboxImg.src = imgElement.src;
+			// Check if we have an original source stored on the element
+			let imageSource = imgElement.src;
+			const originalSrc = nextItem.getAttribute('data-original-src');
+			if (originalSrc) {
+				imageSource = originalSrc;
+			}
+			
+			lightboxImg.src = imageSource;
 			lightboxCaption.textContent = caption;
 			updateCounter();
 		});
