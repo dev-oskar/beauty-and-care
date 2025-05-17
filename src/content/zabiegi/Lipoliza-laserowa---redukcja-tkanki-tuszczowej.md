@@ -40,7 +40,7 @@ Zabieg stanowi bezpieczną alternatywę dla klasycznej liposukcji chirurgicznej,
 
 Jest to zaawansowany laser neodymowo-jagowy o długości fali 1064 nm, wykorzystujący innowacyjny tryb PIANO DO. Energia lasera działa na zasadzie selektywnej fototermolizy – światło pochłaniane przez wodę zawartą w komórkach tłuszczowych prowadzi do ich kontrolowanego uszkodzenia i rozpuszczenia. Powstałe w wyniku zabiegu produkty przemiany materii są następnie naturalnie usuwane z organizmu.
 
-## Przebieg zabiegu:
+# Przebieg zabiegu:
 
 Sesja trwa o**d 30 do 90 minut,** w zależności od ilości tkanki tłuszczowej oraz obszaru zabiegowego. Przed zabiegiem konieczna jest konsultacja z kosmetologiem, który ocenia stan skóry, kwalifikuje do procedury i wyklucza ewentualne przeciwwskazania. W trakcie zabiegu aplikator lasera przykładany jest bezpośrednio do wybranych partii ciała, gdzie wiązka światła skutecznie dociera do komórek tłuszczowych.
 
