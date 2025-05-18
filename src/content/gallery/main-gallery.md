@@ -17,7 +17,7 @@ images:
   - src: PXL_20250407_143954631.jpg
     caption: Masaż endermologiczny
     alt: Procedura masażu endermologicznego
-  - src: 0background-new.jpg
+  - src: background-new.jpg
     caption: Usuwanie przebarwień test
     alt: Zabieg usuwania przebarwień na twarzy
   - src: 8.jpg

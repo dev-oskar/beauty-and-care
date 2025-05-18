@@ -11,11 +11,11 @@ export function normalizeImagePath(src: string): string {
 	if (src.startsWith("/assets/images/")) {
 		// We need to dynamically import these images
 		const filename = getFilenameFromPath(src);
-		return `/src/assets/images/${filename}`;
+		return `/assets/images/${filename}`;
 	} 
 	// If it doesn't include a path separator, assume it's in the images directory
 	else if (!src.includes("/")) {
-		return `/src/assets/images/${src}`;
+		return `/assets/images/${src}`;
 	}
 	
 	// Return as is if it's already a valid path
