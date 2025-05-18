@@ -39,13 +39,8 @@ beforeAfter:
   images:
     - beforeImage: po.jpg
       beforeCaption: Przed zabiegiem
-      afterImage: /background-new.jpg
+      afterImage: przed.jpg
       afterCaption: Po zabiegu
       alt: Efekt zabiegu modelowania sylwetki
-    - beforeImage: /4.jpg
-      beforeCaption: Przed
-      afterImage: /9.jpg
-      afterCaption: Po
-      alt: Efekt zabiegu na twarz
 ---
 
