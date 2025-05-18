@@ -240,7 +240,7 @@ export default defineConfig({
 										const baseName = value.split(/[\/\\]/).pop();
 
 										// Return the extracted filename
-										return baseName;
+										return decodeURIComponent(baseName);
 									},
 								},
 							},
@@ -291,7 +291,7 @@ export default defineConfig({
 												const baseName = value.split(/[\/\\]/).pop();
 
 												// Return the extracted filename
-												return baseName;
+												return decodeURIComponent(baseName);
 											},
 										},
 									},
@@ -313,7 +313,7 @@ export default defineConfig({
 												const baseName = value.split(/[\/\\]/).pop();
 
 												// Return the extracted filename
-												return baseName;
+												return decodeURIComponent(baseName);
 											},
 										},
 									},
@@ -434,7 +434,7 @@ export default defineConfig({
 										const baseName = value.split(/[\/\\]/).pop();
 
 										// Return the extracted filename
-										return baseName;
+										return decodeURIComponent(baseName);
 									},
 								},
 							},
@@ -568,7 +568,7 @@ export default defineConfig({
 								const baseName = value.split(/[\/\\]/).pop();
 
 								// Return the extracted filename
-								return baseName;
+								return decodeURIComponent(baseName);
 							},
 						},
 					},
