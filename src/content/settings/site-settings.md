@@ -37,7 +37,7 @@ beforeAfter:
     Zobacz rezultaty naszych zabiegów - porównaj zdjęcia przed i po. Przekonaj
     się o skuteczności naszych metod.
   images:
-    - beforeImage: Analiza%20sk%C3%B3ry.jpg
+    - beforeImage: po.jpg
       beforeCaption: Przed zabiegiem
       afterImage: /background-new.jpg
       afterCaption: Po zabiegu
