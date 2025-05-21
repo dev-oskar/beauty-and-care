@@ -1,6 +1,6 @@
 ---
 title: Zabieg detoksykująco - normalizujący Larens
-featuredImage: /Analiza skory.jpg
+featuredImage: detox (1).png
 description: >
   Idealny dla cery tłustej, mieszanej i trądzikowej.
 
