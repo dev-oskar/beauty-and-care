@@ -4,6 +4,13 @@ featuredImage: /anti age (1).jpg
 description: >-
   Ten wyjątkowy zabieg został specjalnie opracowany dla osób z skórą suchą,
   wiotką, z widocznymi oznakami starzenia i zmarszczkami
+tags:
+  - zabieg przeciwzmarszczkowy
+  - zabieg anti age
+  - odmładzanie skóry
+  - zabiegi na twarz
+  - rewitalizacja skóry
+  - odżywianie skóry
 priceRange: 300-350 zł
 clients:
   - dla osób potrzebujących intensywnej odnowy i spowolnienia procesów starzenia
