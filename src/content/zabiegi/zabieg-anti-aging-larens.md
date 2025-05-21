@@ -21,6 +21,15 @@ seoTitle: 'Zabieg anti age Larens  '
 seoDescription: >-
   Jeśli Twoja skóra potrzebuje intensywnej regeneracji, wygładzenia i
   odmłodzenia — ten zabieg jest właśnie dla Ciebie!
+keywords:
+  - rewitalizacja skóry
+  - nawilżanie skóry
+  - redukcja zmarszczek
+  - zabieg anti aging
+  - odmładzanie skóry
+  - odżywianie skóry
+  - zabiegi odmładzające
+  - zabieg na twarz
 ---
 
 ## Jak przebiega zabieg?
