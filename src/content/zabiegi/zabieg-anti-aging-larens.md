@@ -1,6 +1,6 @@
 ---
 title: 'Zabieg anti aging Larens  '
-featuredImage: anti age (1).jpg
+featuredImage: /anti age (1).jpg
 description: >-
   Ten wyjątkowy zabieg został specjalnie opracowany dla osób z skórą suchą,
   wiotką, z widocznymi oznakami starzenia i zmarszczkami
@@ -18,62 +18,61 @@ seoDescription: >-
 
 ## Jak przebiega zabieg?
 
-1\. Demakijaż i przygotowanie skóry  
+### 1. Demakijaż i przygotowanie skóry
 
-   Delikatne oczyszczenie skóry oraz rozluźnienie wiązań międzykomórkowych za pomocą kwasów AHA.
+Delikatne oczyszczenie skóry oraz rozluźnienie wiązań międzykomórkowych za pomocą kwasów AHA.
 
-2\. Peeling kawitacyjny 
+### 2. Peeling kawitacyjny
 
-   Skuteczne, a jednocześnie delikatne usunięcie martwego naskórka oraz głębokie oczyszczenie porów.
+Skuteczne, a jednocześnie delikatne usunięcie martwego naskórka oraz głębokie oczyszczenie porów.
 
-3\. Aplikacja Serum w Sprayu  
+### 3. Aplikacja Serum w Sprayu
 
-   Łagodzenie, ukojenie i intensywne nawilżenie skóry.
+Łagodzenie, ukojenie i intensywne nawilżenie skóry.
 
-4\. Aplikacja Ampułki ANTI AGE– serce zabiegu!  
+### 4. Aplikacja Ampułki ANTI AGE– serce zabiegu
 
-**   Ampułki zawierają:  **
+ **Ampułki zawierają:**  
 
-*    Bio-Placente  
-*    Biopeptide Complex  
-*    Antarktycynę (ekstrakt lodowcowy stymulujący kolagen i elastynę)  
-*    Kwas hialuronowy  
-*    Koenzym Q10  
-*    L-argininę i kwas mlekowy  
-*
+* Bio-Placente
+* Biopeptide Complex
+* Antarktycynę (ekstrakt lodowcowy stymulujący kolagen i elastynę)
+* Kwas hialuronowy
+* Koenzym Q10
+* L-argininę i kwas mlekowy
 
 Substancje zamknięte w liposomach przenikają głęboko, zapewniając spektakularne efekty odmładzające.
 
-5\. Masaż liftingujący 
+### 5. Masaż liftingujący
 
 Pobudzenie skóry, poprawa jej jędrności i intensywniejsze wchłanianie składników aktywnych.
 
-6\. Łagodząca maska kolagenowa 
+### 6. Łagodząca maska kolagenowa
 
-   Ukojenie, regeneracja i dodatkowe nawilżenie skóry.
+Ukojenie, regeneracja i dodatkowe nawilżenie skóry.
 
-7\. Zakończenie zabiegu  
+### 7. Zakończenie zabiegu
 
-   Aplikacja kremu z biopeptydami, który chroni i wzmacnia efekty terapii.
+Aplikacja kremu z biopeptydami, który chroni i wzmacnia efekty terapii.
 
-Efekty, które pokochasz:
+### Efekty, które pokochasz:
 
-✔️ Redukcja zmarszczek i linii mimicznych  
+✔️ Redukcja zmarszczek i linii mimicznych
 
-✔️ Wyraźne wygładzenie i ujędrnienie skóry  
+✔️ Wyraźne wygładzenie i ujędrnienie skóry
 
-✔️ Głębokie nawilżenie i odżywienie  
+✔️ Głębokie nawilżenie i odżywienie
 
-✔️ Rozświetlenie i wyrównanie kolorytu skóry  
+✔️ Rozświetlenie i wyrównanie kolorytu skóry
 
-✔️ Zmniejszenie zaczerwienień i podrażnień  
+✔️ Zmniejszenie zaczerwienień i podrażnień
 
 ✔️ Ochrona przed czynnikami zewnętrznymi
 
- Zalecenia:
+### Zalecenia:
 
-\- Seria 5 zabiegów co 14 dni  
+\- Seria 5 zabiegów co 14 dni
 
 \- Pielęgnacja domowa oparta na kosmetykach z biopeptydami Larens, by utrwalić i pogłębić efekty.
 
-Jeśli marzysz o skórze napiętej, promiennej i odmłodzonej — umów się już dziś na zabieg Anti Age Larens!   
+Jeśli marzysz o skórze napiętej, promiennej i odmłodzonej — umów się już dziś na zabieg Anti Age Larens!
