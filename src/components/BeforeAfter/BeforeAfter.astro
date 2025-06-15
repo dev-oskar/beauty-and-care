@@ -1,7 +1,10 @@
 ---
 import { getSiteSettings } from "@/utils/getSiteSettings";
-import { Image } from "astro:assets";
 import Button from "@components/Button/Button.astro";
+import { Image } from "astro:assets";
+
+import { getFilenameFromPath } from "../../utils/getImagePath";
+import { getImageByFilename } from "../../utils/imageUtils";
 
 // Get site settings for before/after content
 const siteSettings = await getSiteSettings();
@@ -10,6 +13,15 @@ const beforeAfterTitle = beforeAfterData?.title || "Efekty zabiegów";
 const beforeAfterDescription =
 	beforeAfterData?.description || "Zobacz efekty naszych zabiegów przed i po.";
 const beforeAfterImages = beforeAfterData?.images || [];
+
+const beforeImageFilename = getFilenameFromPath(beforeAfterImages[0].beforeImage);
+const beforeImageImport = getImageByFilename(beforeImageFilename);
+
+const afterImageFilename = getFilenameFromPath(beforeAfterImages[0].afterImage);
+const afterImageImport = getImageByFilename(afterImageFilename);
+
+// Fallback to regular img tag if we can't get the image
+const useRegularImg = !afterImageImport;
 ---
 
 <section class="site-container bg-gray-50 py-16 md:py-24">
@@ -20,47 +32,75 @@ const beforeAfterImages = beforeAfterData?.images || [];
 		</div>
 
 		<div class="grid grid-cols-1 gap-16 md:gap-24">
-			{
-				beforeAfterImages.length > 0 && (
-					<div class="flex flex-col items-stretch gap-8 md:flex-row">
-						{/* Before Image */}
-						<div class="md:w-1/2">
-							<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
-								<div class="aspect-[4/3] h-full w-full">
+			<div class="flex flex-col items-stretch gap-8 md:flex-row">
+				{/* Before Image */}
+				<div class="md:w-1/2">
+					<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
+						<div class="aspect-[4/3] h-full w-full">
+							{
+								useRegularImg ? (
 									<img
-										src={"./src/assets/images" + beforeAfterImages[0].beforeImage}
-										alt={`Przed: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
+										src={beforeAfterImages[0].beforeImage}
+										alt="Efekt przed zabiegiem"
 										width="600"
 										height="450"
-										class="h-full w-full object-cover"
+										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
+										loading="lazy"
 									/>
-								</div>
-								<div class="bg-opacity-70 absolute top-0 left-0 bg-black px-4 py-2 text-sm font-semibold text-white">
-									{beforeAfterImages[0].beforeCaption || "Przed"}
-								</div>
-							</div>
+								) : (
+									<Image
+										src={beforeImageImport}
+										alt="Efekt przed zabiegiem"
+										width={600}
+										height={450}
+										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
+										loading={"lazy"}
+									/>
+								)
+							}
 						</div>
-
-						{/* After Image */}
-						<div class="md:w-1/2">
-							<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
-								<div class="aspect-[4/3] h-full w-full">
-									<img
-										src={"./src/assets/images" + beforeAfterImages[0].afterImage}
-										alt={`Po: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-										width="600"
-										height="450"
-										class="h-full w-full object-cover"
-									/>
-								</div>
-								<div class="bg-opacity-70 absolute top-0 left-0 bg-black px-4 py-2 text-sm font-semibold text-white">
-									{beforeAfterImages[0].afterCaption || "Po"}
-								</div>
-							</div>
+						<div
+							class="bg-opacity-70 absolute top-0 left-0 bg-black px-4 py-2 text-sm font-semibold text-white"
+						>
+							Przed zabiegiem
 						</div>
 					</div>
-				)
-			}
+				</div>
+
+				{/* After Image */}
+				<div class="md:w-1/2">
+					<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
+						<div class="aspect-[4/3] h-full w-full">
+							{
+								useRegularImg ? (
+									<img
+										src={beforeAfterImages[0].afterImage}
+										alt="Efekt po zabiegu"
+										width="600"
+										height="450"
+										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
+										loading="lazy"
+									/>
+								) : (
+									<Image
+										src={afterImageImport}
+										alt="Efekt po zabiegu"
+										width={600}
+										height={450}
+										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
+										loading={"lazy"}
+									/>
+								)
+							}
+						</div>
+						<div
+							class="bg-opacity-70 absolute top-0 left-0 bg-black px-4 py-2 text-sm font-semibold text-white"
+						>
+							Po zabiegu
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 
 		<div class="mt-12 text-center">
