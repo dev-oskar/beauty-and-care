@@ -53,14 +53,6 @@ export const polishToSlug = (filename: string): string => {
 		.replace(/^-|-$/g, "");
 };
 
-// Example for TinaCMS usage:
-const customSlugify = (values: { title?: string; topic?: string }): string => {
-	const title = values?.title ? polishToSlug(values.title) : "";
-	const topic = values?.topic ? polishToSlug(values?.topic) : "no-topic";
-
-	return `${topic}-${title}`;
-};
-
 export default defineConfig({
 	branch,
 
@@ -74,7 +66,7 @@ export default defineConfig({
 	// Configure media manager to use the src/assets/images folder
 	media: {
 		tina: {
-			mediaRoot: "/",
+			mediaRoot: "",
 			publicFolder: "src/assets/images",
 		},
 	},
