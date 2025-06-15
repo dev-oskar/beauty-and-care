@@ -22,6 +22,7 @@ const afterImageImport = getImageByFilename(afterImageFilename);
 
 // Fallback to regular img tag if we can't get the image
 const useRegularImg = !afterImageImport;
+console.log("UseRegularImg:", useRegularImg);
 ---
 
 <section class="site-container bg-gray-50 py-16 md:py-24">

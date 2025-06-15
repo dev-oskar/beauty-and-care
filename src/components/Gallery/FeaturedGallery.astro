@@ -18,6 +18,7 @@ const aboutImageImport = getImageByFilename(aboutImageFilename);
 
 // Fallback to regular img tag if we can't get the image
 const useRegularImg = !aboutImageImport;
+console.log("UseRegularImg:", useRegularImg);
 ---
 
 <section class="site-container overflow-hidden py-16 md:py-24">
