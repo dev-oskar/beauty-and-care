@@ -39,7 +39,7 @@ console.log("UseRegularImg:", useRegularImg);
 					<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
 						<div class="aspect-[4/3] h-full w-full">
 							{
-								useRegularImg ? (
+								(
 									<img
 										src={beforeAfterImages[0].beforeImage}
 										alt="Efekt przed zabiegiem"
@@ -47,15 +47,6 @@ console.log("UseRegularImg:", useRegularImg);
 										height="450"
 										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
 										loading="lazy"
-									/>
-								) : (
-									<Image
-										src={beforeImageImport}
-										alt="Efekt przed zabiegiem"
-										width={600}
-										height={450}
-										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
-										loading={"lazy"}
 									/>
 								)
 							}
