@@ -2,118 +2,69 @@
 import { getSiteSettings } from "@/utils/getSiteSettings";
 import { Image } from "astro:assets";
 import Button from "@components/Button/Button.astro";
-import { getFilenameFromPath } from "../../utils/getImagePath";
-import { getImageByFilename } from "../../utils/imageUtils";
 
 // Get site settings for before/after content
 const siteSettings = await getSiteSettings();
 const beforeAfterData = siteSettings?.beforeAfter;
 const beforeAfterTitle = beforeAfterData?.title || "Efekty zabiegów";
-const beforeAfterDescription = beforeAfterData?.description || "Zobacz efekty naszych zabiegów przed i po.";
+const beforeAfterDescription =
+	beforeAfterData?.description || "Zobacz efekty naszych zabiegów przed i po.";
 const beforeAfterImages = beforeAfterData?.images || [];
-
-// Only render if there's at least one image pair
-const shouldRender = beforeAfterImages.length > 0;
-
-// Process the before and after images
-let beforeImageImport = null;
-let afterImageImport = null;
-let useRegularImgBefore = true;
-let useRegularImgAfter = true;
-
-if (beforeAfterImages.length > 0) {
-  const beforeImageFilename = getFilenameFromPath(beforeAfterImages[0].beforeImage);
-  const afterImageFilename = getFilenameFromPath(beforeAfterImages[0].afterImage);
-  
-  beforeImageImport = getImageByFilename(beforeImageFilename);
-  afterImageImport = getImageByFilename(afterImageFilename);
-  
-  useRegularImgBefore = !beforeImageImport;
-  useRegularImgAfter = !afterImageImport;
-}
 ---
 
-{
-  shouldRender && (
-    <section class="site-container py-16 md:py-24 bg-gray-50">
-      <div class="mx-auto max-w-6xl">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4">{beforeAfterTitle}</h2>
-          <p class="text-gray-700 max-w-2xl mx-auto">{beforeAfterDescription}</p>
-        </div>
-        
-        <div class="grid grid-cols-1 gap-16 md:gap-24">
-          {beforeAfterImages.length > 0 && (
-            <div class="flex flex-col md:flex-row gap-8 items-stretch">
-              {/* Before Image */}
-              <div class="md:w-1/2">
-                <div class="relative overflow-hidden rounded-lg shadow-xl h-full">
-                  {useRegularImgBefore ? (
-                    <div class="aspect-[4/3] h-full w-full">
-                      <img
-                        src={beforeAfterImages[0].beforeImage}
-                        alt={`Przed: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-                        width="600"
-                        height="450"
-                        class="w-full h-full object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div class="aspect-[4/3] h-full w-full">
-                      <Image
-                        src={beforeImageImport}
-                        alt={`Przed: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-                        width={600}
-                        height={450}
-                        class="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  <div class="absolute top-0 left-0 bg-black bg-opacity-70 text-white px-4 py-2 text-sm font-semibold">
-                    {beforeAfterImages[0].beforeCaption || "Przed"}
-                  </div>
-                </div>
-              </div>
-              
-              {/* After Image */}
-              <div class="md:w-1/2">
-                <div class="relative overflow-hidden rounded-lg shadow-xl h-full">
-                  {useRegularImgAfter ? (
-                    <div class="aspect-[4/3] h-full w-full">
-                      <img
-                        src={beforeAfterImages[0].afterImage}
-                        alt={`Po: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-                        width="600"
-                        height="450"
-                        class="w-full h-full object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div class="aspect-[4/3] h-full w-full">
-                      <Image
-                        src={afterImageImport}
-                        alt={`Po: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
-                        width={600}
-                        height={450}
-                        class="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  <div class="absolute top-0 left-0 bg-black bg-opacity-70 text-white px-4 py-2 text-sm font-semibold">
-                    {beforeAfterImages[0].afterCaption || "Po"}
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-        
-        <div class="text-center mt-12">
-          <Button href="/zabiegi" variant="primary">
-            Zobacz nasze zabiegi
-          </Button>
-        </div>
-      </div>
-    </section>
-  )
-}
+<section class="site-container bg-gray-50 py-16 md:py-24">
+	<div class="mx-auto max-w-6xl">
+		<div class="mb-12 text-center">
+			<h2 class="mb-4 text-3xl font-bold">{beforeAfterTitle}</h2>
+			<p class="mx-auto max-w-2xl text-gray-700">{beforeAfterDescription}</p>
+		</div>
+
+		<div class="grid grid-cols-1 gap-16 md:gap-24">
+			{
+				beforeAfterImages.length > 0 && (
+					<div class="flex flex-col items-stretch gap-8 md:flex-row">
+						{/* Before Image */}
+						<div class="md:w-1/2">
+							<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
+								<div class="aspect-[4/3] h-full w-full">
+									<img
+										src={"../../assets/images" + beforeAfterImages[0].beforeImage}
+										alt={`Przed: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
+										width="600"
+										height="450"
+										class="h-full w-full object-cover"
+									/>
+								</div>
+								<div class="bg-opacity-70 absolute top-0 left-0 bg-black px-4 py-2 text-sm font-semibold text-white">
+									{beforeAfterImages[0].beforeCaption || "Przed"}
+								</div>
+							</div>
+						</div>
+
+						{/* After Image */}
+						<div class="md:w-1/2">
+							<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
+								<div class="aspect-[4/3] h-full w-full">
+									<img
+										src={"../../assets/images" + beforeAfterImages[0].afterImage}
+										alt={`Po: ${beforeAfterImages[0].alt || "Efekt zabiegu"}`}
+										width="600"
+										height="450"
+										class="h-full w-full object-cover"
+									/>
+								</div>
+								<div class="bg-opacity-70 absolute top-0 left-0 bg-black px-4 py-2 text-sm font-semibold text-white">
+									{beforeAfterImages[0].afterCaption || "Po"}
+								</div>
+							</div>
+						</div>
+					</div>
+				)
+			}
+		</div>
+
+		<div class="mt-12 text-center">
+			<Button href="/zabiegi" variant="primary"> Zobacz nasze zabiegi </Button>
+		</div>
+	</div>
+</section>
