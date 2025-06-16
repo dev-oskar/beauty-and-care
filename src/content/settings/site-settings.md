@@ -9,16 +9,16 @@ business:
   email: kontakt@beautyandcare.pl
 openingHours:
   - days: Poniedziałek - Piątek
-    hours: "10:00 - 20:00"
+    hours: '10:00 - 20:00'
   - days: Sobota
-    hours: "10:00 - 16:30"
+    hours: '10:00 - 16:30'
   - days: Niedziela
     hours: Zamknięte
 social:
-  facebook: "https://www.facebook.com/profile.php?id=61573434628290"
-  instagram: "https://instagram.com/beautyandcarepl"
-  twitter: ""
-  youtube: ""
+  facebook: 'https://www.facebook.com/profile.php?id=61573434628290'
+  instagram: 'https://instagram.com/beautyandcarepl'
+  twitter: ''
+  youtube: ''
 about:
   title: O naszym salonie
   content: >-
@@ -36,8 +36,9 @@ beforeAfter:
   description: >-
     Zobacz rezultaty naszych zabiegów - porównaj zdjęcia przed i po. Przekonaj
     się o skuteczności naszych metod.
-  beforeImage: /zdjecie-po.jpg
+  beforeImage: Analiza skory.jpg
   beforeCaption: Przed zabiegiem
-  afterImage: /zdjecie-przed.jpg
+  afterImage: 4.jpg
   afterCaption: Po zabiegu
 ---
+
