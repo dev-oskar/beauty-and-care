@@ -2,23 +2,20 @@
 import Button from "@components/Button/Button.astro";
 import { getSiteSettings } from "@/utils/getSiteSettings";
 import { Image } from "astro:assets";
-import { getFilenameFromPath } from "../../utils/getImagePath";
-import { getImageByFilename } from "../../utils/imageUtils";
+import { resolveImage } from "@utils/imageResolver";
 
 // Get site settings with about content
 const siteSettings = await getSiteSettings();
 const aboutContent = siteSettings?.about?.content;
 const aboutTitle = siteSettings?.about?.title;
 const aboutSignature = siteSettings?.about?.signature;
-const aboutImage = siteSettings?.about?.aboutImage || "";
+const aboutImageSrc = siteSettings?.about?.aboutImage;
 
-// Extract the filename from the about image path and get the imported image
-const aboutImageFilename = getFilenameFromPath(aboutImage);
-const aboutImageImport = getImageByFilename(aboutImageFilename);
+let aboutImage: ImageMetadata | null = null;
 
-// Fallback to regular img tag if we can't get the image
-const useRegularImg = !aboutImageImport;
-console.log("UseRegularImg:", useRegularImg);
+if (aboutImageSrc) {
+	aboutImage = resolveImage(aboutImageSrc);
+}
 ---
 
 <section class="site-container overflow-hidden py-16 md:py-24">
@@ -28,17 +25,9 @@ console.log("UseRegularImg:", useRegularImg);
 			<div class="relative md:w-1/2">
 				<div class="relative z-10 overflow-hidden rounded-lg shadow-xl">
 					{
-						useRegularImg ? (
-							<img
-								src={aboutImage}
-								alt="Galeria zabiegów"
-								width="600"
-								height="450"
-								class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
-							/>
-						) : (
+						aboutImage && (
 							<Image
-								src={aboutImageImport}
+								src={aboutImage}
 								alt="Galeria zabiegów"
 								width={600}
 								height={450}
