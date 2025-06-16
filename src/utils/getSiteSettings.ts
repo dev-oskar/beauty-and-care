@@ -30,13 +30,10 @@ export interface SiteSettings {
 	beforeAfter?: {
 		title?: string;
 		description?: string;
-		images?: Array<{
-			beforeImage: string;
-			beforeCaption?: string;
-			afterImage: string;
-			afterCaption?: string;
-			alt?: string;
-		}>;
+		beforeImage: string;
+		beforeCaption?: string;
+		afterImage: string;
+		afterCaption?: string;
 	};
 }
 
@@ -73,22 +70,10 @@ export const defaultSiteSettings: SiteSettings = {
 		title: "Przed i po",
 		description:
 			"Zobacz efekty naszych zabiegów na zdjęciach przed i po. Nasze innowacyjne metody przynoszą widoczne rezultaty już po pierwszej wizycie.",
-		images: [
-			{
-				beforeImage: "/assets/images/1.jpg",
-				beforeCaption: "Przed zabiegiem",
-				afterImage: "/assets/images/2.jpg",
-				afterCaption: "Po zabiegu",
-				alt: "Efekty zabiegu liftingu bez skalpela",
-			},
-			{
-				beforeImage: "/assets/images/3.jpg",
-				beforeCaption: "Przed zabiegiem",
-				afterImage: "/assets/images/4.jpg",
-				afterCaption: "Po zabiegu",
-				alt: "Efekty zabiegu modelowania sylwetki",
-			},
-		],
+		beforeImage: "/assets/images/1.jpg",
+		beforeCaption: "Przed zabiegiem",
+		afterImage: "/assets/images/2.jpg",
+		afterCaption: "Po zabiegu",
 	},
 };
 

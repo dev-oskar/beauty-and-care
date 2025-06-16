@@ -38,17 +38,10 @@ const settings = defineCollection({
 				.object({
 					title: z.string().optional(),
 					description: z.string().optional(),
-					images: z
-						.array(
-							z.object({
-								beforeImage: z.string(),
-								beforeCaption: z.string().optional(),
-								afterImage: z.string(),
-								afterCaption: z.string().optional(),
-								alt: z.string().optional(),
-							})
-						)
-						.optional(),
+					beforeImage: z.string(),
+					beforeCaption: z.string().optional(),
+					afterImage: z.string(),
+					afterCaption: z.string().optional(),
 				})
 				.optional(),
 		}),
