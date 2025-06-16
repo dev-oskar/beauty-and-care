@@ -3,8 +3,7 @@ import { getSiteSettings } from "@/utils/getSiteSettings";
 import Button from "@components/Button/Button.astro";
 import { Image } from "astro:assets";
 
-import { getFilenameFromPath } from "../../utils/getImagePath";
-import { getImageByFilename } from "../../utils/imageUtils";
+import { resolveImage } from "@utils/imageResolver";
 
 // Get site settings for before/after content
 const siteSettings = await getSiteSettings();
@@ -12,17 +11,15 @@ const beforeAfterData = siteSettings?.beforeAfter;
 const beforeAfterTitle = beforeAfterData?.title || "Efekty zabiegów";
 const beforeAfterDescription =
 	beforeAfterData?.description || "Zobacz efekty naszych zabiegów przed i po.";
-const beforeAfterImages = beforeAfterData?.images || [];
 
-const beforeImageFilename = getFilenameFromPath(beforeAfterImages[0].beforeImage);
-const beforeImageImport = getImageByFilename(beforeImageFilename);
+// Resolve images
+let beforeImage: ImageMetadata | null = null;
+let afterImage: ImageMetadata | null = null;
 
-const afterImageFilename = getFilenameFromPath(beforeAfterImages[0].afterImage);
-const afterImageImport = getImageByFilename(afterImageFilename);
-
-// Fallback to regular img tag if we can't get the image
-const useRegularImg = !afterImageImport;
-console.log("UseRegularImg:", useRegularImg);
+if (beforeAfterData?.beforeImage && beforeAfterData?.afterImage) {
+	beforeImage = resolveImage(beforeAfterData.beforeImage);
+	afterImage = resolveImage(beforeAfterData.afterImage);
+}
 ---
 
 <section class="site-container bg-gray-50 py-16 md:py-24">
@@ -39,13 +36,11 @@ console.log("UseRegularImg:", useRegularImg);
 					<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
 						<div class="aspect-[4/3] h-full w-full">
 							{
-								(
-									<img
-										src={beforeAfterImages[0].beforeImage}
-										alt="Efekt przed zabiegiem"
-										width="600"
-										height="450"
-										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
+								beforeImage && (
+									<Image
+										src={beforeImage}
+										alt="Przed zabiegiem"
+										class="h-full w-full object-cover"
 										loading="lazy"
 									/>
 								)
@@ -64,23 +59,12 @@ console.log("UseRegularImg:", useRegularImg);
 					<div class="relative h-full overflow-hidden rounded-lg shadow-xl">
 						<div class="aspect-[4/3] h-full w-full">
 							{
-								useRegularImg ? (
-									<img
-										src={beforeAfterImages[0].afterImage}
-										alt="Efekt po zabiegu"
-										width="600"
-										height="450"
-										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
-										loading="lazy"
-									/>
-								) : (
+								afterImage && (
 									<Image
-										src={afterImageImport}
-										alt="Efekt po zabiegu"
-										width={600}
-										height={450}
-										class="h-auto w-full transform transition-transform duration-700 hover:scale-105"
-										loading={"lazy"}
+										src={afterImage}
+										alt="Po zabiegu"
+										class="h-full w-full object-cover"
+										loading="lazy"
 									/>
 								)
 							}

@@ -259,67 +259,48 @@ export default defineConfig({
 								},
 							},
 							{
-								type: "object",
-								name: "images",
-								label: "Zdjęcia przed i po zabiegu",
-								list: true,
+								type: "image",
+								name: "beforeImage",
+								label: "Zdjęcie przed zabiegiem",
+								required: true,
 								ui: {
-									itemProps: (item) => {
-										return { label: item?.beforeImage || "Zdjęcie" };
+									parse(value) {
+										if (!value || typeof value !== "string") return null;
+
+										// Extract just the filename with extension from a potential path
+										const baseName = value.split(/[\/\\]/).pop();
+
+										// Return the extracted filename
+										return decodeURIComponent(baseName);
 									},
-									description: "Zdjęcia przed i po zabiegu. Dodaj zdjęcia w parze (przed i po).",
 								},
-								fields: [
-									{
-										type: "image",
-										name: "beforeImage",
-										label: "Zdjęcie przed zabiegiem",
-										required: true,
-										ui: {
-											parse(value) {
-												if (!value || typeof value !== "string") return null;
+							},
+							{
+								type: "string",
+								name: "beforeCaption",
+								label: "Podpis pod zdjęciem przed zabiegiem",
+							},
+							{
+								type: "image",
+								name: "afterImage",
+								label: "Zdjęcie po zabiegu",
+								required: true,
+								ui: {
+									parse(value) {
+										if (!value || typeof value !== "string") return null;
 
-												// Extract just the filename with extension from a potential path
-												const baseName = value.split(/[\/\\]/).pop();
+										// Extract just the filename with extension from a potential path
+										const baseName = value.split(/[\/\\]/).pop();
 
-												// Return the extracted filename
-												return decodeURIComponent(baseName);
-											},
-										},
+										// Return the extracted filename
+										return decodeURIComponent(baseName);
 									},
-									{
-										type: "string",
-										name: "beforeCaption",
-										label: "Podpis pod zdjęciem przed zabiegiem",
-									},
-									{
-										type: "image",
-										name: "afterImage",
-										label: "Zdjęcie po zabiegu",
-										required: true,
-										ui: {
-											parse(value) {
-												if (!value || typeof value !== "string") return null;
-
-												// Extract just the filename with extension from a potential path
-												const baseName = value.split(/[\/\\]/).pop();
-
-												// Return the extracted filename
-												return decodeURIComponent(baseName);
-											},
-										},
-									},
-									{
-										type: "string",
-										name: "afterCaption",
-										label: "Podpis pod zdjęciem po zabiegu",
-									},
-									{
-										type: "string",
-										name: "alt",
-										label: "Tekst alternatywny zdjęcia (SEO)",
-									},
-								],
+								},
+							},
+							{
+								type: "string",
+								name: "afterCaption",
+								label: "Podpis pod zdjęciem po zabiegu",
 							},
 						],
 					},
