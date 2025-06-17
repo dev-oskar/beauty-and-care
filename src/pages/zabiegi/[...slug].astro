@@ -7,16 +7,6 @@ import RichTextContent from "@components/RichTextContent/RichTextContent.astro";
 import { formatDate } from "../../utils/dateUtils";
 import { resolveImage } from "@utils/imageResolver";
 
-// Generate static paths for all services
-export async function getStaticPaths() {
-	const procedures = await getCollection("zabiegi", (procedure) => !procedure.data.draft);
-
-	return procedures.map((procedure) => ({
-		params: { slug: procedure.slug },
-		props: { procedure },
-	}));
-}
-
 const { procedure } = Astro.props;
 const featuredImage = procedure.data.featuredImage
 	? resolveImage(procedure.data.featuredImage)
