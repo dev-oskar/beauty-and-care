@@ -1,51 +1,26 @@
 ---
-/**
- * zabiegi/[...slug].astro
- * Dynamic service detail page - fully dynamic with TinaCMS integration
- * Simple & clean structure for single zabieg display
- */
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import RichTextContent from "@components/RichTextContent/RichTextContent.astro";
-import { formatDate } from "../../utils/dateUtils";
-import { getFilenameFromPath } from "../../utils/getImagePath";
-import { getImageByFilename } from "../../utils/imageUtils";
 
-// Define all possible service slugs for static generation
+import { formatDate } from "../../utils/dateUtils";
+import { resolveImage } from "@utils/imageResolver";
+
+// Generate static paths for all services
 export async function getStaticPaths() {
-	// Get all non-draft zabiegi (services)
 	const procedures = await getCollection("zabiegi", (procedure) => !procedure.data.draft);
 
-	// Create paths for each service
 	return procedures.map((procedure) => ({
 		params: { slug: procedure.slug },
-		props: { procedure: procedure },
+		props: { procedure },
 	}));
 }
 
-// Get the service from props
-const { procedure: procedure } = Astro.props;
-
-// Content will be rendered by RichTextContent component
-
-// Process the image if available
-// Astro's Image component requires an import or a valid image object, not just a string path
-let hasFeaturedImage = false;
-let featuredImageImport = null;
-let useRegularImg = true;
-
-if (procedure.data.featuredImage) {
-	console.log("Featured Image:", procedure.data.featuredImage);
-	hasFeaturedImage = true;
-
-	// Extract the filename and get the imported image
-	const filename = getFilenameFromPath(procedure.data.featuredImage);
-	featuredImageImport = getImageByFilename(filename);
-
-	// Determine if we need to fall back to a regular img tag
-	useRegularImg = !featuredImageImport;
-}
+const { procedure } = Astro.props;
+const featuredImage = procedure.data.featuredImage
+	? resolveImage(procedure.data.featuredImage)
+	: null;
 ---
 
 <BaseLayout
@@ -60,50 +35,37 @@ if (procedure.data.featuredImage) {
 >
 	<div class="site-container pt-24 md:pt-36">
 		<article class="mx-auto max-w-4xl pb-12">
+			<!-- Title -->
 			<h1 class="h2 text-center text-pretty">{procedure.data.title}</h1>
 
-			{/* Featured image section */}
+			<!-- Featured Image -->
 			{
-				hasFeaturedImage && (
+				featuredImage && (
 					<div class="mt-8 mb-6 overflow-hidden rounded-lg shadow-md">
-						{useRegularImg ? (
-							<img
-								src={procedure.data.featuredImage}
-								alt={procedure.data.title}
-								class="mx-auto h-auto max-h-[500px] w-full max-w-3xl object-cover"
-							/>
-						) : (
-							<Image
-								src={featuredImageImport}
-								alt={procedure.data.title}
-								class="mx-auto h-auto max-h-[500px] w-full max-w-3xl object-cover"
-							/>
-						)}
+						<Image
+							src={featuredImage}
+							alt={procedure.data.title}
+							width={800}
+							height={450}
+							class="h-auto max-h-[250px] w-full object-cover sm:max-h-[300px] md:max-h-[400px]"
+						/>
 					</div>
 				)
 			}
 
-			<!-- Price, date and location info -->
+			<!-- Service Info Cards -->
 			<div class="mt-6 flex flex-wrap justify-center gap-4">
 				{
 					procedure.data.priceRange && (
-						<div class="bg-primary-50 flex items-center rounded-lg px-4 py-2 shadow-sm">
+						<div class="bg-primary-50 rounded-lg px-4 py-2 shadow-sm">
 							<span class="text-primary-800 font-semibold">Cena: {procedure.data.priceRange}</span>
 						</div>
 					)
 				}
 
 				{
-					procedure.data.location && (
-						<div class="bg-primary-50 flex items-center rounded-lg px-4 py-2 shadow-sm">
-							<span class="text-primary-800">Salon: {procedure.data.location}</span>
-						</div>
-					)
-				}
-
-				{
 					procedure.data.date && (
-						<div class="bg-primary-50 flex items-center rounded-lg px-4 py-2 shadow-sm">
+						<div class="bg-primary-50 rounded-lg px-4 py-2 shadow-sm">
 							<span class="text-sm text-gray-600">
 								Aktualizacja: {formatDate(procedure.data.date)}
 							</span>
@@ -115,19 +77,17 @@ if (procedure.data.featuredImage) {
 			<!-- Tags -->
 			{
 				procedure.data.tags && procedure.data.tags.length > 0 && (
-					<div class="mt-6 flex flex-col items-center gap-2">
-						<div class="flex flex-wrap justify-center gap-1">
+					<div class="mt-6 flex justify-center">
+						<div class="flex flex-wrap justify-center gap-2">
 							{procedure.data.tags.map((tag) => (
-								<span class="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-700">
-									#{tag}
-								</span>
+								<span class="rounded-full bg-gray-100 px-2 py-1 text-xs text-gray-700">#{tag}</span>
 							))}
 						</div>
 					</div>
 				)
 			}
 
-			<!-- For whom section -->
+			<!-- Target Clients -->
 			{
 				procedure.data.clients && procedure.data.clients.length > 0 && (
 					<div class="mt-8 rounded-lg bg-gray-50 p-6">
@@ -135,7 +95,7 @@ if (procedure.data.featuredImage) {
 						<ul class="grid gap-2 md:grid-cols-2">
 							{procedure.data.clients.map((client) => (
 								<li class="flex items-center">
-									<span class="text-primary-500 mr-2">✓</span>
+									<span class="text-primary-500 mr-2 text-lg">✓</span>
 									<span>{client}</span>
 								</li>
 							))}
@@ -144,21 +104,20 @@ if (procedure.data.featuredImage) {
 				)
 			}
 
-			<!-- Main content -->
+			<!-- Main Content -->
 			<RichTextContent content={procedure} />
 
-			<!-- Back button -->
+			<!-- Navigation -->
 			<div class="mt-12 flex justify-center">
 				<a
 					href="/zabiegi"
-					class="text-primary-600 hover:text-primary-700 inline-flex items-center font-medium"
+					class="text-primary-600 hover:text-primary-700 inline-flex items-center font-medium transition-colors"
 				>
 					<svg
-						xmlns="http://www.w3.org/2000/svg"
 						class="mr-1 h-5 w-5 rotate-180"
 						fill="none"
-						viewBox="0 0 24 24"
 						stroke="currentColor"
+						viewBox="0 0 24 24"
 					>
 						<path
 							stroke-linecap="round"
