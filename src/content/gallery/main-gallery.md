@@ -26,7 +26,7 @@ images:
   - src: /9.jpg
     caption: Efekty zabiegów na twarz - redukcja zmarszczek
     alt: Efekt po serii zabiegów przeciwzmarszczkowych
-  - src: /350.jpg
+  - src: 9.jpg
     caption: Redukcja cellulitu - rezultaty
     alt: Efekty po zabiegach antycellulitowych
 ---
