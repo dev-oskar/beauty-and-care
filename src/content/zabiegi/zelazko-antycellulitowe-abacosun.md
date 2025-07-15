@@ -1,5 +1,5 @@
 ---
-title: Żelazko® Antycellulitowe Abacosun
+title: Żelazko Antycellulitowe Abacosun
 featuredImage: Zelazko-Antycel (1).png
 description: >-
   Żelazko antycellulitowe – zabieg 3w1 na cellulit i jędrność skóry
@@ -17,6 +17,15 @@ seoDescription: >-
   Zabieg Żelazko® Antycellulitowe łączy masaż próżniowy, elektrostymulację TENS
   i chromoterapię LED. Skutecznie redukuje cellulit, modeluje ciało i ujędrnia
   skórę. Bezpieczny, bezinwazyjny i odpowiedni dla każdego.
+keywords:
+  - ujędrnianie biustu
+  - ujędrnianie skóry
+  - zabiegi na ciało
+  - poprawa kondycji skóry
+  - redukcja tkanki tłuszczowej
+  - odmładzanie skóry
+  - masaż ciała
+  - usuwanie cellulitu
 ---
 
 ## Skuteczny zabieg 3w1 na cellulit, jędrność i modelowanie sylwetki
@@ -33,7 +42,7 @@ Zabieg wykonywany jest przy użyciu innowacyjnej głowicy VacuElectroColor, któ
 
 Każdy zabieg trwa od 20 do 40 minut, w zależności od partii ciała, i dostosowywany jest indywidualnie do potrzeb klienta.
 
-### Korzyści zabiegu 
+### Korzyści zabiegu
 
 ✔️ Redukcja cellulitu
 ✔️ Modelowanie sylwetki
