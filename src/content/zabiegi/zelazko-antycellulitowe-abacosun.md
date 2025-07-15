@@ -1,6 +1,5 @@
 ---
 title: Żelazko Antycellulitowe Abacosun
-featuredImage: null
 description: >-
   Żelazko antycellulitowe – zabieg 3w1 na cellulit i jędrność skóry
 
