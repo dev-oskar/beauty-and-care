@@ -33,7 +33,7 @@ Zabieg wykonywany jest przy użyciu innowacyjnej głowicy VacuElectroColor, któ
 
 Każdy zabieg trwa od 20 do 40 minut, w zależności od partii ciała, i dostosowywany jest indywidualnie do potrzeb klienta.
 
-### Korzyści zabiegu Vacuelectrocolor
+### Korzyści zabiegu 
 
 ✔️ Redukcja cellulitu
 ✔️ Modelowanie sylwetki
@@ -48,7 +48,7 @@ Efekty widoczne są już po pierwszym zabiegu – skóra staje się bardziej nap
 
 ### Dla kogo?
 
-Zabieg Vacuelectrocolor polecany jest osobom, które:
+Zabieg Żelazko Antycellulitowe polecany jest osobom, które:
 
 * Chcą pozbyć się cellulitu
 * Pragną ujędrnić ciało i zredukować obwody
