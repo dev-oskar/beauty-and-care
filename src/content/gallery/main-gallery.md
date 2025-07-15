@@ -8,7 +8,7 @@ images:
   - src: /1.jpg
     caption: Właścicielka salonu Beauty and Care Katarzyna
     alt: Właścicielka salonu Beauty and Care Katarzyna
-  - src: OxyGlow.jpg
+  - src: anti age (1).jpg
     caption: Zabiegi na twarz
     alt: Zabieg pielęgnacyjny na twarz
   - src: /9.jpg
