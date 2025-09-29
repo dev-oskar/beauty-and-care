@@ -22,7 +22,7 @@ pnpm-debug.log*
 # Local Netlify folder
 .netlify
 
-node_modules
-.env
-
+# Development and cleanup files
 CLAUDE.md
+bfg*.jar
+replacements.txt
