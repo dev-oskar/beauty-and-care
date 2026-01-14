@@ -11,7 +11,7 @@ openingHours:
   - days: Poniedziałek - Piątek
     hours: '09:00 - 18:00'
   - days: Sobota
-    hours: '10:00 - 16:30'
+    hours: '10:00 - 16:00'
   - days: Niedziela
     hours: Zamknięte
 social:
