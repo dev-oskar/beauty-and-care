@@ -26,7 +26,7 @@ images:
   - src: 20250409_075912.jpg
     caption: Efekty zabiegów liposukcji laserowej Vivien 1064 nm
     alt: Efekt zabiegów liposukcji laserowej Vivien 1064 nm
-  - src: 20260102_125926.jpg
+  - src: 20250310_164246.jpg
     caption: Efekt zabiegu liposukcji laserowej Vivien 1064 nm
     alt: Efekt zabiegu liposukcji laserowej Vivien 1064 nm
 ---
