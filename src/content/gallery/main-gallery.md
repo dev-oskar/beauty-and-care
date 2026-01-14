@@ -23,9 +23,9 @@ images:
   - src: 20251001_192924.jpg
     caption: Efekt zabiegu liposukcji laserowej Vivien 1064 nm
     alt: Efekt zabiegu liposukcji laserowej Vivien 1064 nm
-  - src: /9.jpg
-    caption: Efekty zabiegów na twarz - redukcja zmarszczek
-    alt: Efekt po serii zabiegów przeciwzmarszczkowych
+  - src: 20250409_075912.jpg
+    caption: Efekty zabiegów liposukcji laserowej Vivien 1064 nm
+    alt: Efekt zabiegów liposukcji laserowej Vivien 1064 nm
   - src: 9.jpg
     caption: Redukcja cellulitu - rezultaty
     alt: Efekty po zabiegach antycellulitowych
