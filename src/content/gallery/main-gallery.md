@@ -20,9 +20,9 @@ images:
   - src: EMS (1).jpg
     caption: Elektrostymulacja mięśni (EMS)
     alt: Elektrostymulacja mięśni (EMS)
-  - src: /8.jpg
-    caption: Rezultat zabiegu liposukcji laserowej
-    alt: Efekt po serii zabiegów liposukcji laserowej
+  - src: 20251001_192924.jpg
+    caption: Efekt zabiegu liposukcji laserowej Vivien 1064 nm
+    alt: Efekt zabiegu liposukcji laserowej Vivien 1064 nm
   - src: /9.jpg
     caption: Efekty zabiegów na twarz - redukcja zmarszczek
     alt: Efekt po serii zabiegów przeciwzmarszczkowych
