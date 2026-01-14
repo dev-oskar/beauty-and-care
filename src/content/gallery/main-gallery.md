@@ -15,8 +15,8 @@ images:
     caption: Biolift RF 448 KHZ
     alt: Biolift RF 448 KHZ
   - src: /PXL_20250407_143954631.jpg
-    caption: Masaż endermologiczny
-    alt: Procedura masażu endermologicznego
+    caption: Właścicielka salonu Beauty and Care
+    alt: Właścicielka salonu Beauty and Care
   - src: /background-new.jpg
     caption: Usuwanie przebarwień test
     alt: Zabieg usuwania przebarwień na twarzy
