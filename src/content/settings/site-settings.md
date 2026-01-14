@@ -9,7 +9,7 @@ business:
   email: kontakt@beautyandcare.pl
 openingHours:
   - days: Poniedziałek - Piątek
-    hours: '10:00 - 20:00'
+    hours: '09:00 - 18:00'
   - days: Sobota
     hours: '10:00 - 16:30'
   - days: Niedziela
