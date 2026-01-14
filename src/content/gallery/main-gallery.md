@@ -12,8 +12,8 @@ images:
     caption: Zabiegi na twarz
     alt: Zabieg pielęgnacyjny na twarz
   - src: /9.jpg
-    caption: Mezoterapia igłowa
-    alt: Procedura mezoterapii igłowej
+    caption: Biolift RF 448 KHZ
+    alt: Biolift RF 448 KHZ
   - src: /PXL_20250407_143954631.jpg
     caption: Masaż endermologiczny
     alt: Procedura masażu endermologicznego
