@@ -17,9 +17,9 @@ images:
   - src: /PXL_20250407_143954631.jpg
     caption: Właścicielka salonu Beauty and Care
     alt: Właścicielka salonu Beauty and Care
-  - src: /background-new.jpg
-    caption: Usuwanie przebarwień test
-    alt: Zabieg usuwania przebarwień na twarzy
+  - src: EMS (1).jpg
+    caption: Elektrostymulacja mięśni (EMS)
+    alt: Elektrostymulacja mięśni (EMS)
   - src: /8.jpg
     caption: Rezultat zabiegu liposukcji laserowej
     alt: Efekt po serii zabiegów liposukcji laserowej
