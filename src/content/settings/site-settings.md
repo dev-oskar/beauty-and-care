@@ -27,9 +27,9 @@ about:
 beforeAfter:
   title: Efekty zabiegów Beauty and Care
   description: Zobacz rezultaty naszych zabiegów - porównaj zdjęcia przed i po. Przekonaj się o skuteczności naszych metod.
-  beforeImage: Analiza skory.jpg
+  beforeImage: file_000000003210720c873a5139afbe338a.png
   beforeCaption: Przed zabiegiem
-  afterImage: 4.jpg
+  afterImage: file_000000009da4720c9f1462209d670fba.png
   afterCaption: Po zabiegu
 ---
 
